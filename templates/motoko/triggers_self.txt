@@ -1,0 +1,2 @@
+# Self-Trigger (eigenes Vokabular, zweites Auge): Muster|Ziel-Datei
+# Gleiches Format wie triggers.txt. Fängt, was die KI selbst schreibt.

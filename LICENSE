@@ -1,0 +1,26 @@
+Sovereign Memory Protocol
+Copyright (c) 2026 Christian (sole authority on publication)
+
+DUAL-LICENSED.
+
+1. OPEN-SOURCE-LIZENZ (Standard)
+   Dieses Werk wird unter der GNU Affero General Public License, Version 3
+   oder (nach deiner Wahl) einer spaeteren Version (AGPL-3.0-or-later)
+   bereitgestellt. Jede Nutzung, Modifikation und Verbreitung unter den
+   Bedingungen der AGPL-3.0 ist gestattet — insbesondere gilt die Netzwerk-
+   Copyleft-Klausel (§13): wer das Protokoll als Dienst ueber ein Netzwerk
+   anbietet, muss den vollstaendigen entsprechenden Quelltext den Nutzern
+   dieses Dienstes zugaenglich machen.
+
+   Der vollstaendige Lizenztext der AGPL-3.0 liegt in der Datei COPYING.AGPL
+   in diesem Repository bei (Quelle: https://www.gnu.org/licenses/agpl-3.0.txt).
+
+2. KOMMERZIELLE LIZENZ (alternativ)
+   Wer das Protokoll unter Bedingungen nutzen moechte, die mit der AGPL-3.0
+   nicht vereinbar sind (z.B. proprietaere Einbettung ohne Quelltext-Offenlegung),
+   kann eine separate kommerzielle Lizenz erwerben. Anfragen an den
+   Urheberrechtsinhaber.
+
+Diese Doppel-Lizenzierung folgt dem Cypherpunk-Prinzip: das Wissen bleibt frei
+und verifizierbar fuer alle, waehrend kommerzielle Schliessung einen
+ausdruecklichen, bezahlten Akt erfordert.

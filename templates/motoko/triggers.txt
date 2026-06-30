@@ -1,0 +1,4 @@
+# Sentry-Trigger (Partner-Kanal): Muster|Ziel-Datei
+# Eine Zeile pro Trigger. Komma-getrennte Muster, dann | dann relativer Pfad.
+# Beispiel:
+# wallet, lightning, sats|motoko/wallet.md

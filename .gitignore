@@ -1,0 +1,30 @@
+# Zero-Trust-Whitelist: standardmaessig ALLES ignorieren, nur Erlaubtes tracken.
+# Dieses Repo ist oeffentlich bestimmt — kein privates Datum darf je hineingeraten.
+*
+
+# ── explizit freigegeben ─────────────────────────────────────────────────────
+!.gitignore
+!README.md
+!LICENSE
+!COPYING.AGPL
+!engine/
+!engine/**
+!spec/
+!spec/**
+!templates/
+!templates/**
+!docs/
+!docs/**
+
+# ── niemals, auch innerhalb freigegebener Ordner ─────────────────────────────
+**/__pycache__/
+**/*.pyc
+**/.env
+**/.env.*
+**/state/
+**/logs/
+**/*.log
+# Daten leben NIE in diesem Repo, sondern unter $MOTOKO_MEMORY (separater Baum).
+# (Leere Struktur-Vorlagen unter templates/ sind ausdruecklich erlaubt — sie
+#  enthalten nur Header, keine Inhalte.)
+**/motoko-memory/
