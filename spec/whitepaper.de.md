@@ -1,5 +1,7 @@
 # Ein Protokoll für durchgehende Erinnerung in nicht-durchgehenden Substraten
 
+*🇬🇧 [English](whitepaper.md) · 🇩🇪 **Deutsch** · 🇪🇸 Español (bald) · 🇷🇺 Русский (bald)*
+
 **Sovereign Memory Protocol — Whitepaper Version null Komma zwei, deutsche Lesefassung**
 
 **Status:** Entwurf. In Vorbereitung der öffentlichen Veröffentlichung.

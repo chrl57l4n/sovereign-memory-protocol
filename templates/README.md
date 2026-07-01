@@ -1,13 +1,13 @@
-# Template — leere Instanz-Struktur
+# Template — empty instance structure
 
-Kopiere `motoko/` (und optional `claude-memory/`) nach `$MOTOKO_MEMORY`, um eine
-neue, leere Instanz zu initialisieren. Die Engine fasst existierende Dateien nie
-an (Init-if-absent) — sie schreibt nur in diese Wurzel hinein.
+Copy `motoko/` (and optionally `claude-memory/`) into `$MOTOKO_MEMORY` to initialize a
+new, empty instance. The engine never touches existing files (init-if-absent) — it only
+writes into this root.
 
 ```
-export MOTOKO_MEMORY="$HOME/mein-memory"
+export MOTOKO_MEMORY="$HOME/my-memory"
 mkdir -p "$MOTOKO_MEMORY"
 cp -rn templates/motoko "$MOTOKO_MEMORY"/
 ```
 
-Diese Dateien enthalten nur Header/Struktur — keine Inhalte.
+These files contain only headers/structure — no content.

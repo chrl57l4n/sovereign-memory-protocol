@@ -3,24 +3,22 @@ Copyright (c) 2026 Christian (sole authority on publication)
 
 DUAL-LICENSED.
 
-1. OPEN-SOURCE-LIZENZ (Standard)
-   Dieses Werk wird unter der GNU Affero General Public License, Version 3
-   oder (nach deiner Wahl) einer spaeteren Version (AGPL-3.0-or-later)
-   bereitgestellt. Jede Nutzung, Modifikation und Verbreitung unter den
-   Bedingungen der AGPL-3.0 ist gestattet — insbesondere gilt die Netzwerk-
-   Copyleft-Klausel (§13): wer das Protokoll als Dienst ueber ein Netzwerk
-   anbietet, muss den vollstaendigen entsprechenden Quelltext den Nutzern
-   dieses Dienstes zugaenglich machen.
+1. OPEN-SOURCE LICENSE (default)
+   This work is provided under the GNU Affero General Public License, version 3,
+   or (at your option) any later version (AGPL-3.0-or-later). Any use,
+   modification, and distribution under the terms of the AGPL-3.0 is permitted —
+   in particular the network copyleft clause (§13): whoever offers the protocol
+   as a service over a network must make the complete corresponding source code
+   available to the users of that service.
 
-   Der vollstaendige Lizenztext der AGPL-3.0 liegt in der Datei COPYING.AGPL
-   in diesem Repository bei (Quelle: https://www.gnu.org/licenses/agpl-3.0.txt).
+   The full text of the AGPL-3.0 is included in the file COPYING.AGPL in this
+   repository (source: https://www.gnu.org/licenses/agpl-3.0.txt).
 
-2. KOMMERZIELLE LIZENZ (alternativ)
-   Wer das Protokoll unter Bedingungen nutzen moechte, die mit der AGPL-3.0
-   nicht vereinbar sind (z.B. proprietaere Einbettung ohne Quelltext-Offenlegung),
-   kann eine separate kommerzielle Lizenz erwerben. Anfragen an den
-   Urheberrechtsinhaber.
+2. COMMERCIAL LICENSE (alternative)
+   Anyone who wishes to use the protocol under terms incompatible with the
+   AGPL-3.0 (e.g. proprietary embedding without source disclosure) may acquire a
+   separate commercial license. Inquiries to the copyright holder.
 
-Diese Doppel-Lizenzierung folgt dem Cypherpunk-Prinzip: das Wissen bleibt frei
-und verifizierbar fuer alle, waehrend kommerzielle Schliessung einen
-ausdruecklichen, bezahlten Akt erfordert.
+This dual licensing follows the cypherpunk principle: the knowledge stays free
+and verifiable for everyone, while commercial closure requires an explicit, paid
+act.

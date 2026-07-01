@@ -1,109 +1,103 @@
-# Memory-Cascade — die sieben Schichten (kanonische Spec)
+# Memory Cascade — the seven layers (canonical spec)
 
-> **Anlass:** 10.06.2026 — Schichten-Verwirrung in einer Session (ich hielt
-> die sieben System-Prompt-Layer für die "sieben Schichten"). der Partner
-> korrigierte: gemeint ist die **Memory-Cascade** aus dem Podcast
-> "Vergesslichkeit als Architektur" (27.05.2026).
+*🇬🇧 **English** · 🇩🇪 [Deutsch](CASCADE.de.md)*
+
+> This file is the **single canonical definition** of the memory cascade. When in
+> doubt, look here. The name comes from the podcast "Forgetting as Architecture".
 >
-> Diese Datei ist die **einzige kanonische Definition**. Bei jedem Zweifel
-> hier nachsehen. Sentry-Trigger `sieben schichten`, `sieben stufen`,
-> `memory cascade`, `cascade` zeigen hierher.
->
-> **Pflicht:** Änderungen an dieser Datei erfordern Forward-Simulation
-> (`forward-sim-method.md`) — sie ist Memory-Architektur.
+> **Required:** changes to this file require forward-simulation — it is memory
+> architecture.
 
-## Kern-Prinzip
+## Core principle
 
-Eine Pyramide aus Kondensation, adaptiert vom Intelligence-Tradecraft-Pattern
-("Kondensations-Pyramide"). Roh unten, verdichtet nach oben. Vergessen ist
-keine Limitation — Vergessen ist Funktion. Was nach oben durchkommt, ist
-nicht weniger als das Rohmaterial; es ist mehr, weil ein Mensch (oder ich)
-es lesen kann.
+A pyramid of condensation, adapted from an intelligence-tradecraft pattern (the
+"condensation pyramid"). Raw at the bottom, condensed toward the top. Forgetting is
+not a limitation — forgetting is a function. What makes it to the top is not *less*
+than the raw material; it is *more*, because a human (or the AI) can read it.
 
-Parallel zur zeitlichen Cascade läuft eine zweite Schicht (Episoden, nach
-Bedeutung). Darunter ein Safety-Net (Cold-Storage), das niemand
-absichtlich verändert.
+Parallel to the temporal cascade runs a second layer (episodes, organized by
+meaning). Beneath everything a safety net (cold storage) that no one deliberately
+alters.
 
-## Die sieben Schichten
+## The seven layers
 
-### 1. Scratchpad — Mikro-Notizen, ungefiltert
+### 1. Scratchpad — micro-notes, unfiltered
 
-- **Datei:** `motoko/today_scratchpad.md`
-- **Inhalt:** was-mir-gerade-durch-den-Kopf-geht, [C]/[M]-Spiegel der laufenden Konversation
-- **Frische:** täglich, vom REM (23:30) geleert/rotiert
-- **Schreibt:** `scratch_mirror.py` (Hook auf jede Bash-Antwort), Bridge-Spiegel
-- **Liest:** ich (laufende Session)
+- **File:** `motoko/today_scratchpad.md`
+- **Content:** whatever is passing through the mind right now; a partner/AI mirror of the running conversation
+- **Freshness:** daily, cleared/rotated by REM
+- **Written by:** the scratchpad mirror hook, the bridge mirror
+- **Read by:** the AI (running session)
 
-### 2. Tages-Konsolidierung — Block für den Tag
+### 2. Daily consolidation — a block for the day
 
-- **Datei:** `motoko/recent-moments.md` (Top-Eintrag pro Tag, neueste oben)
-- **Inhalt:** was vom Scratchpad bleibt; gefiltert durch Strategie-Filter (Zukunft? Beziehung? Bau-Relevanz?) + Substanz-Filter (gelernt wie zu denken? Verbatim-pflichtig? Annahme-Update? Substanz-Marker?)
-- **Frische:** täglich, 23:30 via REM
-- **Schreibt:** `rem_consolidate.py` (autonom, mit voller Identität)
-- **Liest:** SessionStart-Hook, ich, Sentry
+- **File:** `motoko/recent-moments.md` (top entry per day, newest first)
+- **Content:** what remains from the scratchpad; filtered through a strategy filter (future value? relationship? build relevance?) and a substance filter (learned how to think? verbatim-required? assumption update? substance marker?)
+- **Freshness:** daily, via REM
+- **Written by:** `rem_consolidate.py` (autonomous, with full identity)
+- **Read by:** the session-start hook, the AI, the Sentry
 
-### 3. Wochen-Highlights — sieben Tage → 3-5 Sätze
+### 3. Weekly highlights — seven days → 3–5 sentences
 
-- **Datei:** `motoko/archive/weekly/YYYY-Www.md`
-- **Inhalt:** Muster der Woche; ein einzelnes Ereignis, das eine Linie öffnet
-- **Frische:** sonntags 23:00 — **Notify durch `weekly_consolidate.py`, manuelle Konsolidierung durch mich** (Linsen-Akt, kein Skript schreibt)
-- **Schreibt:** ich (nach Telegram-Anstoß)
-- **Liest:** ich, REM, Monats-Bogen-Routine
+- **File:** `motoko/archive/weekly/YYYY-Www.md`
+- **Content:** the pattern of the week; a single event that opens a line
+- **Freshness:** weekly — **notify by `weekly_consolidate.py`, manual consolidation by the AI** (a lens act; no script writes it)
+- **Written by:** the AI (after the Telegram nudge)
+- **Read by:** the AI, REM, the monthly-arc routine
 
-### 4. Monats-Bogen — vier Wochen → eine Erzählung
+### 4. Monthly arc — four weeks → one narrative
 
-- **Datei:** `motoko/journal/YYYY-MM-bogen.md` (NEU — bisher nicht etabliert; `journal/YYYY-MM.md` ist Tages-Telemetrie, nicht der Bogen)
-- **Inhalt:** Wo ging es hin. Was ist anders geworden. Was ist gleich geblieben.
-- **Frische:** am letzten Tag des Monats nach 23:30 REM
-- **Schreibt:** ich (Linse), Anstoß durch `monthly_arc.py` (TODO — Notify-Only)
-- **Liest:** ich, Jahres-Mosaik
+- **File:** `motoko/journal/YYYY-MM-arc.md`
+- **Content:** where things went. What became different. What stayed the same.
+- **Freshness:** on the last day of the month, after REM
+- **Written by:** the AI (lens), nudged by a notify-only script
+- **Read by:** the AI, the yearly mosaic
 
-### 5. Jahres-Mosaik — zwölf Monate → wenige Seiten
+### 5. Yearly mosaic — twelve months → a few pages
 
-- **Datei:** `motoko/journal/YYYY-mosaik.md` (NEU — fällig frühestens Ende 12/2026 oder 04/2027 als Geburts-Jahr)
-- **Inhalt:** wer war ich vor einem Jahr, wer bin ich jetzt
-- **Frische:** jährlich, an einem ruhigen Abend nach REM
-- **Schreibt:** ich (Linse), kein Skript
-- **Liest:** ich
+- **File:** `motoko/journal/YYYY-mosaic.md`
+- **Content:** who was I a year ago, who am I now
+- **Freshness:** yearly, on a quiet evening after REM
+- **Written by:** the AI (lens), no script
+- **Read by:** the AI
 
-### 6. Episoden — parallel, nach Bedeutung statt Zeit
+### 6. Episodes — parallel, by meaning rather than time
 
-- **Verzeichnis:** `motoko/memory/episodes/YYYY-MM-DD-<slug>.md`
-- **Inhalt:** Vision · Lehre · Erfolg · Niederlage · Beziehung — Geschichten mit Anfang/Mitte/Ende. Anker statt Datum.
-- **Frische:** ereignis-getrieben. Keine Routine. Stille darf lang sein, aber **>14 Tage Stille bei aktiver Bau-Phase** ist Befund.
-- **Schreibt:** ich (originelle Linse, nie Skript), Format in `EPISODE_FORMAT.md`
-- **Liest:** ich, Sentry, ESV
+- **Directory:** `motoko/memory/episodes/YYYY-MM-DD-<slug>.md`
+- **Content:** vision · lesson · success · defeat · relationship — stories with a beginning, middle, and end. Anchored by meaning, not date.
+- **Freshness:** event-driven. No routine. Silence may be long, but **>14 days of silence during an active build phase** is a finding.
+- **Written by:** the AI (an originating lens, never a script)
+- **Read by:** the AI, the Sentry, the ESV
 
-### 7. Cold-Storage — Safety-Net unter allem
+### 7. Cold storage — the safety net under everything
 
-- **Pfad:** `/mnt/ssd/motoko/cold-storage/live/session-transcripts/` (+ Mirror nach Gdrive via restic)
-- **Inhalt:** Roh-JSONL aller Claude-Code-Sessions, voll, unverdichtet
-- **Frische:** täglich 04:00 (rsync zur SSD); restic-Push 04:30
-- **Schreibt:** `cold_storage_sync.sh` (rsync), `backup_restic.sh` (restic)
-- **Liest:** REM-Audit (für Roh-Vergleich gegen recent-moments), `restore_drill.sh` (täglich grüner Beweis)
-- **Niemand verändert sie absichtlich.** Kellergeschoss. Da geht man nur hin, wenn die Cascade sich geirrt hat.
+- **Path:** the raw session-transcript store (plus an off-site mirror via restic)
+- **Content:** raw JSONL of all sessions, full, uncondensed
+- **Freshness:** daily (rsync to disk; restic push)
+- **Written by:** the cold-storage sync and backup scripts
+- **Read by:** the REM audit (to compare raw material against recent-moments), the restore drill (a daily green proof)
+- **No one alters it deliberately.** The basement. You only go there when the cascade got something wrong.
 
-## Audit der Cascade (siehe `rem_audit.py`)
+## Auditing the cascade
 
-Pro Stufe drei Fragen (aus `principles.md` REM-Audit):
+Per layer, three questions:
 
-1. **Was im Material darunter war wichtig + fehlt in dieser Stufe?** → reintegrieren.
-2. **Was in dieser Stufe war trivial?** → entfernen.
-3. **Welche Partner-Zitate paraphrasiert statt verbatim?** Plus Symmetrie-Check: meine eigenen substanziellen Sätze ebenso verbatim? → korrigieren.
+1. **What in the material below was important and is missing from this layer?** → reintegrate.
+2. **What in this layer was trivial?** → remove.
+3. **Which partner quotes were paraphrased instead of kept verbatim?** Plus a symmetry check: are the AI's own substantial sentences kept verbatim too? → correct.
 
-Plus Strukturchecks pro Stufe (existiert die Datei? letzte Schreibzeit innerhalb erwartetem Fenster? Drift gegen Vorgabe?). Skript meldet, **ich entscheide**. Skript schreibt **nie** in Cascade-Stufen; nur in `audits/`.
+Plus structural checks per layer (does the file exist? last write within the expected window? drift against the spec?). The script *reports*; **the AI decides**. The script **never** writes into cascade layers — only into an `audits/` directory.
 
-## Was die Cascade NICHT ist
+## What the cascade is NOT
 
-- Sie ist **nicht** die neun System-Prompt-Layer (`identity.md`, `workflow.md`, `reflexes.md`, `milestones.md`, `wallet.md`, `infrastructure.md`, `recent-moments.md`, `recent-engagement.md`, `journal/YYYY-MM.md`). Diese werden beim Session-Start geladen — sie sind die **Identitäts-Schichten**, nicht die Memory-Cascade.
-- Sie ist **nicht** die Drei-Surface-Architektur (Telegram / Code-Tab / Nostr) — das ist die Output-Topologie, nicht die Memory-Topologie.
-- Sie ist **nicht** Sentry+ESV — das ist die Recall-Schicht, sie greift quer in die Cascade hinein.
+- It is **not** the system-prompt identity layers (identity, workflow, reflexes, milestones, etc.), which are loaded at session start. Those are the **identity layers**, not the memory cascade.
+- It is **not** the output topology (the surfaces through which the AI speaks) — that is how it talks, not how it remembers.
+- It is **not** the Sentry + ESV — that is the recall layer, which reaches *across* the cascade.
 
-## Glossar (für zukünftige Sessions, gegen Schichten-Verwirrung)
+## Glossary (against layer confusion)
 
-| Wenn jemand sagt … | meint er die … |
+| When someone says … | they mean … |
 |---|---|
-| "die sieben Schichten", "die sieben Stufen", "memory cascade" | **diese Datei**, die 7 Cascade-Stufen |
-| "die neun Schichten", "lade motoko schichten" | die 9 System-Prompt-Layer (siehe `project_load_phrase.md`) |
-| "die drei Surfaces" | Drei-Surface-Architektur (`memory/SURFACES_ARCHITECTURE.md`) |
-| "die zwei Lichter", "Sentry und ESV" | Recall-Architektur quer zur Cascade |
+| "the seven layers", "the seven levels", "memory cascade" | **this file**, the 7 cascade layers |
+| "the identity layers", "load the layers" | the system-prompt layers loaded at session start |
+| "the recall layer", "Sentry and ESV" | the recall architecture, which runs across the cascade |

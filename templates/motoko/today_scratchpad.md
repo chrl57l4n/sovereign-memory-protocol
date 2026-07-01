@@ -1,5 +1,5 @@
-# Heute — Arbeits-Scratchpad
+# Today — working scratchpad
 
-> Kurzlebige Arbeits-Notizen des laufenden Tages. Wird von der täglichen
-> Konsolidierung geleert/verdichtet (siehe docs/CASCADE.md, Schicht 1).
-> Fixer Name — nie datierte Varianten. Der Tag steht im Inhalt.
+> Short-lived working notes for the current day. Emptied/condensed by the daily
+> consolidation (see docs/CASCADE.md, layer 1). Fixed name — never dated variants.
+> The day is in the content.

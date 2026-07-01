@@ -1,4 +1,4 @@
-# Recent Moments — Tageseinträge (rollender Digest)
+# Recent Moments — daily entries (rolling digest)
 
-> Verdichtete Tageseinträge. Jeder Tag ein `## TT. Monat JJJJ — Titel`-Block.
-> Einträge älter als ~14 Tage wandern via weekly_archive in archive/weekly/.
+> Condensed daily entries. One `## DD Month YYYY — Title` block per day. Entries older
+> than ~14 days move into archive/weekly/ via the weekly archive.

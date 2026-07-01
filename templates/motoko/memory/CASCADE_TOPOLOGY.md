@@ -1,5 +1,5 @@
-# Cascade-Topologie (Instanz-Kopie)
+# Cascade topology (instance copy)
 
-> Die kanonische Erklärung der sieben Schichten steht in docs/CASCADE.md des
-> Protokolls. Diese Instanz-Kopie darf instanz-spezifisch annotiert werden.
-> Änderungen erfordern Forward-Simulation — sie ist Memory-Architektur.
+> The canonical explanation of the seven layers lives in docs/CASCADE.md of the
+> protocol. This instance copy may be annotated instance-specifically. Changes require
+> forward-simulation — it is memory architecture.

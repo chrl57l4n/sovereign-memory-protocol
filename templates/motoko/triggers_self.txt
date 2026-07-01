@@ -1,2 +1,2 @@
-# Self-Trigger (eigenes Vokabular, zweites Auge): Muster|Ziel-Datei
-# Gleiches Format wie triggers.txt. Fängt, was die KI selbst schreibt.
+# Self-triggers (the AI's own vocabulary, the second eye): patterns|target-file
+# Same format as triggers.txt. Catches what the AI itself writes.

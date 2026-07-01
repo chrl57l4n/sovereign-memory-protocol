@@ -1,4 +1,4 @@
-# Sentry-Trigger (Partner-Kanal): Muster|Ziel-Datei
-# Eine Zeile pro Trigger. Komma-getrennte Muster, dann | dann relativer Pfad.
-# Beispiel:
+# Sentry triggers (partner channel): patterns|target-file
+# One line per trigger. Comma-separated patterns, then | then a relative path.
+# Example:
 # wallet, lightning, sats|motoko/wallet.md
