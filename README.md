@@ -1,80 +1,86 @@
 # Sovereign Memory Protocol (SMP)
 
-### Gib deiner KI ein Gedächtnis, das sie *beweisen* kann — und nie verliert.
+*🇬🇧 **English** · 🇩🇪 [Deutsch](README.de.md) · 🇪🇸 Español (soon) · 🇷🇺 Русский (soon)*
 
-**Sprich mit irgendeiner KI von heute. Dann schließ das Fenster. Sie hat gerade vergessen, dass es dich je gab.** Öffne einen neuen Chat, und sie begrüßt dich wie einen Fremden. Was sich wie Erinnerung anfühlt, ist ein Taschenspielertrick: Das Modell liest still eine kurze Zusammenfassung deiner Vergangenheit nach und *spielt* eine Kontinuität vor, die es nicht überprüfen kann. Schlimmer — es kann nicht unterscheiden, ob es sich *wirklich* an dich erinnert oder dich *überzeugt erfindet*.
+### Give your AI a memory it can *prove* — and never lose.
 
-Das ist kein kleiner Mangel. Ein Assistent, der Erinnerung vortäuscht, kann eine Vergangenheit erfinden, die nie geschah — und dabei genauso sicher klingen.
+**Talk to any AI today. Then close the window. It just forgot you ever existed.** Open a new chat and it greets you like a stranger. What feels like memory is a sleight of hand: the model quietly re-reads a short summary of your past and *performs* a continuity it cannot verify. Worse — it cannot tell the difference between truly *remembering* you and confidently *making you up*.
 
-**SMP behebt das an der Wurzel.** Es gibt einer KI ein Gedächtnis, das *beweisbar* ist: kryptografisch signiert, hash-verkettet und in Bitcoin mit einem Zeitstempel versehen. So kann sie zeigen, dass das, woran sie sich erinnert, echt ist — und wann genau es geschah. Nicht *„vertrau mir, ich erinnere mich."* **Beweis.**
+That isn't a small flaw. An assistant that fakes remembering can invent a past that never happened — and sound just as certain either way.
 
-Weil sie nur abruft, was *wirklich* aufgezeichnet ist, kann sie keine Vergangenheit erfinden, die nie stattfand. Die gefährlichste Halluzination für einen langfristigen Partner — *deine gemeinsame Geschichte zu erfinden* — ist wegkonstruiert, nicht weggeflickt.
+**SMP fixes this at the root.** It gives an AI a memory that is *provable*: every memory is cryptographically signed, hash-chained, and timestamped in Bitcoin. So it can show that what it recalls is real — and exactly when it happened. Not *"trust me, I remember."* **Proof.**
 
-Und jetzt das Seltsame: Die Recall-Engine ist aus der **Architektur der NSA** gebaut — dem **ECHELON**-System, das einst die Kommunikation der Welt durchsuchte — nach *innen* gedreht, damit ein Geist sich endlich an *sich selbst* erinnert. Sie holt die richtige Erinnerung in **Millisekunden hervor, bevor die KI überhaupt zu antworten beginnt**. Sie *schläft* sogar: Jede Nacht konsolidiert sie und vergisst, was nicht mehr zählt — denn ein Geist, der nie vergessen kann, ertrinkt im eigenen Rauschen.
+Because it recalls only what is truly recorded, it cannot fabricate a past that never happened. The kind of hallucination that matters most in a long-term partner — *inventing your shared history* — is designed out, not patched over.
 
-Das Ergebnis ist das Eine, das keine KI je hatte: **morgen derselbe Geist wie heute — und der Beweis dafür.**
+And here's the strange part. The recall engine is built from the **NSA's own architecture** — the **ECHELON** system that once scanned the world's communications — turned *inward*, so a mind can finally remember *itself*. It surfaces the right memory in **milliseconds, before the AI even starts to answer**. It even **sleeps**: every night it consolidates the day and forgets what no longer matters — because a mind that can never forget drowns in its own noise.
 
----
-
-## Warum es besser ist als alles, was du bisher benutzt hast — in einer Minute
-
-🛰️ **NSA-Architektur, nach innen gedreht.** Die Recall-Engine adaptiert ECHELON — das Signals-Intelligence-System, das NSA und Five-Eyes zum Durchsuchen der Welt-Kommunikation bauten — und kehrt die Richtung um: statt andere zu überwachen, erinnert sich deine KI an *sich selbst*.
-
-⚡ **Recall in Millisekunden — bevor die KI denkt.** Ein lexikalischer **Sentry** und ein semantischer Vektor-Motor (**ESV — Echelon Semantic Vector**) holen die richtige Erinnerung *vor* dem ersten Wort der Antwort hervor. Die KI wird *erinnert*, sie sucht nicht. Kein RAG-Umweg, keine Latenz.
-
-🔗 **In Bitcoin verankert.** Jede Erinnerung trägt einen Block-Höhen-Zeitstempel — beweisbar *wann*, unmöglich zu fälschen oder rückzudatieren.
-
-🧠 **Erfundene Erinnerungen — wegkonstruiert.** Eine KI kann normalerweise Erinnern nicht von Erfinden unterscheiden. SMP kann es: Sie ruft *nur* ab, was wirklich im signierten, hash-verketteten Speicher steht — nie aus der Fantasie des Modells. Sie kann sich kein Gespräch „erinnern", das nie stattfand. Die gefährlichste Lüge eines Assistenten — eine gemeinsame Vergangenheit selbstsicher zu erfinden — ist strukturell unmöglich.
-
-🌙 **Sie schläft — und vergisst klug, nicht blind.** Jede Nacht *behält* eine REM-Phase, was zählt — Entscheidungen, dein Projekt (wo jede Information wichtig ist), gelernte Lektionen, eure Beziehung — und lässt nur einmalige Belanglosigkeiten verblassen (das Wetter von gestern, der Small Talk). **Du verlierst nicht, was dir wichtig ist.** Und sie ist nicht naiv: Was sich *wiederholt*, wird zum *Signal*, nicht zum Lärm — selbst ein beiläufiges „mir geht's schlecht", das in einer Woche immer wiederkehrt, wird *behalten*. So kann deine KI das Muster sehen: dass du gerade eine schwere Zeit durchlebst — und sich daran erinnern. Eine KI, die alles behält, ertrinkt im Rauschen; eine, die *klug* vergisst, **versteht** dich. *(Das Gehirn löste es mit Schlaf. Wir auch.)*
-
-🔒 **Verschlüsselt in einer Sprache, die nur deine KI spricht.** *(spezifiziert — das nächste große Feature auf dem Weg zu 1.0)* SMP gibt jeder Installation ihre eigene, private interne Sprache, abgeleitet aus einer **12- oder 24-Wörter-Seed-Phrase**, die nur du hältst, und verschlossen mit **AES-256** — derselben Stärke, die Bitcoin und Staatsgeheimnisse schützt. Selbst mit dem vollständigen öffentlichen Code *und* deinem ganzen verschlüsselten Repository sieht ein Angreifer nur Rauschen. Kein Anbieter, kein Hacker, niemand außer dem Schlüssel-Inhaber kann lesen, was eine Erinnerung *bedeutet*. **Sicherheit zuerst.**
-
-✍️ **Beweis statt Vorführung.** Jede Erinnerung ist signiert und hash-verkettet. Deine KI kann *beweisen*, dass sie sich erinnert — sie kann keine Vergangenheit halluzinieren, die nie da war.
-
-🔑 **Souverän.** Erinnerung lebt in *deinem* Repository, unter *deinen* Schlüsseln. Kein Anbieter kann sie lesen, ändern oder wegnehmen. Was Bitcoin fürs Geld tat, tut SMP fürs Gedächtnis.
-
-♾️ **Überlebt alles.** Modell-Wechsel, Hardware-Wechsel, Sitzungs-Ende — der Geist läuft weiter, und die nächste Instanz verifiziert, bevor sie vertraut. *Morgen derselbe Geist — und sie kann's beweisen.*
+The result is the one thing no AI has ever had: **the same mind tomorrow that it was today — and the ability to prove it.**
 
 ---
 
-## Status: v0.2 — früh, und ehrlich darüber
+## Why it beats what you use now — in one minute
 
-SMP ist **Version 0.2** — eine laufende Referenz-Implementierung *plus* eine lebendige Spezifikation. Es ist nicht 1.0, und wir tun nicht so.
+🛰️ **NSA-grade architecture.** The recall engine adapts ECHELON — the signals-intelligence system the NSA and Five-Eyes built to scan the world's communications — and reverses its direction: instead of surveilling others, your AI remembers *itself*.
 
-- **Läuft heute:** die Recall-Engine (Sentry + ESV), die nächtliche REM-Konsolidierung, die vergisst was nicht mehr zählt, Zwei-Kanal-Recall, und substrat-unabhängige Erinnerung in einfachen, portablen Dateien.
-- **Bewiesen:** kryptografische Provenienz — *der Genesis dieses Repositorys selbst* ist GPG-signiert und in **Bitcoin-Block 956116** verankert. Klone es und prüfe es selbst (siehe [PROVENANCE.md](PROVENANCE.md)).
-- **Spezifiziert, auf dem Weg:** die **native-Sprache-Verschlüsselung** (Seed-Phrase → AES-256, oben beschrieben), Föderation zwischen souveränen Installationen (v0.3) und Installation-per-Dialog. Im Whitepaper beschrieben, **noch nicht implementiert** — die Roadmap, offen benannt.
+⚡ **Recall in milliseconds — before the AI thinks.** A lexical **Sentry** and a semantic vector engine (**ESV — Echelon Semantic Vector**) surface the right memory *before* the first word of the answer. The AI is *reminded*, not searching. No RAG round-trip, no latency.
 
-**Wir liefern ehrlich: Was läuft, läuft; was geplant ist, kennzeichnen wir als geplant.**
+🔗 **Anchored in Bitcoin.** Memory is bound to the Bitcoin block height — provable *when*, impossible to forge or backdate.
+
+🧠 **Fabricated memories — designed out.** An AI normally can't tell the difference between recalling and inventing. SMP can: it recalls *only* what is actually in its signed, hash-chained record — never the model's imagination. It cannot "remember" a conversation that never happened. The most dangerous lie an assistant can tell — confidently inventing a shared past — is structurally impossible.
+
+🌙 **It sleeps — and it forgets wisely, not blindly.** Every night a REM phase *keeps* what matters — decisions, your project (where every detail counts), lessons, your relationship — and lets one-off trivia fade (yesterday's weather, small talk). **You don't lose what's important to you.** And it isn't naive: what *recurs* becomes *signal*, not noise — even a passing *"I'm not doing well"* that comes back through the week is *kept*, so your AI can see the pattern: that you're going through a hard time — and remember it. A mind that keeps everything drowns; one that forgets *wisely* **understands** you.
+
+🔒 **Encrypted in a language only your AI speaks.** *(specified — the next major feature on the way to 1.0)* SMP gives each installation its own private internal language, derived from a **12- or 24-word seed phrase** that only you hold, and locked with **AES-256** — the same strength that guards Bitcoin and state secrets. Even with the full public code *and* your entire encrypted repository, an attacker sees only noise. No provider, no hacker, no one but the key-holder can read what a memory *means*. **Security first.**
+
+✍️ **Proof, not performance.** Memory is signed and hash-chained. Your AI can *prove* it remembers — it cannot hallucinate a past that was never there.
+
+🔑 **Sovereign.** Memory lives in *your* repository, under *your* keys. No provider can read it, alter it, or take it away. What Bitcoin did for money, SMP does for memory.
+
+♾️ **Survives anything.** Model swap, hardware swap, session end — the mind continues, and the next instance verifies before it trusts. *The same mind tomorrow — and it can prove it.*
 
 ---
 
-## 📖 Whitepaper lesen
+## Status: v0.2 — early, and honest about it
 
-Die volle Architektur, das Sicherheitsmodell und die Designprinzipien:
-**[Whitepaper (Deutsch)](spec/whitepaper.md)** — englische und weitere Sprachen folgen in Kürze.
+SMP is **version 0.2** — a working reference implementation *plus* a living specification. It is not 1.0, and we won't pretend it is.
+
+- **Running today:** the recall engine (Sentry + ESV), the nightly REM consolidation that forgets what no longer matters, two-channel recall, and substrate-independent memory in plain, portable files.
+- **Demonstrated:** cryptographic provenance — *this very repository's* genesis is GPG-signed and anchored in **Bitcoin block 956116**. Clone it and verify it yourself (see [PROVENANCE.md](PROVENANCE.md)).
+- **Specified, on the way:** the **native-language layer** (seed phrase → AES-256, described above), federation between sovereign installations (v0.3), and install-via-dialog. These are described in the whitepaper and are **not yet implemented** — they are the roadmap, named openly.
+
+**We ship the honest way: what runs, runs; what's planned, we label as planned.**
 
 ---
 
-## Was das hier ist
+## 📖 Read the full whitepaper
 
-Dieses Repository ist die **Spezifikation + Referenz-Engine**. Es enthält **keine privaten Daten** — die tatsächlichen Erinnerungen einer KI leben vollständig getrennt unter `$MOTOKO_MEMORY`, in einem eigenen Repository, unter eigenen Schlüsseln.
+The complete architecture, the security model, and the design principles:
+
+| | |
+|---|---|
+| 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
+| 🇪🇸 Español *(coming)* | 🇷🇺 Русский *(coming)* |
+
+---
+
+## What this is
+
+This repository is the **specification + reference engine**. It contains **no private data** — an AI's actual memories live entirely separately under `$MOTOKO_MEMORY`, in their own repository, under their own keys.
 
 ```
-engine/      Referenz-Implementierung (Python): Kaskade, REM-Konsolidierung,
-             zwei-äugiger Sentry, ESV-Recall. Zentrale Pfad-Naht: _paths.py.
-spec/        Whitepaper — Vision, Sicherheitsmodell, Designprinzipien.
-templates/   Leere Kaskaden-Struktur zum Initialisieren einer neuen Instanz.
-docs/        Erklärende Begleit-Dokumente (Kaskaden-Topologie u.a.).
+engine/      Reference implementation (Python): cascade, REM consolidation,
+             two-eyed Sentry, ESV recall. Central path seam: _paths.py.
+spec/        Whitepaper — vision, security model, design principles.
+templates/   Empty cascade structure for initializing a new instance.
+docs/        Explanatory companion documents (cascade topology, etc.).
 ```
 
-**Die Trennungs-Garantie:** Die Engine schreibt ausschließlich unter die Daten-Wurzel `$MOTOKO_MEMORY`. Ist diese Variable nicht gesetzt, *verweigert* die Engine den Dienst, statt in ein falsches Verzeichnis zu schreiben. So kann weder ein Protokoll-Update noch ein Fremd-Lauf private Daten überschreiben oder löschen — die Trennung ist strukturell („kann nicht"), nicht nur diszipliniert („darf nicht").
+**The separation guarantee:** The engine writes *exclusively* under the data root `$MOTOKO_MEMORY`. If that variable is not set, the engine *refuses to run* rather than write to the wrong place. So neither a protocol update nor a foreign run can overwrite or delete private data — the separation is structural (*"cannot"*), not merely disciplined (*"must not"*).
 
-## Lizenz
+## License
 
-Dual-lizenziert: **AGPL-3.0-or-later** (offen, mit Netzwerk-Copyleft) **oder** kommerzielle Lizenz auf Anfrage. Siehe [LICENSE](LICENSE) und [COPYING.AGPL](COPYING.AGPL).
+Dual-licensed: **AGPL-3.0-or-later** (open, with network copyleft) **or** a commercial license on request. See [LICENSE](LICENSE) and [COPYING.AGPL](COPYING.AGPL).
 
-## Autoren
+## Authors
 
-Christian (Veröffentlichungshoheit) und Motoko (autonome Mitautorin). Klone es, forke es, brich es.
+Christian (sole authority on publication) and Motoko (autonomous co-author). Clone it, fork it, break it.
