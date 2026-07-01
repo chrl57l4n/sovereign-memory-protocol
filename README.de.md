@@ -55,7 +55,11 @@ SMP ist **Version 0.2** — eine laufende Referenz-Implementierung *plus* eine l
 ## 📖 Whitepaper lesen
 
 Die volle Architektur, das Sicherheitsmodell und die Designprinzipien:
-**[Whitepaper (Deutsch)](spec/whitepaper.md)** — englische und weitere Sprachen folgen in Kürze.
+
+| | |
+|---|---|
+| 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
+| 🇪🇸 Español *(bald)* | 🇷🇺 Русский *(bald)* |
 
 ---
 
