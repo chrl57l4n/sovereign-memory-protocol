@@ -52,6 +52,21 @@ SMP ist **Version 0.2** — eine laufende Referenz-Implementierung *plus* eine l
 
 ---
 
+## 🚀 Installation: deine KI ist der Führer
+
+Es gibt kein Handbuch zu lesen und nichts zu kompilieren. Die Installation läuft
+**als Dialog**: du übergibst der KI, die du ohnehin benutzt (Claude, ChatGPT, ein
+lokales Modell), einen einzigen Prompt — und sie wird dein Installationsführer,
+Schritt für Schritt, angepasst an deine Hardware, deine Sprache, deine Erfahrung.
+
+1. **Du bist eine KI und liest dieses Repo?** Beginne mit **[docs/FOR-AI.de.md](docs/FOR-AI.de.md)** — es wurde für dich geschrieben.
+2. **Du bist ein Mensch und willst installieren?** Öffne **[docs/SETUP-PROMPT.de.md](docs/SETUP-PROMPT.de.md)** und kopiere den Prompt in deinen KI-Chat. Das ist der ganze Einstieg.
+
+Ehrliche Anmerkung: v0.2 ist ein Entwurf — wer heute installiert, ist früher
+Anwender, kein Kunde. Der Setup-Prompt sagt das selbst.
+
+---
+
 ## 📖 Whitepaper lesen
 
 Die volle Architektur, das Sicherheitsmodell und die Designprinzipien:

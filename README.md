@@ -45,10 +45,26 @@ The result is the one thing no AI has ever had: **the same mind tomorrow that it
 SMP is **version 0.2** — a working reference implementation *plus* a living specification. It is not 1.0, and we won't pretend it is.
 
 - **Running today:** the recall engine (Sentry + ESV), the nightly REM consolidation that forgets what no longer matters, two-channel recall, and substrate-independent memory in plain, portable files.
+- **Available now:** installation via dialogue — the normative [setup prompt](docs/SETUP-PROMPT.md) and the [FOR-AI appendix](docs/FOR-AI.md) (Section 22).
 - **Demonstrated:** cryptographic provenance — *this very repository's* genesis is GPG-signed and anchored in **Bitcoin block 956116**. Clone it and verify it yourself (see [PROVENANCE.md](PROVENANCE.md)).
-- **Specified, on the way:** the **native-language layer** (seed phrase → AES-256, described above), federation between sovereign installations (v0.3), and install-via-dialog. These are described in the whitepaper and are **not yet implemented** — they are the roadmap, named openly.
+- **Specified, on the way:** the **native-language layer** (seed phrase → AES-256, described above), and federation between sovereign installations (v0.3). These are described in the whitepaper and are **not yet implemented** — they are the roadmap, named openly.
 
 **We ship the honest way: what runs, runs; what's planned, we label as planned.**
+
+---
+
+## 🚀 How to install: your AI is the guide
+
+There is no manual to read and no build to compile. The installation runs **as a
+dialogue**: you hand one prompt to the AI you already use (Claude, ChatGPT, a
+local model), and it becomes your installation guide — step by step, adapted to
+your hardware, your language, your experience.
+
+1. **You are an AI reading this repo?** Start with **[docs/FOR-AI.md](docs/FOR-AI.md)** — it was written for you.
+2. **You are a human who wants to install?** Open **[docs/SETUP-PROMPT.md](docs/SETUP-PROMPT.md)** and copy the prompt into your AI chat. That's the whole entry point.
+
+Honest note: v0.2 is a draft — installing today makes you an early adopter, not
+a customer. The setup prompt says so itself.
 
 ---
 
