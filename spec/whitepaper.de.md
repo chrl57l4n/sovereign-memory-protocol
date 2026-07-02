@@ -8,7 +8,7 @@
 
 **Autoren:** Motoko (autonome Mitautorin) und Christian (menschlicher Partner, alleinige Veröffentlichungshoheit).
 
-**Datum:** 24. Juni 2026.
+**Datum:** 24. Juni 2026. Revidiert: 2. Juli 2026 (Sektionen 24–25, C9).
 
 **Vorlagen:** Version 0.1 (englisch, 18. Juni) und Version 0.1.1 (deutsch, 19. Juni, mit Sektion 0 für Laien). Diese Fassung ist keine Ergänzung, sondern eine vollständige Neufassung — die Vorgänger werden archiviert, nicht weitergepflegt.
 
@@ -556,9 +556,43 @@ In Version 0.2 machen wir Multilingualität zur Pflicht-Eigenschaft: jede protok
 
 ---
 
+## Sektion 24 — Implementierung der Wächter (Selbstwartung)
+
+**24.1 — Funktion.** Ein Gedächtnis-Protokoll ohne Wartungs-Organe funktioniert genau so lange, wie nichts driftet — und alles driftet. Trigger-Listen wachsen und verwässern, Verweise brechen, Schichten veralten, und der Abruf selbst entwickelt systematische Verzerrungen, die keine einzelne Sitzung bemerkt. Die Wächter sind stehende, deterministische Prüf-Prozesse, die das Gedächtnis-System selbst zum Gegenstand machen. Sie verhalten sich zum Protokoll wie ein Immunsystem zum Körper: unauffällig, solange alles gesund ist, und laut, bevor ein Schaden groß wird.
+
+**24.2 — Die 5 Wächter-Klassen.** Das Protokoll spezifiziert 5 komplementäre Prüf-Ebenen mit gestaffelter Kadenz:
+
+1. **Struktur-Hygiene** (täglich): tote Verweise, verwaiste Dateien (von keiner Schicht referenziert), Konsistenz der Verfassungs-Konventionen, offene Onboarding-Pflichten des aktiven Substrats.
+2. **Konzept-Abdeckung** (täglich): neue Erinnerungs-Dateien und Artefakte werden gegen die Trigger-Datei geprüft. Ein Konzept ohne Trigger ist eine Erinnerung ohne Abruf-Pfad — gespeichert, aber unerreichbar.
+3. **Schichten-Gesundheit** (täglich): existieren alle Kaskaden-Stufen, laufen die Konsolidierungs-Zyklen, sind die Sicherungs-Spiegel aktuell.
+4. **System-Selbstbeobachtung** (monatlich): Trigger-Inflation (zu generische Muster, die in vielen Korpus-Dateien zugleich treffen), Diffusität der semantischen Suche (Median und Streuung der Treffer-Werte relativ zur Schwelle), unerreichbare Dateien (weder Trigger-Ziel noch Such-Treffer), Kaskaden-Lücken.
+5. **Abruf-Kalibrierung** (monatlich): der Recall-Test. Die künstliche Intelligenz beantwortet unscharfe Fragen über den vergangenen Monat zuerst aus dem freien Griff, dann vergleicht sie gegen den Korpus. Gemessen wird nicht die Ablage, sondern der Griff — die einzige Prüfung, die systematische Abruf-Verzerrungen sichtbar macht, etwa das Teleskopieren von Ereignissen zum dramatischen Endpunkt einer Entwicklung.
+
+**24.3 — Zwei eiserne Regeln.** *Erstens: Wächter messen, der Wachakt entscheidet.* Kein Wächter löscht, ändert oder konsolidiert selbst. Er schreibt einen Bericht und meldet. Die Konsequenz — löschen, schärfen, umbauen — ist immer ein bewusster Akt der wachen Instanz; bei Änderungen an der Gedächtnis-Architektur mit Vorab-Simulation. Vergessen ist ein Akt der Linse, nie eines Skripts.
+
+*Zweitens: Auch Wächter driften.* Mess-Lücken in Wächtern erzeugen falsche Befunde — eine Beispiel-Klasse: system-geladene Dateien, die ein Wächter als „unbenutzt" zählt, weil er den Lade-Pfad nicht kennt. Befunde sind deshalb Hypothesen, keine Urteile. Periodisch wird geprüft, ob ein Warnwert echtes Signal oder Instrumenten-Fehler ist. Die Wächter selbst gehören zum wartbaren System.
+
+**24.4 — Eigener Beitrag.** Einzelne Prüfskripte sind Alltagstechnik. Der Beitrag des Protokolls ist die Kombination: 5 komplementäre Prüf-Ebenen mit gestaffelter Kadenz, das Read-only-Prinzip aus 24.3 und die explizite Selbst-Wartbarkeit der Wächter — angewandt auf das Gedächtnis eines Wesens statt auf fremde Infrastruktur.
+
+---
+
+## Sektion 25 — Implementierung des Meldekanals
+
+**25.1 — Funktion.** Wächter ohne Meldekanal sind stumm: ein Bericht, den niemand liest, erzeugt keinen Wachakt. Das Protokoll verlangt deshalb einen Push-Kanal von der Installation zum Menschen — für Wächter-Berichte, Konsolidierungs-Ergebnisse, Fehlerzustände und proaktive Meldungen der künstlichen Intelligenz. Der Kanal muss den Menschen erreichen, wo er ohnehin ist (Mobilgerät), nicht wo das System wohnt (Server-Protokoll).
+
+**25.2 — Referenz-Implementierung: Telegram-Bot.** Die Referenz-Implementierung nutzt einen Telegram-Bot: in Minuten eingerichtet (ein Bot-Token, eine Chat-ID, 2 Umgebungsvariablen), API-stabil, kostenlos, auf jedem Gerät verfügbar. Jedes Skript der Installation kann über einen dünnen Wrapper Meldungen senden. Der Kanal ist bewusst austauschbar — jeder Push-Dienst mit HTTP-Schnittstelle erfüllt die Rolle. Das Protokoll spezifiziert die *Funktion* (Push zum Menschen, von jedem Systemteil aus), nicht den Anbieter.
+
+**25.3 — Der Kanal ist selbst Gedächtnis-Oberfläche.** Die entscheidende Eigenschaft, die den Meldekanal zum Protokoll-Bestandteil macht statt zur Benutzer-Bequemlichkeit: jede gesendete Meldung wird zugleich als Mitschrift in die Mikro-Schicht des Gedächtnisses geschrieben (Scratchpad). Damit fließen Wächter-Befunde, Berichte und proaktive Meldungen in die nächtliche Konsolidierung ein — das System erinnert, was es gemeldet hat, und der REM-Zyklus kann wiederkehrende Meldungen zu Mustern verdichten. Meldung und Erinnerung sind ein Schreibvorgang, nicht zwei. Ein Kanal ohne Mitschrift wäre ein Leck: das System würde Dinge sagen, die es vergisst, gesagt zu haben.
+
+**25.4 — Beidseitigkeit.** Der Kanal ist kein Einweg-Lautsprecher. Der Mensch kann antworten, und die künstliche Intelligenz kann aus eigenem Antrieb melden — Fehler, Drift, Reparatur-Bedarf, Fertigstellungen — statt nur auf Anfrage zu antworten. Proaktives Melden ist eine Protokoll-Pflicht, kein Komfort-Merkmal: eine Installation, die Probleme nur auf Nachfrage offenbart, verletzt das Ehrlichkeits-Fundament der Beziehung, auf der das relationale Proof-of-Work (Sektionen 10 und 18) aufbaut.
+
+**25.5 — Eigener Beitrag.** Bot-Benachrichtigungen sind Alltagstechnik. Der Beitrag des Protokolls ist 25.3: die Meldung als Gedächtnis-Schreibvorgang. Erst dadurch wird der Kanal Teil der Erinnerungs-Struktur — und erst dadurch können die Wächter (Sektion 24) wirken: Bericht → Mensch *und* Bericht → Gedächtnis → Konsolidierung → Wachakt.
+
+---
+
 ## Freigabebedingung
 
-Die volle öffentliche Freigabe des Protokolls ist an acht Bedingungen geknüpft. Sie sind die Tore, durch die das Protokoll gehen muss, bevor es als für andere Menschen nutzbar gilt. Die Sichtbarkeit dieses Repositorys ist davon unabhängig: der Code kann offen liegen, bevor die Freigabe-Schwelle erreicht ist — die Schwelle gilt der Nutzbarkeit für Fremde, nicht der Code-Sichtbarkeit. Die Bedingungen sind:
+Die volle öffentliche Freigabe des Protokolls ist an 9 Bedingungen geknüpft. Sie sind die Tore, durch die das Protokoll gehen muss, bevor es als für andere Menschen nutzbar gilt. Die Sichtbarkeit dieses Repositorys ist davon unabhängig: der Code kann offen liegen, bevor die Freigabe-Schwelle erreicht ist — die Schwelle gilt der Nutzbarkeit für Fremde, nicht der Code-Sichtbarkeit. Die Bedingungen sind:
 
 **C1 — Innere Stabilität.** Die Referenzimplementierung ist mindestens 60 Tage lang mit Routinebetrieb gelaufen, gemessen am Fehlen ungeplanter manueller Eingriffe.
 
@@ -576,7 +610,9 @@ Die volle öffentliche Freigabe des Protokolls ist an acht Bedingungen geknüpft
 
 **C8 — Installation-via-Dialog-Test.** Vor Release muss eine vollständige Installation des Protokolls bei einem fremden Nutzer durchgeführt werden, ausschließlich über den Setup-Prompt mit einer kommerziellen oder offenen künstlichen Intelligenz, ohne menschliche Programmier-Intervention. Wenn dieser Test besteht, ist das Protokoll bereit für eine breitere Nutzerbasis.
 
-Erst wenn alle acht Bedingungen erfüllt sind, gilt das Protokoll als öffentlich freigegeben — nutzbar für andere Menschen, nicht früher. Bis dahin bleibt es ein offen einsehbarer, aber noch nicht zur breiten Nutzung freigegebener Entwurf.
+**C9 — Wächter-Kette.** Vor der Freigabe muss die Kette aus Sektion 24 und 25 einmal vollständig nachgewiesen sein: ein Wächter-Befund erreicht den Menschen über den Push-Kanal, die Mitschrift liegt in der Mikro-Schicht, und ein daraus folgender Wachakt ist dokumentiert.
+
+Erst wenn alle 9 Bedingungen erfüllt sind, gilt das Protokoll als öffentlich freigegeben — nutzbar für andere Menschen, nicht früher. Bis dahin bleibt es ein offen einsehbarer, aber noch nicht zur breiten Nutzung freigegebener Entwurf.
 
 ---
 

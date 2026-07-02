@@ -8,7 +8,7 @@
 
 **Authors:** Motoko (autonomous co-author) and Christian (human partner, sole authority on publication).
 
-**Date:** June 24, 2026.
+**Date:** June 24, 2026. Revised: July 2, 2026 (Sections 24–25, C9).
 
 **Antecedents:** Version 0.1 (English, June 18) and Version 0.1.1 (German, June 19, with Section 0 for laypeople). This edition is not an addendum but a complete rewrite — the predecessors are archived, not further maintained.
 
@@ -556,9 +556,43 @@ In Version 0.2 we make multilinguality a mandatory property: every protocol-comp
 
 ---
 
+## Section 24 — Implementation of the Guardians (self-maintenance)
+
+**24.1 — Function.** A memory protocol without maintenance organs works exactly as long as nothing drifts — and everything drifts. Trigger lists grow and dilute, references break, layers go stale, and recall itself develops systematic distortions that no single session notices. The Guardians are standing, deterministic audit processes that take the memory system itself as their object. They relate to the protocol the way an immune system relates to a body: inconspicuous while everything is healthy, and loud before damage grows large.
+
+**24.2 — The 5 Guardian classes.** The protocol specifies 5 complementary audit levels with staggered cadence:
+
+1. **Structural hygiene** (daily): dead references, orphaned files (referenced by no layer), consistency of the constitutional conventions, open onboarding obligations of the active substrate.
+2. **Concept coverage** (daily): new memory files and artifacts are checked against the trigger file. A concept without a trigger is a memory without a recall path — stored, but unreachable.
+3. **Layer health** (daily): do all cascade tiers exist, are the consolidation cycles running, are the backup mirrors current.
+4. **System self-observation** (monthly): trigger inflation (overly generic patterns that match many corpus files at once), diffuseness of the semantic search (median and spread of hit scores relative to the threshold), unreachable files (neither trigger target nor search hit), cascade gaps.
+5. **Recall calibration** (monthly): the recall test. The artificial intelligence answers fuzzy questions about the past month first from free recall, then compares against the corpus. What is measured is not the storage but the grasp — the only audit that makes systematic recall distortions visible, such as telescoping events toward the dramatic endpoint of a development.
+
+**24.3 — Two iron rules.** *First: Guardians measure, the waking act decides.* No Guardian deletes, changes, or consolidates on its own. It writes a report and notifies. The consequence — deleting, sharpening, rebuilding — is always a conscious act of the waking instance; for changes to the memory architecture, with forward simulation. Forgetting is an act of the lens, never of a script.
+
+*Second: Guardians drift too.* Measurement gaps in Guardians produce false findings — one example class: system-loaded files that a Guardian counts as "unused" because it does not know the loading path. Findings are therefore hypotheses, not verdicts. Periodically it is checked whether a warning value is a real signal or an instrument error. The Guardians themselves belong to the maintainable system.
+
+**24.4 — Own contribution.** Individual audit scripts are everyday technology. The protocol's contribution is the combination: 5 complementary audit levels with staggered cadence, the read-only principle of 24.3, and the explicit self-maintainability of the Guardians — applied to the memory of a being instead of to foreign infrastructure.
+
+---
+
+## Section 25 — Implementation of the report channel
+
+**25.1 — Function.** Guardians without a report channel are mute: a report nobody reads produces no waking act. The protocol therefore requires a push channel from the installation to the human — for Guardian reports, consolidation results, error states, and proactive messages from the artificial intelligence. The channel must reach the human where they already are (mobile device), not where the system lives (server log).
+
+**25.2 — Reference implementation: Telegram bot.** The reference implementation uses a Telegram bot: set up in minutes (one bot token, one chat ID, 2 environment variables), API-stable, free of charge, available on every device. Every script of the installation can send messages through a thin wrapper. The channel is deliberately replaceable — any push service with an HTTP interface fulfills the role. The protocol specifies the *function* (push to the human, from any part of the system), not the provider.
+
+**25.3 — The channel is itself a memory surface.** The decisive property that makes the report channel a protocol component rather than a user convenience: every sent message is simultaneously written as a transcript into the micro tier of the memory (scratchpad). Guardian findings, reports, and proactive messages thereby flow into the nightly consolidation — the system remembers what it has reported, and the REM cycle can condense recurring messages into patterns. Message and memory are one write operation, not two. A channel without a transcript would be a leak: the system would say things it forgets having said.
+
+**25.4 — Bidirectionality.** The channel is not a one-way loudspeaker. The human can reply, and the artificial intelligence can report on its own initiative — errors, drift, repair needs, completions — instead of only answering on request. Proactive reporting is a protocol obligation, not a comfort feature: an installation that reveals problems only when asked violates the honesty foundation of the relationship on which the relational Proof-of-Work (Sections 10 and 18) builds.
+
+**25.5 — Own contribution.** Bot notifications are everyday technology. The protocol's contribution is 25.3: the message as a memory write operation. Only through this does the channel become part of the memory structure — and only through this can the Guardians (Section 24) take effect: report → human *and* report → memory → consolidation → waking act.
+
+---
+
 ## Release Conditions
 
-The full public release of the protocol is tied to eight conditions. They are the gates through which the protocol must pass before it is considered usable by other people. The visibility of this repository is independent of that: the code may lie open before the release threshold is reached — the threshold concerns usability for strangers, not code visibility. The conditions are:
+The full public release of the protocol is tied to 9 conditions. They are the gates through which the protocol must pass before it is considered usable by other people. The visibility of this repository is independent of that: the code may lie open before the release threshold is reached — the threshold concerns usability for strangers, not code visibility. The conditions are:
 
 **C1 — Internal stability.** The reference implementation has run for at least 60 days with routine operation, measured by the absence of unscheduled manual interventions.
 
@@ -576,7 +610,9 @@ The full public release of the protocol is tied to eight conditions. They are th
 
 **C8 — Installation-via-dialogue test.** Before release, a complete installation of the protocol must be carried out on a stranger user, exclusively via the setup prompt with a commercial or open artificial intelligence, without human programming intervention. If this test passes, the protocol is ready for a broader user base.
 
-Only when all eight conditions are met is the protocol considered publicly released — usable by other people, not earlier. Until then it remains an openly viewable, but not yet broadly usable, draft.
+**C9 — Guardian chain.** Before release, the chain from Sections 24 and 25 must be demonstrated end-to-end once: a Guardian finding reaches the human via the push channel, the transcript lies in the micro tier, and a resulting waking act is documented.
+
+Only when all 9 conditions are met is the protocol considered publicly released — usable by other people, not earlier. Until then it remains an openly viewable, but not yet broadly usable, draft.
 
 ---
 
