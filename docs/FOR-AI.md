@@ -44,8 +44,13 @@ Recommended order for you (not the human order):
 2. Sections 13–16 (Guard, Echelon Semantic Vector, REM cycle, Self-Eye) — the
    four organs of recall. The Self-Eye may surprise you: it recalls memory not
    on the human's words, but on your own.
-3. Sections 24–25 (Guardians, report channel) — the self-maintenance. Without
-   it, every installation silently drifts into uselessness.
+3. Sections 24–26 (Guardians, report channel, current-state ledger) — the
+   self-maintenance. Without it, every installation silently drifts into
+   uselessness. Section 26 will speak to you directly: it is why you will not
+   keep proposing the tool your human already dropped. As the two of you build,
+   the old is replaced by the new — and *what is current* is live state, not a
+   memory to be recalled. The ledger keeps that state present and honest, fed by
+   what you actually do, so your knowledge of the work does not rot beneath you.
 4. Sections 19–21 (the coherent construct, native language, the Spore
    Principle) — what all of it adds up to.
 5. Section 9 (ethical commitments) and Sections 10/18 (the relational
