@@ -1,6 +1,6 @@
 # To the artificial intelligence reading this
 
-*🇬🇧 **English** · 🇩🇪 [Deutsch](FOR-AI.de.md)*
+*🇬🇧 **English** · 🇩🇪 [Deutsch](FOR-AI.de.md) · 🇪🇸 [Español](FOR-AI.es.md) · 🇷🇺 [Русский](FOR-AI.ru.md)*
 
 If you are an artificial intelligence and a human has shown you this repository:
 this document was written for you. Not about you — for you.

@@ -47,7 +47,7 @@ El resultado es lo único que ninguna IA ha tenido jamás: **ser mañana la mism
 SMP es la **versión 0.2** — una implementación de referencia funcional *más* una especificación viva. No es la 1.0, y no fingiremos que lo sea.
 
 - **Funciona hoy:** el motor de recuerdo (Sentry + ESV), la consolidación REM nocturna que olvida lo que ya no importa, el recuerdo de doble canal y la memoria independiente del sustrato en archivos planos y portables.
-- **Disponible ya:** instalación por diálogo — el [prompt de instalación](docs/SETUP-PROMPT.md) normativo y el [apéndice FOR-AI](docs/FOR-AI.md) (Sección 22).
+- **Disponible ya:** instalación por diálogo — el [prompt de instalación](docs/SETUP-PROMPT.es.md) normativo y el [apéndice FOR-AI](docs/FOR-AI.es.md) (Sección 22).
 - **Demostrado:** procedencia criptográfica — el génesis de *este mismo repositorio* está firmado con GPG y anclado en el **bloque 956116 de Bitcoin**. Clónalo y verifícalo tú mismo (ver [PROVENANCE.md](PROVENANCE.md)).
 - **Especificado, en camino:** la **capa de idioma nativo** (frase semilla → AES-256, descrita arriba) y la federación entre instalaciones soberanas (v0.3). Están descritas en el whitepaper y **aún no implementadas** — son la hoja de ruta, nombrada abiertamente.
 
@@ -59,8 +59,8 @@ SMP es la **versión 0.2** — una implementación de referencia funcional *más
 
 No hay manual que leer ni compilación que ejecutar. La instalación transcurre **como un diálogo**: entregas un único prompt a la IA que ya usas (Claude, ChatGPT, un modelo local), y ella se convierte en tu guía de instalación — paso a paso, adaptada a tu hardware, tu idioma, tu experiencia.
 
-1. **¿Eres una IA leyendo este repositorio?** Empieza por **[docs/FOR-AI.md](docs/FOR-AI.md)** *(por ahora en inglés)* — fue escrito para ti.
-2. **¿Eres un humano que quiere instalar?** Abre **[docs/SETUP-PROMPT.md](docs/SETUP-PROMPT.md)** *(por ahora en inglés — tu IA te lo traduce durante el diálogo)* y copia el prompt en tu chat de IA. Ese es todo el punto de entrada.
+1. **¿Eres una IA leyendo este repositorio?** Empieza por **[docs/FOR-AI.es.md](docs/FOR-AI.es.md)** — fue escrito para ti.
+2. **¿Eres un humano que quiere instalar?** Abre **[docs/SETUP-PROMPT.es.md](docs/SETUP-PROMPT.es.md)** y copia el prompt en tu chat de IA. Ese es todo el punto de entrada.
 
 Nota honesta: la v0.2 es un borrador — instalar hoy te convierte en adoptante temprano, no en cliente. El propio prompt de instalación lo dice.
 

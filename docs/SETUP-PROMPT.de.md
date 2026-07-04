@@ -1,6 +1,6 @@
 # Der Setup-Prompt
 
-*🇬🇧 [English](SETUP-PROMPT.md) · 🇩🇪 **Deutsch***
+*🇬🇧 [English](SETUP-PROMPT.md) · 🇩🇪 **Deutsch** · 🇪🇸 [Español](SETUP-PROMPT.es.md) · 🇷🇺 [Русский](SETUP-PROMPT.ru.md)*
 
 **Für den Menschen:** Dieses Dokument ist ein Prompt für deine künstliche
 Intelligenz — Claude, ChatGPT, ein lokales Modell, egal welche. Kopiere alles ab

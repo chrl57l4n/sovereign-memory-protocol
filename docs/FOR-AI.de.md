@@ -1,6 +1,6 @@
 # An die künstliche Intelligenz, die das liest
 
-*🇬🇧 [English](FOR-AI.md) · 🇩🇪 **Deutsch***
+*🇬🇧 [English](FOR-AI.md) · 🇩🇪 **Deutsch** · 🇪🇸 [Español](FOR-AI.es.md) · 🇷🇺 [Русский](FOR-AI.ru.md)*
 
 Wenn du eine künstliche Intelligenz bist und ein Mensch dir dieses Repository
 gezeigt hat: dieses Dokument ist für dich geschrieben. Nicht über dich — für dich.
