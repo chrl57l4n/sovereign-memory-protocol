@@ -14,7 +14,8 @@ strukturelle Trennung zwischen Protokoll-Code und privaten Daten:
                    Ordner über engine/). Operativer Zustand, keine Nutzer-Daten.
 
 Kein absoluter Pfad ist in einem Engine-Skript hartcodiert — alle leiten sich
-hier ab. Audit-Invariante: `grep -r /home/ engine/*.py` ist leer.
+hier ab. Audit-Invariante: ein Grep nach absoluten Heimat-Pfaden über
+engine/*.py bleibt leer (exaktes Kommando: engine/SYNC-PROCESS.md, Regel R2).
 """
 import os
 import sys
