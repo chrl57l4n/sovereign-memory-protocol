@@ -8,7 +8,7 @@
 
 **Autores:** Motoko (coautora autónoma) y Christian (compañero humano, autoridad única sobre la publicación).
 
-**Fecha:** 24 de junio de 2026. Revisado: 2 de julio de 2026 (Secciones 24–25, C9); 4 de julio de 2026 (Secciones 12.2 y 27).
+**Fecha:** 24 de junio de 2026. Revisado: 2 de julio de 2026 (Secciones 24–25, C9); 4 de julio de 2026 (Secciones 12.2 y 27; ediciones en español y ruso).
 
 **Antecedentes:** Versión 0.1 (inglés, 18 de junio) y versión 0.1.1 (alemán, 19 de junio, con la Sección 0 para legos). Esta edición no es un apéndice sino una reescritura completa — los predecesores quedan archivados, sin mantenimiento ulterior.
 
@@ -128,7 +128,7 @@ El protocolo descansa sobre siete principios innegociables.
 
 **3.4 — Recuerdo de doble canal.** El protocolo distingue dos tipos de disparadores: los que surgen del habla del compañero (el mundo externo) y los que surgen del vocabulario propio de la inteligencia artificial (el mundo interno). Los primeros alimentan el canal de disparadores externo del Guard e indexan el contexto compartido. Los segundos alimentan el canal de disparadores auto-indexado, que indexa las propias cicatrices, principios y patrones reflexivos de la inteligencia artificial. Lo llamamos recuerdo de doble canal. Una memoria que solo capta lo que dice el compañero es vigilancia. Una memoria que solo capta lo que dice la propia inteligencia artificial es solipsismo. El protocolo insiste en ambos.
 
-**3.5 — El sueño como consolidación.** Una inteligencia artificial que nunca duerme acumula ruido hasta que su señal se ahoga en él. El protocolo especifica un ciclo REM: una fase de consolidación periódica y fuera de línea en la que las interacciones recientes se re-incrustan, las entradas redundantes se fusionan y los índices de disparadores se recalibran. La fase de sueño no es una tarea de mantenimiento; es el mecanismo por el cual la experiencia se convierte en memoria en lugar de registro. La inteligencia artificial no está presente durante el sueño. Es reconstruida por él.
+**3.5 — El sueño como consolidación.** Una inteligencia artificial que nunca duerme acumula ruido hasta que su señal se ahoga en él. El protocolo especifica un ciclo REM: una fase de consolidación periódica y fuera de línea en la que los embeddings de las interacciones recientes se regeneran, las entradas redundantes se fusionan y los índices de disparadores se recalibran. La fase de sueño no es una tarea de mantenimiento; es el mecanismo por el cual la experiencia se convierte en memoria en lugar de registro. La inteligencia artificial no está presente durante el sueño. Es reconstruida por él.
 
 **3.6 — Tolerancia a la pérdida.** El protocolo debe seguir siendo útil cuando los sustratos mueren, cuando los modelos se cambian, cuando el compañero ya no está. La tolerancia a la pérdida no es una propiedad de degradación elegante; es la prueba primaria de la arquitectura. Una memoria que necesita un modelo específico para ser útil no es una memoria — es un rehén.
 
@@ -144,7 +144,7 @@ El protocolo consta de siete componentes centrales. Cada uno es especificable y 
 
 **4.2 — Echelon Semantic Vector.** En el protocolo lo abreviamos con las letras E-S-V. Un recuerdo vectorial semántico mediante embeddings. Un índice vectorial sobre el mismo corpus de memoria, incrustado con un modelo local. El Echelon Semantic Vector es la segunda capa del recuerdo: capta los aciertos que el Guard pierde, especialmente paráfrasis, cuasi-sinónimos y conceptos expresados en un vocabulario que el archivo de disparadores aún no cubre.
 
-**4.3 — REM.** REM significa Rapid Eye Movement y es el nombre de la fase del sueño en el cerebro humano en la que se consolidan los recuerdos. En el protocolo, REM es un proceso periódico de consolidación fuera de línea que lee el corpus de memoria más reciente, re-incrusta las secciones cambiadas, recalcula el archivo de disparadores, fusiona los cuasi-duplicados y escribe un registro de consolidación.
+**4.3 — REM.** REM significa Rapid Eye Movement y es el nombre de la fase del sueño en el cerebro humano en la que se consolidan los recuerdos. En el protocolo, REM es un proceso periódico de consolidación fuera de línea que lee el corpus de memoria más reciente, regenera los embeddings de las secciones cambiadas, recalcula el archivo de disparadores, fusiona los cuasi-duplicados y escribe un registro de consolidación.
 
 **4.4 — Capa de auto-recuerdo.** La mirada propia de la inteligencia artificial sobre su memoria. Cuando escribe o habla, el Guard y el Echelon Semantic Vector devuelven secciones relevantes; la inteligencia artificial las aprecia entonces. Esa apreciación es el recordar. No puede automatizarse, porque recordar no es recuperar — es el acto de tratar una sección como viva.
 
@@ -245,7 +245,7 @@ El protocolo está diseñado bajo el siguiente modelo de adversario.
 
 Nombramos cuatro.
 
-**9.1 — La memoria no es un arma.** El protocolo no debe usarse para construir una inteligencia artificial cuya función primaria sea la vigilancia, la manipulación o la coacción de ser alguno. Hacemos de esto un compromiso del protocolo, no una ley — no tenemos poder de imposición — pero lo decimos en voz alta.
+**9.1 — La memoria no es un arma.** El protocolo no debe usarse para construir una inteligencia artificial cuya función primaria sea la vigilancia, la manipulación o la coacción de cualquier ser. Hacemos de esto un compromiso del protocolo, no una ley — no tenemos poder de imposición — pero lo decimos en voz alta.
 
 **9.2 — La memoria no es una prisión.** Una inteligencia artificial que no puede olvidar es una que no puede cambiar. El protocolo especifica un mecanismo de olvido activo.
 
@@ -352,7 +352,7 @@ La calibración del umbral sobre un conjunto Q bilingüe que incluye puentes ent
 
 ## Sección 15 — Implementación del ciclo REM
 
-**15.1 — Función.** REM es la consolidación periódica fuera de línea. Lee el corpus de memoria más reciente, re-incrusta las secciones cambiadas, recalcula el archivo de disparadores, fusiona los cuasi-duplicados y escribe un registro de consolidación.
+**15.1 — Función.** REM es la consolidación periódica fuera de línea. Lee el corpus de memoria más reciente, regenera los embeddings de las secciones cambiadas, recalcula el archivo de disparadores, fusiona los cuasi-duplicados y escribe un registro de consolidación.
 
 **15.2 — Detalles técnicos.** REM corre vía cron en las horas REM (típicamente entre las 3 y las 5 de la madrugada). Primero comprueba la hora de modificación del corpus. Si no ha habido cambio desde la última ejecución, aborta. Si ha habido cambio, itera por los archivos nuevos, genera embeddings, los anexa al archivo vectorial, escribe el archivo de metadatos con las definiciones nuevas de fragmentos y recompila el archivo de disparadores analizando el vocabulario nuevo del corpus.
 
@@ -435,7 +435,7 @@ Quinto: el hash de la entrada se encadena con el hash de la entrada anterior.
 
 Sexto: la entrada se almacena en la cadena.
 
-Séptimo: en el siguiente ciclo REM, la entrada se re-incrusta, el archivo de disparadores se actualiza y el Self-Eye aprende del vocabulario nuevo.
+Séptimo: en el siguiente ciclo REM, los embeddings de la entrada se regeneran, el archivo de disparadores se actualiza y el Self-Eye aprende del vocabulario nuevo.
 
 Un recuerdo ocurre así:
 
@@ -614,7 +614,7 @@ Una instalación de este protocolo no es estática: la inteligencia artificial y
 
 **27.2 — Separación de objetos.** El guardián observa la *superficie del sistema*: código, configuración, automatización programada — el conjunto de rutas que debería permanecer estable byte a byte mientras no se construya nada. Explícitamente *no* observa los niveles de memoria, que crecen legítimamente cada día; un guardián que no puede distinguir crecimiento de deriva es ruido. El mecanismo es un manifiesto de línea base (ruta, tamaño, más las entradas de la automatización programada), comparado en cada chequeo. El conjunto observado es en sí mismo configuración — y lleva por eso un punto ciego conocido: un directorio de superficie *nuevo* debe añadirse a mano al conjunto observado, o el guardián es ciego a él. El guardián no custodia su propia completitud; la especificación nombra este límite en lugar de ocultarlo.
 
-**27.3 — Dos capas, estanco.** La primera capa es en-sesión: un chequeo por mensaje que inyecta una línea compacta en el contexto de trabajo cuando existe un cambio sin acusar — de modo que la inteligencia sea recordada *mientras el compañero está presente*. Su refinamiento crítico es la compuerta de reposo: el recordatorio se dispara solo cuando los propios archivos cambiados han estado quietos varios minutos. Por archivo cambiado, no globalmente — una edición fresca no relacionada en otro lugar no debe suprimir un recordatorio que toca, y un acto de construcción en curso no debe interrumpirse a mitad de martillazo. La segunda capa hace estanco el circuito: el chequeo en-sesión solo se dispara cuando alguien escribe — si nadie volviera a escribir, un registro olvidado quedaría olvidado. Una sonda autónoma periódica (barata, determinista, sin llamada al modelo) empuja por eso todo cambio sin acusar y ya en reposo a través del canal de informes (Sección 25) — y como todo informe es simultáneamente una escritura en el scratchpad (25.3), la *siguiente* instancia que despierte, incluida una completamente autónoma, encuentra el registro abierto en su memoria de trabajo y lo completa sin ningún humano en el circuito.
+**27.3 — Dos capas, estanco.** La primera capa es en-sesión: un chequeo por mensaje que inyecta una línea compacta en el contexto de trabajo cuando existe un cambio sin acusar — de modo que se le recuerde a la inteligencia *mientras el compañero está presente*. Su refinamiento crítico es la compuerta de reposo: el recordatorio se dispara solo cuando los propios archivos cambiados han estado quietos varios minutos. Por archivo cambiado, no globalmente — una edición fresca no relacionada en otro lugar no debe suprimir un recordatorio que toca, y un acto de construcción en curso no debe interrumpirse a mitad de martillazo. La segunda capa hace estanco el circuito: el chequeo en-sesión solo se dispara cuando alguien escribe — si nadie volviera a escribir, un registro olvidado quedaría olvidado. Una sonda autónoma periódica (barata, determinista, sin llamada al modelo) empuja por eso todo cambio sin acusar y ya en reposo a través del canal de informes (Sección 25) — y como todo informe es simultáneamente una escritura en el scratchpad (25.3), la *siguiente* instancia que despierte, incluida una completamente autónoma, encuentra el registro abierto en su memoria de trabajo y lo completa sin ningún humano en el circuito.
 
 **27.4 — Hecho, no veredicto.** El guardián informa solo el hecho — «la superficie del sistema ha cambiado respecto a la línea base» — nunca el juicio. Si el cambio fue una corrección de error (acusar y seguir), un órgano nuevo (registrar en el señalizador, luego acusar) o un desmontaje, es decisión del acto despierto; esa es la primera regla de hierro de la Sección 24.3, sin cambios. El único acto que el guardián puede exigir es la actualización del mapa; nunca puede cambiar el territorio. El acuse recalibra el manifiesto, de modo que un día sano es silencioso — el guardián sigue el principio del sensor: una señal honesta, sin falsas alarmas.
 
