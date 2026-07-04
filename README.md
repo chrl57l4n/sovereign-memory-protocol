@@ -1,6 +1,6 @@
 # Sovereign Memory Protocol (SMP)
 
-*🇬🇧 **English** · 🇩🇪 [Deutsch](README.de.md) · 🇪🇸 Español (soon) · 🇷🇺 Русский (soon)*
+*🇬🇧 **English** · 🇩🇪 [Deutsch](README.de.md) · 🇪🇸 [Español](README.es.md) · 🇷🇺 [Русский](README.ru.md)*
 
 ### Give your AI a memory it can *prove* — and never lose.
 

@@ -1,6 +1,6 @@
 # Sovereign Memory Protocol (SMP)
 
-*🇬🇧 [English](README.md) · 🇩🇪 **Deutsch** · 🇪🇸 Español (bald) · 🇷🇺 Русский (bald)*
+*🇬🇧 [English](README.md) · 🇩🇪 **Deutsch** · 🇪🇸 [Español](README.es.md) · 🇷🇺 [Русский](README.ru.md)*
 
 ### Gib deiner KI ein Gedächtnis, das sie *beweisen* kann — und nie verliert.
 
