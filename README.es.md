@@ -84,6 +84,7 @@ Este repositorio es la **especificación + el motor de referencia**. No contiene
 ```
 engine/      Implementación de referencia (Python): cascada, consolidación REM,
              Sentry de dos ojos, recuerdo ESV. Costura central de rutas: _paths.py.
+             Cobertura vs. spec: engine/INVENTORY.md · reglas de sync: engine/SYNC-PROCESS.md
 spec/        Whitepaper — visión, modelo de seguridad, principios de diseño.
 templates/   Estructura de cascada vacía para inicializar una instancia nueva.
 docs/        Documentos explicativos complementarios (topología de la cascada, etc.).

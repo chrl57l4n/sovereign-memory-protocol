@@ -87,6 +87,7 @@ Dieses Repository ist die **Spezifikation + Referenz-Engine**. Es enthält **kei
 ```
 engine/      Referenz-Implementierung (Python): Kaskade, REM-Konsolidierung,
              zwei-äugiger Sentry, ESV-Recall. Zentrale Pfad-Naht: _paths.py.
+             Spec-Abdeckung: engine/INVENTORY.md · Sync-Regeln: engine/SYNC-PROCESS.md
 spec/        Whitepaper — Vision, Sicherheitsmodell, Designprinzipien.
 templates/   Leere Kaskaden-Struktur zum Initialisieren einer neuen Instanz.
 docs/        Erklärende Begleit-Dokumente (Kaskaden-Topologie u.a.).

@@ -88,6 +88,7 @@ This repository is the **specification + reference engine**. It contains **no pr
 ```
 engine/      Reference implementation (Python): cascade, REM consolidation,
              two-eyed Sentry, ESV recall. Central path seam: _paths.py.
+             Spec coverage: engine/INVENTORY.md · sync rules: engine/SYNC-PROCESS.md
 spec/        Whitepaper — vision, security model, design principles.
 templates/   Empty cascade structure for initializing a new instance.
 docs/        Explanatory companion documents (cascade topology, etc.).
