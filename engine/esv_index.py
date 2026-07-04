@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """esv_index.py — ESV (Echelon Semantic Vector): Embedding-Index des motoko-memory-Korpus.
 
+Spec: Section 14 (Echelon Semantic Vector).
+
 Baut den Vektor-Index lokal via llama-server /v1/embeddings (bge-m3 Q8_0). Offline,
 beruehrt den Live-Recall-Server NICHT (Default-Pfad ist derselbe Server auf 8091 —
 waehrend Re-Index laeuft, antwortet Live-Recall langsam; nightly REM-Stunden

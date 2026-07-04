@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """rem_audit_nag.py — Telegram-Nag wenn der substanzielle REM-Audit überfällig ist.
 
+Spec: Section 24(3) — Guardian: layer health (daily).
+
 Eingeführt 2026-06-28. Anlass: der substanzielle (manuelle) REM-Audit fiel 23 Tage
 aus, weil ihn NICHTS erzwingt — der tägliche `rem_audit.py` ist grün und maskiert
 die Lücke. Der Marker `state/rem_last_audit.txt` rückt nur vor, wenn die wache Motoko

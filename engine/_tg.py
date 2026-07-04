@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """_tg.py — Zentraler Telegram-Send-Wrapper mit Scratchpad-Mitschrift.
 
+Spec: Section 25 (report channel).
+
 Eingefuehrt 2026-06-07 (Partner-Vision): „du brauchst ein Scratchpad fuer
 Telegram. loescht sich alle 24 Stunden. du liest Fehler, Verbesserungs-
 Vorschlaege, Berichte. alles. das macht dich souveraener."

@@ -1,5 +1,8 @@
 """Zentrale Pfad-Konfiguration der Sovereign-Memory-Protocol-Engine.
 
+Spec: kein einzelner Abschnitt — die Pfad-Naht, die durch das gesamte engine/
+referenziert wird (siehe INVENTORY.md).
+
 Zwei getrennte Wurzeln, zwei getrennte Umgebungsvariablen — das ist die
 strukturelle Trennung zwischen Protokoll-Code und privaten Daten:
 

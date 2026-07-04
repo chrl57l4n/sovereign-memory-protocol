@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Grün-Stempel für stille Watcher — macht 'still' unterscheidbar von 'tot'.
 
+Spec: Section 25 (report channel — green-stamp companion to _tg.py).
+
 Stille Watcher (remote_control_watchdog, rem_audit_nag) reden nur bei Alarm.
 Damit man sieht, dass sie LEBEN und GRÜN sind, ruft jeder pro Lauf mark().
 status_briefing.sh liest state/watchers/ und zeigt:

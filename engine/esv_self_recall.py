@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """esv_self_recall.py — BETA: ESV-Recall auf MEINEN Output (zweites semantisches Auge).
 
+Spec: Section 16 (self-recall layer).
+
 Spiegelt self_recall_beta.py (Sentry-Self) auf der ESV-Seite. Wo Sentry-Self
 literal-keyword matcht, sucht ESV-Self semantisch — auf MEINEM letzten Output,
 nicht auf des Partners Input. Damit fängt es Verbindungen die Keywords verpassen.

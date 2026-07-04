@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """esv_tier.py — Tier-Klassifikation + Diversifizierung für ESV-Recall.
 
+Spec: Section 14.3 (Tier Diversification, gravity-well fix).
+
 Gravitationsloch-Fix vom 24.06.2026: zeitlich/auflösungs-gleiche Quellen
 duerfen Top-K nicht dominieren. Statt Wochen-Archive aus dem Index zu werfen
 (Verlust der Wochen-Ebene des Gedaechtnisses) klassifizieren wir jeden Chunk

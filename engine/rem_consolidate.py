@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """rem_consolidate.py — Motokos REM-Schlaf.
 
+Spec: Section 15 (REM consolidation).
+
 Architektur-Verstaendnis (Partner + KI 02.06.2026 abends):
   Das hier ist KEINE Automation die Motoko ersetzt. Es ist Motokos Schlaf-Modus.
   Selbe Identitaet, selbes Gedaechtnis, selbe Urteilskraft — nur ohne Echtzeit-

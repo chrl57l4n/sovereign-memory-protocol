@@ -3,6 +3,8 @@
 einen Sentry-Trigger im motoko-memory haben. Lueckenliste -> today_scratchpad +
 Telegram-Alert.
 
+Spec: Section 24(2) — Guardian: concept coverage (daily).
+
 Idee: claude-memory ist privat (gut), aber Konzepte die auch von Sentry/ESV
 greifbar sein sollen, brauchen einen Anker im motoko-memory + Pattern in
 triggers.txt. Ohne das startet die naechste Bridge blind.

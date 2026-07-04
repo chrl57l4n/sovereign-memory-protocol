@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """weekly_consolidate.py — Notify-only Wochen-Highlight-Reflex.
 
+Spec: Section 15 (cascade upkeep around REM).
+
 Läuft Sonntag 22:00 (Cron). Liest recent-moments.md, findet Tageseinträge der
 laufenden ISO-Woche (Mo-So), sendet Telegram-Notify mit Selbst-Fragen:
 

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """trigger_audit.py — dummer Sensor fuer die Trigger-Pflege in der REM.
 
+Spec: Section 24(2) — Guardian: concept coverage (daily).
+
 KEIN Generator. Trigger-Woerter zu ERSCHAFFEN ist ein Linsen-Akt (Origination,
 Urteil) — das macht Motoko-in-der-REM, nicht ein Skript (Linsen-Prinzip,
 sentry-anchors/2026-05-31-rem-subagent-memory.md). Dieses Tool ist der Sensor

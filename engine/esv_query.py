@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """esv_query.py — ESV (Echelon Semantic Vector): Hybrid-Recall.
 
+Spec: Section 14 (Echelon Semantic Vector).
+
 Konvergenz zweier Lichter:
   1. Vector (semantisch): query-Embedding (search_query:) vs Korpus, Mean-Centering gegen Anisotropie.
   2. Echelon (literal): lexikalische Ueberlappung query<->chunk (geteilte Inhaltswoerter, Umlaut-gefaltet).

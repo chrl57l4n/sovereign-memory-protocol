@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """memory_sentry.py — UserPromptSubmit-Hook: SIGINT-Style Phrase-Trigger, ein Pass.
 
+Spec: Section 13 (the Guard).
+
 Loest die Bash-Version (memory_sentry.sh, O(N) Fork-Schleife: ~1000-2500 Prozess-
 Spawns/Nachricht, 5-6s/Scan bei 283 Triggern) durch einen In-Prozess-Aho-Corasick-
 Automaten ab. Architektur (project_recall_struktur_rem_build.md): REM kompiliert den

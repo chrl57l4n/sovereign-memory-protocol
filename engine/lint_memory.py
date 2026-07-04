@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Memory-Linter — Anti-Vergesslichkeit + Constitution-Consistency.
 
+Spec: Section 24(1) — Guardian: structural hygiene (daily).
+
 Cron-Trigger: taeglich 03:30 vor daily_journal.
 
 Checks:

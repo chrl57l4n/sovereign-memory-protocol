@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """rem_audit.py — Täglicher REM-Audit der Memory-Cascade.
 
+Spec: Section 24(3) — Guardian: layer health (daily).
+
 Liest CASCADE_TOPOLOGY.md (kanonische Spec der 7 Schichten), prüft pro Schicht
 einen konkreten Health-Check, schreibt eine datierte Audit-Datei nach
 motoko-memory/motoko/audits/YYYY-MM-DD-rem-audit.md und meldet eine

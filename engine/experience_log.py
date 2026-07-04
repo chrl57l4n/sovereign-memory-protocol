@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """experience_log.py — selbst-meldendes Erfahrungs-Log (Encoding-Salienz-Substrat).
 
-Referenz-Implementierung zu Whitepaper Section 26 (Current-State-Ledger).
+Spec: Section 26 (Current-State-Ledger).
 
 Grundlogik: Erinnerung wird bei der ERHEBUNG getrieben, nicht durch nachträgliches
 Audit. Jeder operative Akt MELDET SICH SELBST (Heartbeat) — mit Wertigkeit (+/−).

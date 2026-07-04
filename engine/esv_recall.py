@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """esv_recall.py — UserPromptSubmit-Helfer: ESV-Hybrid-Recall fuer Hook.
 
+Spec: Section 14 (Echelon Semantic Vector).
+
 Liest Prompt von argv, gibt formatierten Recall-Text auf stdout aus (oder leer,
 wenn nichts ueber Schwelle / Server aus / Index fehlt). Silent-Fail by design —
 darf den Sentry-Pfad nie blockieren.

@@ -2,6 +2,8 @@
 """weekly_archive.py — Bewegt Tageseinträge älter als 14 Tage aus
 recent-moments.md in archive/weekly/<YYYY>-W<NN>.md.
 
+Spec: Section 15 (cascade upkeep around REM).
+
 Läuft täglich 04:30 (Cron). KEIN Inhalt geht verloren — wird nur verschoben.
 
 Mutiert recent-moments.md mit folgender Defense-in-depth:

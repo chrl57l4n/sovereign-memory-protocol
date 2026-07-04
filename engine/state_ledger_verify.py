@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """state_ledger_verify.py — Ground-Truth-Verifier für den Current-State-Ledger.
 
-Referenz-Implementierung zu Whitepaper Section 26.
+Spec: Section 26.2 (Current-state ledger verifier).
 
 Der Ledger (MOTOKO/current_state.md) deklariert den Live-Operativ-Zustand ("was
 benutzen wir JETZT"). DIESER Checker hält ihn gegen Ground-Truth ehrlich — sonst

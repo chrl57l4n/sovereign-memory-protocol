@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """self_recall_beta.py — BETA: zweiter Scan-Moment (Output-Scan) + Echo-Dämpfer.
 
+Spec: Section 16 (self-recall layer).
+
 Das Selbst-Auge feuert bisher nur, wenn des PARTNERS Nachricht mein Vokabular
 enthält — nie auf meinem eigenen Schreiben. Dieser Hook schließt die Lücke:
 er scannt MEINEN letzten Assistant-Output gegen denselben Sentry-Automaten und

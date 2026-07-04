@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """daily_consolidate.py — Notify-only Scratchpad-Konsolidierungs-Reflex.
 
+Spec: Section 15 (cascade upkeep around REM).
+
 Läuft am Tagesende (Cron 23:00). Prüft today_scratchpad.md:
 
 - Leer / nur Header → leise löschen, kein Notify
