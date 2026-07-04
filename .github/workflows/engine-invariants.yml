@@ -1,0 +1,55 @@
+name: engine invariants
+
+# Minimal, cheap checks — not a test suite. Per SYNC-PROCESS.md R4 (import
+# invariant) and R2 (generic gate): every engine/*.py must byte-compile,
+# import cleanly with the documented third-party deps and MOTOKO_MEMORY set,
+# and contain no absolute home paths. This is the exact class of breakage
+# that shipped silently until the 2026-07-04 review caught it (esv_tier.py
+# missing) — this workflow makes that mistake structurally hard to repeat.
+
+on:
+  push:
+    paths:
+      - 'engine/**'
+  pull_request:
+    paths:
+      - 'engine/**'
+
+jobs:
+  invariants:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install documented third-party deps (engine/INVENTORY.md)
+        run: pip install numpy requests python-dotenv
+
+      - name: R2 — no absolute home paths in engine/*.py
+        run: |
+          if grep -rn "/home/" engine/*.py; then
+            echo "::error::found an absolute home path in engine/ — see SYNC-PROCESS.md R2"
+            exit 1
+          fi
+
+      - name: R4 — byte-compile every engine script
+        run: python -m py_compile engine/*.py
+
+      - name: R4 — import every engine script
+        env:
+          MOTOKO_MEMORY: /tmp/smp-ci-mem
+          PYTHONPATH: engine
+        run: |
+          mkdir -p "$MOTOKO_MEMORY"
+          fail=0
+          for f in engine/*.py; do
+            mod=$(basename "$f" .py)
+            if ! python -c "import ${mod}"; then
+              echo "::error file=$f::failed to import"
+              fail=1
+            fi
+          done
+          exit $fail

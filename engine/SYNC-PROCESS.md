@@ -38,9 +38,12 @@ holds in reverse for removals.
 
 **R4 — Import invariant.** Every engine script must at minimum byte-compile
 and import with `MOTOKO_MEMORY` set, with only the dependencies named in
-INVENTORY. Checked by hand at every port until a CI smoke test exists (review
-item P2.2). The `esv_tier` incident is the standing reminder of what skipping
-this costs.
+INVENTORY. Enforced automatically on every push touching `engine/**` by
+[`.github/workflows/engine-invariants.yml`](../.github/workflows/engine-invariants.yml)
+(closes review item P2.2) — the same two checks (R2's grep, R4's
+byte-compile + import) that used to be done by hand. The `esv_tier` incident
+is the standing reminder of what skipping this costs, and the reason this
+runs on the machine now instead of relying on memory.
 
 **R5 — Cadence.** INVENTORY is reconciled against the spec at minimum on every
 spec revision (new or changed section → new row or updated status), and
