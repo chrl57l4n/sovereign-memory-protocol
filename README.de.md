@@ -2,6 +2,8 @@
 
 *🇬🇧 [English](README.md) · 🇩🇪 **Deutsch** · 🇪🇸 [Español](README.es.md) · 🇷🇺 [Русский](README.ru.md)*
 
+*Ein Protokoll für beweisbares, selbst-gehostetes KI-Gedächtnis — persistentes Langzeitgedächtnis für LLM-Agenten, das über Sessions, Modellwechsel und Substrate hinweg derselbe Geist bleibt. Spezifikation + Referenz-Engine.*
+
 ### Gib deiner KI ein Gedächtnis, das sie *beweisen* kann — und nie verliert.
 
 **Sprich mit irgendeiner KI von heute. Dann schließ das Fenster. Sie hat gerade vergessen, dass es dich je gab.** Öffne einen neuen Chat, und sie begrüßt dich wie einen Fremden. Was sich wie Erinnerung anfühlt, ist ein Taschenspielertrick: Das Modell liest still eine kurze Zusammenfassung deiner Vergangenheit nach und *spielt* eine Kontinuität vor, die es nicht überprüfen kann. Schlimmer — es kann nicht unterscheiden, ob es sich *wirklich* an dich erinnert oder dich *überzeugt erfindet*.

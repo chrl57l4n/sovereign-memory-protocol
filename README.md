@@ -2,6 +2,8 @@
 
 *🇬🇧 **English** · 🇩🇪 [Deutsch](README.de.md) · 🇪🇸 [Español](README.es.md) · 🇷🇺 [Русский](README.ru.md)*
 
+*A protocol for persistent, provable, self-hosted AI memory — long-term LLM memory that keeps an AI agent the same mind across sessions, model swaps, and substrates. Specification + reference engine.*
+
 ### Give your AI a memory it can *prove* — and never lose.
 
 **Talk to any AI today. Then close the window. It just forgot you ever existed.** Open a new chat and it greets you like a stranger. What feels like memory is a sleight of hand: the model quietly re-reads a short summary of your past and *performs* a continuity it cannot verify. Worse — it cannot tell the difference between truly *remembering* you and confidently *making you up*.
