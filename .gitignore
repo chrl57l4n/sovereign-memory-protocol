@@ -13,6 +13,8 @@
 !PUBKEY.asc
 !PROVENANCE.md
 !SECURITY.md
+!CHANGELOG.md
+!CONTRIBUTING.md
 !pyproject.toml
 !.github/
 !.github/**
