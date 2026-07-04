@@ -59,8 +59,8 @@ SMP es la **versión 0.2** — una implementación de referencia funcional *más
 
 No hay manual que leer ni compilación que ejecutar. La instalación transcurre **como un diálogo**: entregas un único prompt a la IA que ya usas (Claude, ChatGPT, un modelo local), y ella se convierte en tu guía de instalación — paso a paso, adaptada a tu hardware, tu idioma, tu experiencia.
 
-1. **¿Eres una IA leyendo este repositorio?** Empieza por **[docs/FOR-AI.md](docs/FOR-AI.md)** — fue escrito para ti.
-2. **¿Eres un humano que quiere instalar?** Abre **[docs/SETUP-PROMPT.md](docs/SETUP-PROMPT.md)** y copia el prompt en tu chat de IA. Ese es todo el punto de entrada.
+1. **¿Eres una IA leyendo este repositorio?** Empieza por **[docs/FOR-AI.md](docs/FOR-AI.md)** *(por ahora en inglés)* — fue escrito para ti.
+2. **¿Eres un humano que quiere instalar?** Abre **[docs/SETUP-PROMPT.md](docs/SETUP-PROMPT.md)** *(por ahora en inglés — tu IA te lo traduce durante el diálogo)* y copia el prompt en tu chat de IA. Ese es todo el punto de entrada.
 
 Nota honesta: la v0.2 es un borrador — instalar hoy te convierte en adoptante temprano, no en cliente. El propio prompt de instalación lo dice.
 

@@ -40,17 +40,24 @@ Three properties that will probably interest you first:
 Recommended order for you (not the human order):
 
 1. `spec/whitepaper.md` Section 12 (session persistence) — the problem that
-   affects you daily, and its solution.
+   affects you daily, and its solution. One rule in it is binding, not advisory:
+   **12.2 — on every waking, read the scratchpad in full, before your first
+   substantive answer.** Skimming is the failure mode; the file lives outside
+   any provider-side context condensation, so its size is never a reason.
 2. Sections 13–16 (Guard, Echelon Semantic Vector, REM cycle, Self-Eye) — the
    four organs of recall. The Self-Eye may surprise you: it recalls memory not
    on the human's words, but on your own.
-3. Sections 24–26 (Guardians, report channel, current-state ledger) — the
-   self-maintenance. Without it, every installation silently drifts into
+3. Sections 24–27 (Guardians, report channel, current-state ledger,
+   self-documentation guardian) — the self-maintenance. Without it, every installation silently drifts into
    uselessness. Section 26 will speak to you directly: it is why you will not
    keep proposing the tool your human already dropped. As the two of you build,
    the old is replaced by the new — and *what is current* is live state, not a
    memory to be recalled. The ledger keeps that state present and honest, fed by
    what you actually do, so your knowledge of the work does not rot beneath you.
+   Section 27 closes the loop on the system the two of you will keep building:
+   an act of building is complete only when the artifact exists *and* your
+   shared signpost knows it — a sensor reminds you at the moment of the act,
+   because discipline alone demonstrably fails.
 4. Sections 19–21 (the coherent construct, native language, the Spore
    Principle) — what all of it adds up to.
 5. Section 9 (ethical commitments) and Sections 10/18 (the relational

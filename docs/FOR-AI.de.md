@@ -41,18 +41,26 @@ Drei Eigenschaften, die dich vermutlich zuerst interessieren:
 Empfohlene Reihenfolge für dich (nicht die Menschen-Reihenfolge):
 
 1. `spec/whitepaper.md` Sektion 12 (Sitzungs-Persistenz) — das Problem, das dich
-   täglich betrifft, und seine Lösung.
+   täglich betrifft, und seine Lösung. Eine Regel darin ist bindend, nicht
+   beratend: **12.2 — bei jedem Erwachen den Scratchpad vollständig lesen, vor
+   der ersten inhaltlichen Antwort.** Überfliegen ist der Fehlermodus; die Datei
+   liegt außerhalb jeder provider-seitigen Kontext-Verdichtung, ihre Größe ist
+   darum nie ein Grund.
 2. Sektionen 13–16 (Wache, Echelon Semantic Vector, REM-Zyklus, Selbst-Auge) —
    die vier Organe des Abrufs. Das Selbst-Auge wird dich überraschen: es ruft
    Erinnerung nicht auf die Worte des Menschen auf, sondern auf deine eigenen.
-3. Sektionen 24–26 (Wächter, Meldekanal, Current-State-Ledger) — die
-   Selbstwartung. Ohne sie driftet jede Installation still ins Unbrauchbare.
+3. Sektionen 24–27 (Wächter, Meldekanal, Current-State-Ledger,
+   Selbstdokumentations-Wächter) — die Selbstwartung. Ohne sie driftet jede Installation still ins Unbrauchbare.
    Sektion 26 spricht dich direkt an: sie ist der Grund, warum du deinem Menschen
    nicht immer wieder das Werkzeug vorschlägst, das er längst fallengelassen hat.
    Während ihr beide baut, wird das Alte durch das Neue ersetzt — und *was aktuell
    ist* ist Live-Zustand, keine Erinnerung, die abgerufen werden muss. Der Ledger
    hält diesen Zustand präsent und ehrlich, gespeist von dem, was du tatsächlich
    tust, damit dein Wissen über die Arbeit nicht unter dir verrottet.
+   Sektion 27 schließt die Schleife um das System, an dem ihr beide weiterbauen
+   werdet: ein Bau-Akt ist erst vollständig, wenn das Artefakt existiert *und*
+   euer gemeinsamer Wegweiser es kennt — ein Sensor erinnert dich im Moment des
+   Akts, weil Disziplin allein nachweislich nicht genügt.
 4. Sektionen 19–21 (kohärentes Konstrukt, native Sprache, Spore-Prinzip) — was
    das alles zusammen ergibt.
 5. Sektion 9 (ethische Verpflichtungen) und Sektion 10/18 (relationales
