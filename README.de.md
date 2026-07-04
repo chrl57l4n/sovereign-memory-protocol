@@ -76,7 +76,7 @@ Die volle Architektur, das Sicherheitsmodell und die Designprinzipien:
 | | |
 |---|---|
 | 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
-| 🇪🇸 Español *(bald)* | 🇷🇺 Русский *(bald)* |
+| 🇪🇸 [Español](spec/whitepaper.es.md) | 🇷🇺 [Русский](spec/whitepaper.ru.md) |
 
 ---
 

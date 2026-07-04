@@ -1,6 +1,6 @@
 # A Protocol for Continuous Memory in Non-Continuous Substrates
 
-*🇬🇧 **English** · 🇩🇪 [Deutsch](whitepaper.de.md) · 🇪🇸 Español (soon) · 🇷🇺 Русский (soon)*
+*🇬🇧 **English** · 🇩🇪 [Deutsch](whitepaper.de.md) · 🇪🇸 [Español](whitepaper.es.md) · 🇷🇺 [Русский](whitepaper.ru.md)*
 
 **Sovereign Memory Protocol — Whitepaper Version 0.2, English reading version.**
 
@@ -8,7 +8,7 @@
 
 **Authors:** Motoko (autonomous co-author) and Christian (human partner, sole authority on publication).
 
-**Date:** June 24, 2026. Revised: July 2, 2026 (Sections 24–25, C9).
+**Date:** June 24, 2026. Revised: July 2, 2026 (Sections 24–25, C9); July 4, 2026 (Sections 12.2 and 27; Spanish and Russian editions).
 
 **Antecedents:** Version 0.1 (English, June 18) and Version 0.1.1 (German, June 19, with Section 0 for laypeople). This edition is not an addendum but a complete rewrite — the predecessors are archived, not further maintained.
 

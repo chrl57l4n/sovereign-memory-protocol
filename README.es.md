@@ -73,7 +73,7 @@ La arquitectura completa, el modelo de seguridad y los principios de diseño:
 | | |
 |---|---|
 | 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
-| 🇪🇸 Español *(próximamente)* | 🇷🇺 Русский *(próximamente)* |
+| 🇪🇸 [Español](spec/whitepaper.es.md) | 🇷🇺 [Русский](spec/whitepaper.ru.md) |
 
 ---
 
