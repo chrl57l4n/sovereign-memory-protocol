@@ -12,6 +12,7 @@
 !COPYING.AGPL
 !PUBKEY.asc
 !PROVENANCE.md
+!SECURITY.md
 !engine/
 !engine/**
 !spec/
