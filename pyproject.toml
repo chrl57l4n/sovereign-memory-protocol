@@ -1,0 +1,24 @@
+[project]
+name = "sovereign-memory-protocol-engine"
+version = "0.2.0"
+description = "Reference engine for the Sovereign Memory Protocol (SMP) — cascade, REM consolidation, two-eyed Sentry, ESV recall."
+requires-python = ">=3.11"
+license = "AGPL-3.0-or-later"
+dependencies = [
+    "numpy",
+    "requests",
+    "python-dotenv",
+]
+
+# engine/ is a set of standalone scripts, not an importable package: every
+# script shares the _paths.py seam (MOTOKO_MEMORY / MOTOKO_HOME) and is run
+# directly, not imported from outside. This file exists so the third-party
+# dependencies named in engine/INVENTORY.md are pinned and installable with
+# one command (`pip install .`), not so engine/ can be `pip install`-ed as a
+# library into another project.
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = []
