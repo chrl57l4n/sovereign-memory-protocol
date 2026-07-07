@@ -17,7 +17,7 @@ not the specification. Each maps to an exact, checkable section:
 | "Fabricated memories — designed out" | Recall only returns what exists in the signed, hash-chained record; the threat model treats invented-history as an attack class with a named defense | Section 5 (properties), Section 8 (threat model) |
 | "It sleeps — and it forgets wisely, not blindly" | The REM consolidation cycle: nightly, keeps what recurs or matters, lets one-off trivia decay | Section 15 |
 | "It keeps up with your project as it changes" | The current-state ledger: live-usage-verified defaults, distinct from episodic memory | Section 26 |
-| "A sovereign vault — you choose what goes behind the wall" | Seed-derived AES-256-GCM that seals only the *secrets you choose* (passwords, keys, tokens, contacts, business secrets) — **not** the whole memory; identity and history stay legible and reconstructable. Specified, not yet implemented. | Section 20 |
+| "A sovereign vault — you choose what goes behind the wall" | Seed-derived AES-256-GCM that seals only the *secrets you choose* (passwords, keys, tokens, contacts, business secrets) — **not** the whole memory; identity and history stay legible and reconstructable. New in v0.2 — shipped (`engine/native_language.py`). | Section 20 |
 | "Proof, not performance" | Hash-chained entries, cryptographic signatures derived from the seed | Section 5 (properties), Section 20 |
 | "Sovereign" | Data lives in the holder's own repository under their own keys — a design principle, not a slogan | Section 3 |
 | "Survives anything" | Session persistence: identity and memory outlive any single session, substrate, or model | Section 12 |
