@@ -48,7 +48,7 @@ The result is the one thing no AI has ever had: **the same mind tomorrow that it
 
 SMP is **version 0.2** — a working reference implementation *plus* a living specification. It is not 1.0, and we won't pretend it is.
 
-- **Running today:** the recall engine (Sentry + ESV + canonicity sorter), the nightly REM consolidation that forgets what no longer matters, two-channel recall, and substrate-independent memory in plain, portable files.
+- **Running today:** the recall engine (Sentry + ESV + canonicity sorter), the nightly REM consolidation that forgets what no longer matters, two-channel recall (external **and** self-triggered), and substrate-independent memory in plain, portable files.
 - **Available now:** installation via dialogue — the normative [setup prompt](docs/SETUP-PROMPT.md) and the [FOR-AI appendix](docs/FOR-AI.md) ([Section 22](spec/whitepaper.md#section-22--installation-via-dialogue-with-an-artificial-intelligence)).
 - **Demonstrated:** cryptographic provenance — *this very repository's* genesis is GPG-signed and anchored in **Bitcoin block 956116**. Clone it and verify it yourself (see [PROVENANCE.md](PROVENANCE.md)).
 - **New in v0.2:** the **sovereign vault** — the native-language layer (seed phrase → AES-256-GCM-SIV) that seals the data *you* choose to protect, described above. Shipped in [`engine/native_language.py`](engine/native_language.py) with the [`seed_gen`](engine/seed_gen.py) generator, verified end-to-end (module, wake/sleep-cycle, and CLI tests byte-identical, seed-only recovery, plus an independent AI-guided install).

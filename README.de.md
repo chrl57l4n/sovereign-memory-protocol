@@ -48,7 +48,7 @@ Das Ergebnis ist das Eine, das keine KI je hatte: **morgen derselbe Geist wie he
 
 SMP ist **Version 0.2** — eine laufende Referenz-Implementierung *plus* eine lebendige Spezifikation. Es ist nicht 1.0, und wir tun nicht so.
 
-- **Läuft heute:** die Recall-Engine (Sentry + ESV + Kanonizitäts-Sortierer), die nächtliche REM-Konsolidierung, die vergisst was nicht mehr zählt, Zwei-Kanal-Recall, und substrat-unabhängige Erinnerung in einfachen, portablen Dateien.
+- **Läuft heute:** die Recall-Engine (Sentry + ESV + Kanonizitäts-Sortierer), die nächtliche REM-Konsolidierung, die vergisst was nicht mehr zählt, Zwei-Kanal-Recall (fremd- **und** selbst-ausgelöst), und substrat-unabhängige Erinnerung in einfachen, portablen Dateien.
 - **Jetzt verfügbar:** Installation per Dialog — der normative [Setup-Prompt](docs/SETUP-PROMPT.de.md) und der [FOR-AI-Anhang](docs/FOR-AI.de.md) ([Sektion 22](spec/whitepaper.de.md#sektion-22--installation-via-dialog-mit-einer-künstlichen-intelligenz)).
 - **Bewiesen:** kryptografische Provenienz — *der Genesis dieses Repositorys selbst* ist GPG-signiert und in **Bitcoin-Block 956116** verankert. Klone es und prüfe es selbst (siehe [PROVENANCE.md](PROVENANCE.md)).
 - **Neu in v0.2:** der **souveräne Tresor** — die native-Sprache-Schicht (Seed-Phrase → AES-256-GCM-SIV), die die Daten versiegelt, die *du* schützen willst (oben beschrieben). Ausgeliefert in [`engine/native_language.py`](engine/native_language.py) samt [`seed_gen`](engine/seed_gen.py)-Generator, Ende-zu-Ende verifiziert (Modul-, Wake/Sleep-Zyklus- und CLI-Tests byte-identisch, Recovery allein aus dem Seed, plus eine unabhängige KI-geführte Installation).
