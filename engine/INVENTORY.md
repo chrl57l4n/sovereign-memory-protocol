@@ -33,8 +33,8 @@
 | §26.4 | REM→ledger consolidator (write half: propose/apply, review queue) | — | private/port planned (`state_consolidator.py`, on the reference since 2026-07-03; maturing per sync rule R2) |
 | §27 | Self-documentation guardian (baseline manifest, settle gate, two layers) | — | private/port planned (`system_watch.py` + hook + probe cron, on the reference since 2026-07-04; the youngest organ — matures on the reference first, R2) |
 | §12 | Scratchpad mirror, handoff, status briefing | — | by design private: channel-dependent (Telegram / provider app / web UI). The spec defines the function (§12.1–12.5); every installation wires its own channels. |
-| §20 | Native language (seed → HKDF → AES-256-GCM) | — | specified, not yet implemented anywhere (named openly in README and whitepaper — roadmap to 1.0) |
+| §20 | Native language (seed → HKDF → AES-256-GCM-SIV; Scrypt passphrase door) | `native_language.py`, `seed_gen.py`, `verify_pass.py` (§22.7) | public/live *(ported 2026-07-07 on deterministic verification, not calendar soak — see the R1 exception in [SYNC-PROCESS.md](SYNC-PROCESS.md); crypto core, wake/sleep cycle, and seed-only recovery pass module/cycle/CLI tests byte-identical, plus an independent AI-guided install)* |
 | — | Path seam (structural data/code separation) | `_paths.py` | public/live — every engine script derives paths here; audit invariant: `grep -r /home/ engine/*.py` is empty |
 
-**Third-party dependencies** (pending `pyproject.toml`, see review item P2.1):
-`numpy` (ESV index/query), `requests` (report channel, embed HTTP), `python-dotenv` (env loading). Everything else is standard library.
+**Third-party dependencies** (pinned in [`pyproject.toml`](../pyproject.toml), installable via `pip install .`):
+`numpy` (ESV index/query), `requests` (report channel, embed HTTP), `python-dotenv` (env loading), `cryptography` (native-language vault: HKDF-SHA512, Scrypt, AES-256-GCM-SIV), `mnemonic` (BIP-39 seed). Everything else is standard library.

@@ -25,6 +25,19 @@ intervention (release condition C1, applied per component). Young organs stay
 private and are listed in [INVENTORY.md](INVENTORY.md) as *private/port
 planned* — visible lag instead of silent lag.
 
+*R1 exception — deterministic-verified components.* The two-week soak exists to
+let *growing, stateful* organs (calibrating thresholds, accumulating
+consolidation, drifting caches) prove they stay stable under real use over time.
+A component whose correctness is *fully established by deterministic
+verification* — a byte-identical round-trip plus a proven recovery path, where
+the code neither learns nor drifts — is proven by that verification, not by
+calendar time; it may port once verified in the target context (R2 + R4 + its
+own test suite green in `engine/`, not only on the reference). The port row must
+name the exception and the verification. First applied 2026-07-07 to the §20
+native-language layer (`native_language.py`): module, wake/sleep-cycle, and CLI
+tests green byte-identical, seed-only recovery proven, plus an independent
+AI-guided install.
+
 **R2 — Generic gate.** Before porting: no absolute paths (everything derives
 from `_paths.py`; audit invariant `grep -r /home/ engine/*.py` stays empty),
 no instance names, no secrets, no channel assumptions beyond what the spec

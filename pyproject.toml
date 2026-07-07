@@ -8,6 +8,8 @@ dependencies = [
     "numpy",
     "requests",
     "python-dotenv",
+    "cryptography",
+    "mnemonic",
 ]
 
 # engine/ is a set of standalone scripts, not an importable package: every
