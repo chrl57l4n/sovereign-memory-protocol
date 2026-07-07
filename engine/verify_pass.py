@@ -69,7 +69,7 @@ def _invoke(cmd: list[str], env_extra: dict[str, str] | None = None) -> tuple[in
 
 def _status_check(mirror: Path, store: Path, keystore: Path) -> None:
     rc, out, _ = _invoke(
-        ["python3", str(NATIVE), "status",
+        [sys.executable, str(NATIVE), "status",
          "--mirror", str(mirror), "--store", str(store), "--keystore", str(keystore)]
     )
     print(f"\n--- current status ---\n{out}")
@@ -79,7 +79,7 @@ def T3_rem_manual(mirror: Path, store: Path, keystore: Path) -> bool:
     """Run REM manually (--phase meta to skip LLM, just structural)."""
     print(f"\n=== T3: REM manual run ===")
     rc, out, err = _invoke(
-        ["python3", str(ENGINE / "rem_consolidate.py"), "--phase", "meta"],
+        [sys.executable, str(ENGINE / "rem_consolidate.py"), "--phase", "meta"],
         env_extra={"MOTOKO_MEMORY": str(mirror), "MOTOKO_HOME": str(ENGINE.parent)},
     )
     if rc == 0:
@@ -112,7 +112,7 @@ def T5_backup_restore(mirror: Path, store: Path, keystore: Path, backup: Path) -
     # 2) sleep (mirror → store, wipe mirror)
     print("   2. sleep (encrypt mirror → store, wipe)…")
     rc, out, err = _invoke(
-        ["python3", str(NATIVE), "sleep",
+        [sys.executable, str(NATIVE), "sleep",
          "--mirror", str(mirror), "--store", str(store),
          "--keystore", str(keystore)],
         env_extra=env_extra,
@@ -136,7 +136,7 @@ def T5_backup_restore(mirror: Path, store: Path, keystore: Path, backup: Path) -
     # 5) wake (store → mirror)
     print("   5. wake (decrypt backup → mirror)…")
     rc, out, err = _invoke(
-        ["python3", str(NATIVE), "wake",
+        [sys.executable, str(NATIVE), "wake",
          "--mirror", str(mirror), "--store", str(store),
          "--keystore", str(keystore), "--force"],
         env_extra=env_extra,
@@ -164,7 +164,7 @@ def T6_round_trip(mirror: Path, store: Path, keystore: Path) -> bool:
     else:
         print("   1. wake (cold start)…")
         rc, out, err = _invoke(
-            ["python3", str(NATIVE), "wake",
+            [sys.executable, str(NATIVE), "wake",
              "--mirror", str(mirror), "--store", str(store),
              "--keystore", str(keystore), "--force"],
             env_extra=env_extra,
@@ -183,7 +183,7 @@ def T6_round_trip(mirror: Path, store: Path, keystore: Path) -> bool:
     # 3) sleep
     print("   3. sleep (commit edit)…")
     rc, out, err = _invoke(
-        ["python3", str(NATIVE), "sleep",
+        [sys.executable, str(NATIVE), "sleep",
          "--mirror", str(mirror), "--store", str(store),
          "--keystore", str(keystore)],
         env_extra=env_extra,
@@ -205,7 +205,7 @@ def T6_round_trip(mirror: Path, store: Path, keystore: Path) -> bool:
     # 5) wake again
     print("   4. wake (reload from store)…")
     rc, out, err = _invoke(
-        ["python3", str(NATIVE), "wake",
+        [sys.executable, str(NATIVE), "wake",
          "--mirror", str(mirror), "--store", str(store),
          "--keystore", str(keystore), "--force"],
         env_extra=env_extra,
@@ -230,7 +230,7 @@ def T6_round_trip(mirror: Path, store: Path, keystore: Path) -> bool:
     sentinel.unlink()
     # Sleep once more to commit the cleanup
     rc, out, err = _invoke(
-        ["python3", str(NATIVE), "sleep",
+        [sys.executable, str(NATIVE), "sleep",
          "--mirror", str(mirror), "--store", str(store),
          "--keystore", str(keystore)],
         env_extra=env_extra,

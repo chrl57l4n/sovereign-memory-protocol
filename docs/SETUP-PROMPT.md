@@ -279,7 +279,7 @@ directory (`~`), *not* inside the package. A relative path like
 them the **full absolute path to the venv python AND to the script**, e.g.:
 `/home/<user>/.local/share/smp/runtime/bin/python /home/<user>/smp-install-package/engine/seed_gen.py --words 12`
 (substitute the real install paths). The same applies to the `init` command below —
-absolute python, absolute script, absolute `--keystore`. Never hand the human a
+absolute python, absolute script, absolute `--keystore`. **This venv python (shown as `<venv-python>` below) is used for EVERY engine command — `init`, `encrypt`, `wake`, `sleep`, `verify_pass.py`, `esv_index.py`, `resume`. They all import the SMP deps (`cryptography`, `mnemonic`, `numpy`); a bare system `python3` does not have them and fails with `ModuleNotFoundError`. `verify_pass.py` in particular spawns `wake`/`sleep` as child processes and reuses its own interpreter (`sys.executable`), so it MUST itself be launched with the venv python. Where a later example writes `python3`, read it as `<venv-python>`.** Never hand the human a
 command that only works from inside the package directory. From the seed
 three keys are derived (§20.3): a **language key** (content encryption), a **name
 key** (opaque filenames), a **signature key** (signing entries).
@@ -547,9 +547,9 @@ T6b cold recovery from the seed alone). It is vetted; a hand-rolled reimplementa
 will repeat subtle bugs (getpass ordering, the GCM AAD is the blob's filename, etc.).
 Run it, do not recreate it:
 ```
-python3 engine/verify_pass.py --only T5    # needs the human's password
-python3 engine/verify_pass.py --only T6    # needs the human's password
-python3 engine/verify_pass.py --only T6b   # needs the human's 24 words (from paper)
+<venv-python> engine/verify_pass.py --only T5    # needs the human's password
+<venv-python> engine/verify_pass.py --only T6    # needs the human's password
+<venv-python> engine/verify_pass.py --only T6b   # needs the human's seed words (from paper)
 ```
 Generally: for any defined protocol step, run the **shipped engine script** rather
 than writing a fresh one — the provided scripts are the tested ones.
