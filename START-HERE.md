@@ -72,11 +72,14 @@ Read only what you need to *act*; treat the whitepaper as reference, not homewor
   not by the vault.
 - Custody is a **choice, not a promise of absolute safety** (§20.10). Present the
   tiers honestly and let the human decide.
-- **Language note:** the English files (`spec/whitepaper.md`, `docs/FOR-AI.md`,
-  `docs/SETUP-PROMPT.md`, this file) are authoritative. The German / Spanish /
-  Russian translations still carry the *older* Section-20 text (backup-only
-  encryption) and have not yet been re-synced — read the English Section 20 and
-  Phase 2/3, not a translated one.
+- **Language note:** the English files are authoritative. The German / Spanish /
+  Russian **whitepaper and README** are synced to the current Section-20 vault
+  (Tresor) model. The translated **setup prompts**
+  (`docs/SETUP-PROMPT.{de,es,ru}.md`) are on the same model but still lag the
+  latest English install-flow hardening (the one-question interview cadence and
+  the ordered `seed_gen` → `init` hand-back of Phase 2) — if you install in one
+  of those languages, follow the English `docs/SETUP-PROMPT.md` for the Phase-2
+  seed steps.
 
 ## Two things that are never yours
 
