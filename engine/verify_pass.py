@@ -249,12 +249,12 @@ def T6b_recover(store: Path, keystore: Path) -> bool:
     files and compares to expected.
     """
     print(f"\n=== T6b: Cold recovery from seed alone ===")
-    print(f"   This test asks for your 24-word BIP-39 mnemonic.")
+    print(f"   This test asks for your 12- or 24-word BIP-39 mnemonic.")
     print(f"   It is NEVER logged or written anywhere — only piped into native_language.py recover.")
-    mnemonic = _ask_secret("24-word mnemonic (hidden): ").strip()
+    mnemonic = _ask_secret("Seed phrase (12 or 24 words, hidden): ").strip()
     words = mnemonic.split()
-    if len(words) != 24:
-        print(f"{PASS_FAIL} T6b: expected 24 words, got {len(words)}")
+    if len(words) not in (12, 24):
+        print(f"{PASS_FAIL} T6b: expected 12 or 24 words, got {len(words)}")
         return False
 
     # Use a separate recovery mirror so the primary mirror is untouched

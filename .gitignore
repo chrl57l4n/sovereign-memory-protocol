@@ -16,6 +16,9 @@
 !CHANGELOG.md
 !CONTRIBUTING.md
 !pyproject.toml
+!START-HERE.md
+!integrations/
+!integrations/**
 !.github/
 !.github/**
 !engine/

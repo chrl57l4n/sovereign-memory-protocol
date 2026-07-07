@@ -405,18 +405,18 @@ def _cli() -> None:
     a = p.parse_args()
 
     if a.cmd == "init":
-        print("── Schritt A: die 24 Seed-Wörter eingeben ──────────────────────────")
-        print("Tippe jetzt ALLE 24 Wörter in EINER Zeile, mit je einem Leerzeichen")
-        print("dazwischen (also: wort1 wort2 wort3 … wort24), dann Enter.")
+        print("── Schritt A: deine Seed-Wörter eingeben ──────────────────────────")
+        print("Tippe jetzt ALLE deine Wörter in EINER Zeile, mit je einem Leerzeichen")
+        print("dazwischen (also: wort1 wort2 wort3 … (alle deine, 12 oder 24)), dann Enter.")
         print("Die Eingabe bleibt UNSICHTBAR (kein Echo) — das ist Absicht, nicht")
         print("kaputt. Einfach tippen; es wird nicht angezeigt und nicht geloggt.")
-        mnemonic = _secret("Die 24 Wörter (versteckt): ").strip()
+        mnemonic = _secret("Deine Seed-Wörter (12 oder 24, versteckt): ").strip()
         print()
-        print("── Schritt B: dein Passwort erstellen (NICHT die 24 Wörter) ─────────")
+        print("── Schritt B: dein Passwort erstellen (NICHT die Seed-Wörter) ─────────")
         print("Denk dir JETZT ein Passwort aus — etwas Eigenes, das du dir merkst,")
-        print("NICHT die 24 Seed-Wörter. Damit entsperrst du das Gedächtnis im Alltag;")
+        print("NICHT deine Seed-Wörter. Damit entsperrst du das Gedächtnis im Alltag;")
         print("der Seed bleibt kalt fürs Recovery. Gib das Passwort zweimal ein (unsichtbar).")
-        pw1 = _secret("Dein neues Passwort (NICHT die 24 Wörter): ")
+        pw1 = _secret("Dein neues Passwort (NICHT die Seed-Wörter): ")
         if _secret("Passwort wiederholen: ") != pw1:
             print("Passwörter stimmen nicht überein — nichts angelegt. Bitte 'init' neu starten.",
                   file=sys.stderr)
@@ -425,7 +425,7 @@ def _cli() -> None:
             PassphraseKeyProvider(a.keystore).init_from_seed(mnemonic, pw1)
         except ValueError:
             print("Die eingegebenen Wörter ergeben keine gültige BIP-39-Prüfsumme — "
-                  "vermutlich ein Tippfehler. Bitte alle 24 Wörter prüfen und 'init' neu starten.",
+                  "vermutlich ein Tippfehler. Bitte alle deine Wörter prüfen und 'init' neu starten.",
                   file=sys.stderr)
             sys.exit(1)
         print(f"✓ Keystore angelegt: {a.keystore} (chmod 600). Seed zurück aufs Papier, "
@@ -439,7 +439,7 @@ def _cli() -> None:
                   file=sys.stderr)
             sys.exit(1)
         lang, name = PassphraseKeyProvider(a.keystore).unlock_with(
-            _secret("Dein Passwort (NICHT die 24 Wörter), versteckt: "))
+            _secret("Dein Passwort (NICHT die Seed-Wörter), versteckt: "))
         n = NativeLanguageStore(lang, name).encrypt_tree(a.src, store_dir)
         print(f"✓ Erst-Verschlüsselung: {n} Dateien aus {a.src} → opaker Store {a.store}.")
         print("  Klartext-Quelle bleibt unberührt — nach Verifikation selbst löschen/wegsichern.")
@@ -457,25 +457,25 @@ def _cli() -> None:
             sys.exit(1)
         _warn_if_unsafe_mirror(str(mirror))
         lang, name = PassphraseKeyProvider(a.keystore).unlock_with(
-            _secret("Dein Passwort (NICHT die 24 Wörter), versteckt: "))
+            _secret("Dein Passwort (NICHT die Seed-Wörter), versteckt: "))
         n = wake(a.store, mirror, lang, name)
         print(f"✓ Wach: {n} Dateien in {mirror} (RAM). MOTOKO_MEMORY dorthin zeigen.")
         _checkpoint(f"wake — {n} Dateien im Spiegel {mirror} (WACH)")
 
     elif a.cmd == "sleep":
         lang, name = PassphraseKeyProvider(a.keystore).unlock_with(
-            _secret("Dein Passwort (NICHT die 24 Wörter), versteckt: "))
+            _secret("Dein Passwort (NICHT die Seed-Wörter), versteckt: "))
         n = sleep(a.mirror, a.store, lang, name, wipe=True)
         print(f"✓ Schlafend: {n} Dateien verschlüsselt, Spiegel gewischt, alt → .bak.")
         _checkpoint(f"sleep — {n} Dateien re-verschlüsselt, Spiegel gewischt (SCHLAFEND)")
 
     elif a.cmd == "recover":
-        print("Recovery: gib ALLE 24 Seed-Wörter in EINER Zeile ein, mit Leerzeichen")
+        print("Recovery: gib ALLE Seed-Wörter in EINER Zeile ein, mit Leerzeichen")
         print("dazwischen. Unsichtbar (kein Echo) — das ist normal, einfach tippen + Enter.")
         try:
-            lang, name = recovery_keys_from_mnemonic(_secret("Die 24 Wörter (versteckt): ").strip())
+            lang, name = recovery_keys_from_mnemonic(_secret("Deine Seed-Wörter (12 oder 24, versteckt): ").strip())
         except ValueError:
-            print("Ungültige BIP-39-Prüfsumme — Tippfehler? Alle 24 Wörter prüfen und neu.",
+            print("Ungültige BIP-39-Prüfsumme — Tippfehler? Alle deine Wörter prüfen und neu.",
                   file=sys.stderr)
             sys.exit(1)
         n = NativeLanguageStore(lang, name).decrypt_tree(a.store, a.mirror)
