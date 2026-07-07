@@ -23,8 +23,13 @@ from pathlib import Path
 import numpy as np
 import requests
 
-HOME = Path.home()
-OUT_DIR = Path(os.environ.get("ESV_STATE", HOME / "motoko-server" / "state" / "esv"))
+# Seam-korrekt (SYNC-PROCESS R2): der Index-Ort leitet sich aus _paths ab, nie aus
+# einem instanz-hartcodierten Pfad. esv_index.py SCHREIBT nach STATE/esv — esv_query
+# MUSS von dort LESEN, sonst liest ein Frisch-Install den falschen (oder keinen) Index.
+# Fix Live-Test 2026-07-07 (Clean-Room fand: alter Pfad ~/motoko-server/state/esv griff
+# den falschen Index, ignorierte MOTOKO_HOME).
+from _paths import STATE
+OUT_DIR = Path(os.environ.get("ESV_STATE", STATE / "esv"))
 EMBED_URL = os.environ.get("ESV_EMBED_URL", "http://127.0.0.1:8091/v1/embeddings")
 QUERY_PREFIX = ""  # bge-m3 needs no prefix (vorher nomic-v1.5 mit 'search_query: ')
 LEX_WEIGHT = 0.25   # Gewicht des literalen Lichts in der Fusion (provisorisch, kalibrieren)
