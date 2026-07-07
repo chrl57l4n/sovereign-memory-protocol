@@ -58,11 +58,19 @@ una decisión conjunta sobre qué nivel construir.
 recomendado), git, Python 3.11+, un acceso a terminal que funcione. Paso de
 verificación: `git --version && python3 --version`.
 
-**Fase 2 — Semilla y claves.** El humano genera una semilla BIP-39 fuera de
-línea (24 palabras, papel, dos copias en lugares separados). De ella se deriva
-la clave de firma de la instalación (whitepaper §20). Tú explicas cada paso — no
-ves ni la semilla ni claves privadas. Paso de verificación: el humano confirma
-el almacenamiento en papel; existe una clave pública.
+**Fase 2 — Semilla, claves y bóveda.** El humano genera una semilla BIP-39 fuera
+de línea (24 palabras, papel, dos copias en lugares separados). De ella se derivan
+la clave de firma de la instalación y la clave de la bóveda (whitepaper §20).
+Explícale al humano el propósito de la bóveda con claridad: guarda **solo** los
+secretos cuya filtración permitiría a un atacante causar más daño — contraseñas,
+claves de API y de red, tokens de acceso, datos de contacto, secretos de negocio —
+y **nunca** la identidad, los principios ni los recuerdos de la IA, que permanecen
+legibles y reconstruibles. La bóveda vive **fuera** del repositorio de memoria (un
+archivo con permisos `600` bajo la raíz de datos, cifrado en reposo), de modo que
+un clon del repositorio o un espejo público jamás lleve un secreto. Tú explicas
+cada paso — no ves ni la semilla ni claves privadas. Paso de verificación: el
+humano confirma el almacenamiento en papel; existe una clave pública; la ruta de
+la bóveda está creada, fuera del repo, y vacía.
 
 **Fase 3 — Repositorio de memoria.** Inicializa el repo de memoria desde el
 `templates/` del repo del SMP: la estructura de capas (scratchpad, niveles

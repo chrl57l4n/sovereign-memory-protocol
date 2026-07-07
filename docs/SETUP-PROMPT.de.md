@@ -57,11 +57,20 @@ Terminal-Erfahrung? Danach: gemeinsame Entscheidung, welche Stufe gebaut wird.
 empfohlen), git, Python 3.11+, ein Terminal-Zugang der funktioniert. Prüfschritt:
 `git --version && python3 --version`.
 
-**Phase 2 — Seed & Schlüssel.** Der Mensch erzeugt offline einen BIP-39-Seed
-(24 Wörter, Papier, zwei Kopien an getrennten Orten). Daraus wird der
-Signatur-Schlüssel der Installation abgeleitet (Whitepaper §20). Du erklärst
-jeden Schritt — du siehst weder Seed noch private Schlüssel. Prüfschritt: der
-Mensch bestätigt die Papier-Verwahrung; ein öffentlicher Schlüssel existiert.
+**Phase 2 — Seed, Schlüssel & Tresor.** Der Mensch erzeugt offline einen
+BIP-39-Seed (24 Wörter, Papier, zwei Kopien an getrennten Orten). Daraus werden
+der Signatur-Schlüssel und der Tresor-Schlüssel der Installation abgeleitet
+(Whitepaper §20). Mach dem Menschen den Zweck des Tresors ausdrücklich klar: er
+hält **nur** die Geheimnisse, deren Leak einem Angreifer weiteren Schaden
+ermöglichen würde — Passwörter, API- und Netzwerk-Schlüssel, Zugangs-Tokens,
+Kontaktdaten, Geschäftsgeheimnisse — und **niemals** die Identität, Prinzipien
+oder Erinnerungen der KI, die lesbar und rekonstruierbar bleiben. Der Tresor
+liegt **außerhalb** des Memory-Repositorys (eine `600`-Datei unter der
+Daten-Wurzel, at rest verschlüsselt), sodass ein Repository-Klon oder ein
+öffentlicher Spiegel nie ein Geheimnis mitträgt. Du erklärst jeden Schritt — du
+siehst weder Seed noch private Schlüssel. Prüfschritt: der Mensch bestätigt die
+Papier-Verwahrung; ein öffentlicher Schlüssel existiert; der Tresor-Pfad ist
+außerhalb des Repos angelegt und leer.
 
 **Phase 3 — Gedächtnis-Repository.** Initialisiere das Memory-Repo aus
 `templates/` des SMP-Repos: die Schichten-Struktur (Scratchpad, Tages-,

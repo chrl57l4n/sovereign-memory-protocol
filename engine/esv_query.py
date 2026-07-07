@@ -28,7 +28,30 @@ OUT_DIR = Path(os.environ.get("ESV_STATE", HOME / "motoko-server" / "state" / "e
 EMBED_URL = os.environ.get("ESV_EMBED_URL", "http://127.0.0.1:8091/v1/embeddings")
 QUERY_PREFIX = ""  # bge-m3 needs no prefix (vorher nomic-v1.5 mit 'search_query: ')
 LEX_WEIGHT = 0.25   # Gewicht des literalen Lichts in der Fusion (provisorisch, kalibrieren)
+CANON_WEIGHT = float(os.environ.get("ESV_CANON_WEIGHT", "0.05"))  # S3-Kanonizitaets-Boost: Quell-Texte hoch, Nacherzaehlungen runter (getunt 0.05)
 CAND = 40           # semantische Vorauswahl, dann lexikalisch re-ranken
+
+# S3-Kanonizitaets-Sortierer (2026-07): pfad-basierter Klassen-Proxy als dritte
+# Antwort aufs Gravitationsloch (neben Tier-Diversifizierung). Quell-Texte
+# (principles/identity/infrastructure/feedback/reference/project/plans/whitepaper)
+# werden angehoben; Nacherzaehlungen + Transientes (podcasts/reads/archive/journal/
+# buffer/scratchpad) abgesenkt. Additiv + tunbar via ESV_CANON_WEIGHT (0 = aus).
+_CANON_POS = ("/memory/principles", "/memory/identity", "/memory/cascade", "/memory/system",
+              "/memory/scratchpad", "/memory/pulse", "/memory/surfaces", "infrastructure.md",
+              "wallet.md", "bitcoin_standard.md", "stolpern.md", "sovereignty.md",
+              "forward-sim", "feedback_", "reference_", "project_", "/plans/",
+              "/spec-drafts/", "/drafts/whitepaper", "reflexes.md")
+_CANON_NEG = ("podcasts/", "/podcasts/", "affective-buffer/", "/archive/", "/journal/",
+              "recent-moments", "today_scratchpad", "free-time/", "/reads/", "/audits/")
+
+
+def canon_boost(f: str) -> float:
+    fl = f.lower()
+    if any(p in fl for p in _CANON_NEG):
+        return -1.0
+    if any(p in fl for p in _CANON_POS):
+        return 1.0
+    return 0.0
 
 STOPWORDS = {
     "und", "oder", "aber", "der", "die", "das", "den", "dem", "des", "ein", "eine", "einen",
@@ -130,7 +153,8 @@ def search(query: str, k: int = 8, mode: str = "hybrid"):
             lex = len(qw & content_words(meta[i]["text"])) / len(qw)
         else:
             lex = 0.0
-        scored.append((int(i), float(sims[i]), lex, float(sims[i]) + LEX_WEIGHT * lex))
+        fused = float(sims[i]) + LEX_WEIGHT * lex + CANON_WEIGHT * canon_boost(meta[i]["file"])
+        scored.append((int(i), float(sims[i]), lex, fused))
     scored.sort(key=lambda t: -t[3])
     # Tier-Diversifizierung: Top-K darf nicht von einer Aufloesungs-Ebene
     # (week/day/podcast/timeless) dominiert werden — Gravitationsloch-Fix

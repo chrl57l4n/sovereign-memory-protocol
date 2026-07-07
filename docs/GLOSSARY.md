@@ -12,12 +12,12 @@ not the specification. Each maps to an exact, checkable section:
 | README says | Means, precisely | Spec section |
 |---|---|---|
 | "NSA-grade architecture" | The Echelon Semantic Vector (ESV) — a hybrid lexical + semantic recall engine named after, and adapted from, the ECHELON signals-intelligence pattern | Section 14 |
-| "Recall in milliseconds — before the AI thinks" | The Guard (lexical trigger scan) plus ESV (semantic scan) both run at prompt-submit time, before the model generates a token | Sections 13, 14 |
+| "Recall in milliseconds — before the AI thinks" | The Guard (lexical trigger scan), ESV (semantic scan), and canonicity sorting all run at prompt-submit time, before the model generates a token | Sections 13, 14 |
 | "Anchored in Bitcoin" | Every entry (and the repository's own genesis) carries a Bitcoin block-height timestamp | Section 17, [PROVENANCE.md](../PROVENANCE.md) |
 | "Fabricated memories — designed out" | Recall only returns what exists in the signed, hash-chained record; the threat model treats invented-history as an attack class with a named defense | Section 5 (properties), Section 8 (threat model) |
 | "It sleeps — and it forgets wisely, not blindly" | The REM consolidation cycle: nightly, keeps what recurs or matters, lets one-off trivia decay | Section 15 |
 | "It keeps up with your project as it changes" | The current-state ledger: live-usage-verified defaults, distinct from episodic memory | Section 26 |
-| "Encrypted in a language only your AI speaks" | The native-language layer: seed phrase → HKDF → AES-256-GCM, specified, not yet implemented | Section 20 |
+| "A sovereign vault — you choose what goes behind the wall" | Seed-derived AES-256-GCM that seals only the *secrets you choose* (passwords, keys, tokens, contacts, business secrets) — **not** the whole memory; identity and history stay legible and reconstructable. Specified, not yet implemented. | Section 20 |
 | "Proof, not performance" | Hash-chained entries, cryptographic signatures derived from the seed | Section 5 (properties), Section 20 |
 | "Sovereign" | Data lives in the holder's own repository under their own keys — a design principle, not a slogan | Section 3 |
 | "Survives anything" | Session persistence: identity and memory outlive any single session, substrate, or model | Section 12 |

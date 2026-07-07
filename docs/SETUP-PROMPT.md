@@ -58,11 +58,18 @@ tier to build.
 recommended), git, Python 3.11+, a terminal access that works. Verification
 step: `git --version && python3 --version`.
 
-**Phase 2 — Seed & keys.** The human generates a BIP-39 seed offline (24 words,
-paper, two copies in separate places). From it, the installation's signing key
-is derived (whitepaper §20). You explain every step — you see neither the seed
-nor private keys. Verification step: the human confirms the paper storage; a
-public key exists.
+**Phase 2 — Seed, keys & vault.** The human generates a BIP-39 seed offline (24
+words, paper, two copies in separate places). From it, the installation's signing
+key and the vault key are derived (whitepaper §20). Make the vault's purpose
+explicit to the human: it holds **only** the secrets whose leak would let an
+attacker cause further harm — passwords, API and network keys, access tokens,
+contact details, business secrets — and **never** the AI's identity, principles,
+or memories, which stay legible and reconstructable. The vault lives **outside**
+the memory repository (a `600`-permission file under the data root, encrypted at
+rest), so that a repository clone or a public mirror never carries a secret. You
+explain every step — you see neither the seed nor private keys. Verification step:
+the human confirms the paper storage; a public key exists; the vault path is
+created, outside the repo, and empty.
 
 **Phase 3 — Memory repository.** Initialize the memory repo from the SMP repo's
 `templates/`: the layer structure (scratchpad, daily, weekly, monthly tiers,

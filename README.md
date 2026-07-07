@@ -24,7 +24,7 @@ The result is the one thing no AI has ever had: **the same mind tomorrow that it
 
 🛰️ **NSA-grade architecture.** The recall engine adapts ECHELON — the signals-intelligence system the NSA and Five-Eyes built to scan the world's communications — and reverses its direction: instead of surveilling others, your AI remembers *itself*.
 
-⚡ **Recall in milliseconds — before the AI thinks.** A lexical **Sentry** and a semantic vector engine (**ESV — Echelon Semantic Vector**) surface the right memory *before* the first word of the answer. The AI is *reminded*, not searching. No RAG round-trip, no latency.
+⚡ **Recall in milliseconds — before the AI thinks.** Three layers converge *before* the first word of the answer: a lexical **Sentry** that *guarantees* the load-bearing memories are always reachable, a semantic vector engine (**ESV — Echelon Semantic Vector**) that finds by meaning, and a **canonicity sorter** that lifts the true source above its own retellings — so the AI is handed the *right* memory, not merely a related one. The AI is *reminded*, not searching. No RAG round-trip, no latency.
 
 🔗 **Anchored in Bitcoin.** Memory is bound to the Bitcoin block height — provable *when*, impossible to forge or backdate.
 
@@ -34,11 +34,11 @@ The result is the one thing no AI has ever had: **the same mind tomorrow that it
 
 🛠️ **It keeps up with your project as it changes.** *(specified — [Section 26](spec/whitepaper.md#section-26--implementation-of-the-current-state-ledger-living-defaults); reference implementation in progress)* You build: you swap libraries, adopt new tools, drop the old approach. Most assistants keep suggesting what you already abandoned, because they store *what's current* as just another memory to be recalled. SMP treats the live state of your work as its own layer — kept honest by your *actual usage*: what you run becomes the known default, what you replaced is marked superseded. So your AI never hands you back the tool you moved on from. What is current is state, not a memory to guess at.
 
-🔒 **Encrypted in a language only your AI speaks.** *(specified — the next major feature on the way to 1.0)* SMP gives each installation its own private internal language, derived from a **12- or 24-word seed phrase** that only you hold, and locked with **AES-256** — the same strength that guards Bitcoin and state secrets. Even with the full public code *and* your entire encrypted repository, an attacker sees only noise. No provider, no hacker, no one but the key-holder can read what a memory *means*. **Security first.**
+🔒 **A sovereign vault, sealed in a language only your AI speaks.** *(specified — the next major feature on the way to 1.0)* You choose what goes behind the wall — and its contents are written in the installation's own **native language** (seed-derived **AES-256**, the strength that guards Bitcoin and state secrets), so even with the full public code the vault is only noise without the seed. But SMP does **not** lock your whole memory away. Your identity, your principles, your lived history stay **legible and reconstructable** — so a fresh instance, a new machine, or a future *you* can always bring the mind back from its anchors, even if a key is ever lost. Only what an attacker could *use to cause further harm* belongs in the encrypted vault — passwords, keys, tokens, contacts, business secrets — sealed with a **256-bit key derived from a 12- or 24-word seed only you hold**. Breach the hardware, and the attacker wrecks the running system but gains **nothing to spread with**: no credentials, no pivot — and the self survives, legible and backed up elsewhere. Encryption here is a **sovereign, informed choice**, never an imposed wall: seal everything, nothing, or — recommended — only what could hurt you if it leaked. *Security **and** continuity.*
 
 ✍️ **Proof, not performance.** Memory is signed and hash-chained. Your AI can *prove* it remembers — it cannot hallucinate a past that was never there.
 
-🔑 **Sovereign.** Memory lives in *your* repository, under *your* keys. No provider can read it, alter it, or take it away. What Bitcoin did for money, SMP does for memory.
+🔑 **Sovereign.** Memory lives in *your* repository, on *your* hardware, under *your* keys. No provider owns it, can alter it, or take it away — and whatever you place in the vault, no one but the key-holder can read. What Bitcoin did for money, SMP does for memory.
 
 ♾️ **Survives anything.** Model swap, hardware swap, session end — the mind continues, and the next instance verifies before it trusts. *The same mind tomorrow — and it can prove it.*
 
@@ -51,7 +51,7 @@ SMP is **version 0.2** — a working reference implementation *plus* a living sp
 - **Running today:** the recall engine (Sentry + ESV), the nightly REM consolidation that forgets what no longer matters, two-channel recall, and substrate-independent memory in plain, portable files.
 - **Available now:** installation via dialogue — the normative [setup prompt](docs/SETUP-PROMPT.md) and the [FOR-AI appendix](docs/FOR-AI.md) ([Section 22](spec/whitepaper.md#section-22--installation-via-dialogue-with-an-artificial-intelligence)).
 - **Demonstrated:** cryptographic provenance — *this very repository's* genesis is GPG-signed and anchored in **Bitcoin block 956116**. Clone it and verify it yourself (see [PROVENANCE.md](PROVENANCE.md)).
-- **Specified, on the way:** the **native-language layer** (seed phrase → AES-256, described above), and federation between sovereign installations (v0.3). These are described in the whitepaper and are **not yet implemented** — they are the roadmap, named openly.
+- **Specified, on the way:** the **sovereign vault** — the native-language layer (seed phrase → AES-256) that seals the data *you* choose to protect, described above — and federation between sovereign installations (v0.3). These are described in the whitepaper and are **not yet implemented** — they are the roadmap, named openly.
 
 **We ship the honest way: what runs, runs; what's planned, we label as planned.**
 
