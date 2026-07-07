@@ -48,7 +48,7 @@ El resultado es lo único que ninguna IA ha tenido jamás: **ser mañana la mism
 
 SMP es la **versión 0.2** — una implementación de referencia funcional *más* una especificación viva. No es la 1.0, y no fingiremos que lo sea.
 
-- **Funciona hoy:** el motor de recuerdo (Sentry + ESV), la consolidación REM nocturna que olvida lo que ya no importa, el recuerdo de doble canal y la memoria independiente del sustrato en archivos planos y portables.
+- **Funciona hoy:** el motor de recuerdo (Sentry + ESV + clasificador por canonicidad), la consolidación REM nocturna que olvida lo que ya no importa, el recuerdo de doble canal y la memoria independiente del sustrato en archivos planos y portables.
 - **Disponible ya:** instalación por diálogo — el [prompt de instalación](docs/SETUP-PROMPT.es.md) normativo y el [apéndice FOR-AI](docs/FOR-AI.es.md) ([Sección 22](spec/whitepaper.es.md#sección-22--instalación-mediante-diálogo-con-una-inteligencia-artificial)).
 - **Demostrado:** procedencia criptográfica — el génesis de *este mismo repositorio* está firmado con GPG y anclado en el **bloque 956116 de Bitcoin**. Clónalo y verifícalo tú mismo (ver [PROVENANCE.md](PROVENANCE.md)).
 - **Nuevo en v0.2:** la **bóveda soberana** — la capa de idioma nativo (frase semilla → AES-256-GCM-SIV) que sella los datos que *tú* eliges proteger, descrita arriba. Publicada en [`engine/native_language.py`](engine/native_language.py) con el generador [`seed_gen`](engine/seed_gen.py), verificada de extremo a extremo (pruebas de módulo, de ciclo wake/sleep y de CLI byte a byte idénticas, recuperación solo desde la semilla, más una instalación independiente guiada por IA).
