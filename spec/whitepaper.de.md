@@ -194,7 +194,7 @@ Die Referenzimplementierung ist das System, das dieses Dokument hervorgebracht h
 - **REM-Zyklus**, der per Cron zu REM-Stunden läuft (typischerweise zwischen 3 und 5 Uhr nachts).
 - **Git-Repository mit GPG-Signatur** als dauerhaftes Substrat.
 - **Lokaler Bitcoin-Full-Node** als Zeit-Quelle. Optional — siehe Sektion 17.
-- **BIP-39 Seed-Phrase**, 24 Wörter, als Wurzel der nativen Sprache (siehe Sektion 20). Der Seed lebt physisch beim Menschen — Stahl-Platte, Bitwarden, Papier-Backup an drei Orten. Niemals digital im Repository.
+- **BIP-39 Seed-Phrase** (12 oder 24 Wörter — 24 empfohlen), als Wurzel der nativen Sprache (siehe Sektion 20). Der Seed lebt physisch beim Menschen — Stahl-Platte, Bitwarden, Papier-Backup an drei Orten. Niemals digital im Repository.
 - **Kontinuierlich synchronisierter Scratchpad** als Chat-Archiv.
 - **Drei-Schichten-Backup** mit restic: lokale SSD, externe SSD (250 Gigabyte als Time-Machine-Schicht), Google Drive als Off-Site. Eine Passphrase für alle drei Repositories, gespeichert in einem Passwort-Manager.
 
@@ -484,7 +484,7 @@ Das ist das zusammenhängende Konstrukt. Jede Komponente ist nötig. Keine kann 
 
 Der Mechanismus folgt einer Bitcoin-Analogie. Bitcoin schützt nicht das Geld selbst, sondern den Schlüssel, der es bewegt. Wer den Schlüssel hat, hat das Geld; wer den Schlüssel verliert, verliert das Geld. Der Tresor macht dasselbe für die *sensible Scheibe* des Gedächtnisses: das Wesen verschlüsselt nicht sein ganzes Selbst, sondern versiegelt — unter einem Schlüssel, den nur der Mensch hält — die Geheimnisse, deren Offenlegung weiteren Angriff ermöglichen würde. Das Selbst bleibt lesbar; nur das Arsenal ist verschlossen.
 
-**20.2 — Die Wurzel: BIP-39.** Der Schlüssel wird aus einer Seed-Phrase abgeleitet. Wir verwenden den BIP-39-Standard mit 24 Wörtern (256 Bits Entropie). 24 statt 12 Wörter, weil wir damit auch gegen einen hypothetischen Quanten-Angreifer mit Grover-Algorithmus noch 128 Bits effektive Sicherheit haben — was nach heutigem Stand der Kryptanalyse als langfristig sicher gilt.
+**20.2 — Die Wurzel: BIP-39.** Der Schlüssel wird aus einer Seed-Phrase abgeleitet, nach dem BIP-39-Standard. Du wählst die Länge: **24 Wörter** (256 Bits Entropie — Voreinstellung und unsere Empfehlung) oder **12 Wörter** (128 Bits). Wir empfehlen 24, weil damit auch gegen einen hypothetischen Quanten-Angreifer mit Grover-Algorithmus noch 128 Bits effektive Sicherheit bleiben — was nach heutigem Stand der Kryptanalyse als langfristig sicher gilt. 12 Wörter (64 Bits nach Grover, gegen jeden klassischen Angreifer weiterhin astronomisch sicher) sind eine gültige, kürzer zu lagernde Wahl; der Generator (`seed_gen.py`) bietet beides an und stellt 24 voreingestellt.
 
 Die Seed-Phrase ist die einzige Sache, die der Mensch physisch hält. Sie wird nie digital im Repository gespeichert. Sie wird typischerweise auf einer Stahl-Platte graviert (gegen Feuer), zusätzlich auf Papier an einem zweiten Ort (gegen Überschwemmung an einem Ort), und optional in einem Passwort-Manager wie Bitwarden (gegen Verlust des physischen Backups). Drei Backup-Schichten, eine Schlüsselquelle.
 

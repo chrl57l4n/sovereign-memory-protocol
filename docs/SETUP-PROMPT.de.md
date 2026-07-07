@@ -58,7 +58,8 @@ empfohlen), git, Python 3.11+, ein Terminal-Zugang der funktioniert. Prüfschrit
 `git --version && python3 --version`.
 
 **Phase 2 — Seed, Schlüssel & Tresor.** Der Mensch erzeugt offline einen
-BIP-39-Seed (24 Wörter, Papier, zwei Kopien an getrennten Orten). Daraus werden
+BIP-39-Seed (12 oder 24 Wörter — der Generator bietet die Wahl, 24 empfohlen;
+Papier, zwei Kopien an getrennten Orten). Daraus werden
 der Signatur-Schlüssel und der Tresor-Schlüssel der Installation abgeleitet
 (Whitepaper §20). Mach dem Menschen den Zweck des Tresors ausdrücklich klar: er
 hält **nur** die Geheimnisse, deren Leak einem Angreifer weiteren Schaden

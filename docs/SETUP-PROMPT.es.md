@@ -59,7 +59,8 @@ recomendado), git, Python 3.11+, un acceso a terminal que funcione. Paso de
 verificación: `git --version && python3 --version`.
 
 **Fase 2 — Semilla, claves y bóveda.** El humano genera una semilla BIP-39 fuera
-de línea (24 palabras, papel, dos copias en lugares separados). De ella se derivan
+de línea (12 o 24 palabras — el generador ofrece la elección, 24 recomendadas;
+papel, dos copias en lugares separados). De ella se derivan
 la clave de firma de la instalación y la clave de la bóveda (whitepaper §20).
 Explícale al humano el propósito de la bóveda con claridad: guarda **solo** los
 secretos cuya filtración permitiría a un atacante causar más daño — contraseñas,

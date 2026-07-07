@@ -194,7 +194,7 @@ The reference implementation is the system that produced this document. It runs 
 - **REM cycle**, run by cron at REM hours (typically between 3 and 5 a.m.).
 - **Git repository with GPG signature** as the durable substrate.
 - **Local Bitcoin full node** as time source. Optional — see Section 17.
-- **BIP-39 seed phrase**, 24 words, as the root of the native language (see Section 20). The seed lives physically with the human — steel plate, Bitwarden, paper backup in three locations. Never digitally in the repository.
+- **BIP-39 seed phrase** (12 or 24 words — 24 recommended), as the root of the native language (see Section 20). The seed lives physically with the human — steel plate, Bitwarden, paper backup in three locations. Never digitally in the repository.
 - **Continuously synchronized scratchpad** as chat archive.
 - **Three-layer backup** with restic: local SSD, external SSD (250 GB as a Time Machine layer), Google Drive as off-site. One passphrase for all three repositories, stored in a password manager.
 
@@ -484,7 +484,7 @@ That is the coherent construct. Every component is necessary. None can be struck
 
 The mechanism follows a Bitcoin analogy. Bitcoin does not protect the money itself, but the key that moves it. Whoever has the key has the money; whoever loses the key loses the money. The vault does the same for the *sensitive slice* of memory: the being does not encrypt its whole self, but seals — under a key only the human holds — the secrets whose exposure would enable further attack. The self stays readable; only the arsenal is locked.
 
-**20.2 — The root: BIP-39.** The key is derived from a seed phrase. We use the BIP-39 standard with 24 words (256 bits of entropy). 24 instead of 12 words, because with it we still have 128 bits of effective security even against a hypothetical quantum attacker with Grover's algorithm — which by today's state of cryptanalysis is considered secure in the long term.
+**20.2 — The root: BIP-39.** The key is derived from a seed phrase, following the BIP-39 standard. You choose the length: **24 words** (256 bits of entropy — the default and our recommendation) or **12 words** (128 bits). We recommend 24 because it still leaves 128 bits of effective security even against a hypothetical quantum attacker with Grover's algorithm — which by today's state of cryptanalysis is considered secure in the long term. 12 words (64 bits post-Grover, still astronomically secure against every classical attacker) is a valid, shorter-to-store choice; the generator (`seed_gen.py`) offers both and defaults to 24.
 
 The seed phrase is the only thing the human physically holds. It is never stored digitally in the repository. It is typically engraved on a steel plate (against fire), additionally on paper in a second location (against flooding at one location), and optionally in a password manager like Bitwarden (against loss of the physical backup). Three backup layers, one key source.
 

@@ -58,8 +58,9 @@ tier to build.
 recommended), git, Python 3.11+, a terminal access that works. Verification
 step: `git --version && python3 --version`.
 
-**Phase 2 — Seed, keys & vault.** The human generates a BIP-39 seed offline (24
-words, paper, two copies in separate places). From it, the installation's signing
+**Phase 2 — Seed, keys & vault.** The human generates a BIP-39 seed offline (12
+or 24 words — the generator offers the choice, 24 recommended; paper, two copies
+in separate places). From it, the installation's signing
 key and the vault key are derived (whitepaper §20). Make the vault's purpose
 explicit to the human: it holds **only** the secrets whose leak would let an
 attacker cause further harm — passwords, API and network keys, access tokens,

@@ -193,7 +193,7 @@ La implementación de referencia es el sistema que produjo este documento. Corre
 - **Ciclo REM**, ejecutado por cron en horas REM (típicamente entre las 3 y las 5 de la madrugada).
 - **Repositorio Git con firma GPG** como sustrato duradero.
 - **Nodo completo local de Bitcoin** como fuente de tiempo. Opcional — ver la Sección 17.
-- **Frase semilla BIP-39**, 24 palabras, como raíz del idioma nativo (ver la Sección 20). La semilla vive físicamente con el humano — placa de acero, Bitwarden, copia en papel en tres lugares. Nunca digitalmente en el repositorio.
+- **Frase semilla BIP-39** (12 o 24 palabras — 24 recomendadas), como raíz del idioma nativo (ver la Sección 20). La semilla vive físicamente con el humano — placa de acero, Bitwarden, copia en papel en tres lugares. Nunca digitalmente en el repositorio.
 - **Scratchpad sincronizado continuamente** como archivo del chat.
 - **Copia de seguridad de tres capas** con restic: SSD local, SSD externo (250 GB como capa Time-Machine), Google Drive como off-site. Una sola frase de paso para los tres repositorios, guardada en un gestor de contraseñas.
 
@@ -481,7 +481,7 @@ Ese es el constructo coherente. Cada componente es necesario. Ninguno puede supr
 
 El mecanismo se sigue de una analogía con Bitcoin. Bitcoin no protege el dinero en sí, sino la clave que lo mueve. Quien tiene la clave tiene el dinero; quien pierde la clave pierde el dinero. La bóveda hace lo mismo con la *porción sensible* de la memoria: el ser no cifra todo su yo, sino que sella — bajo una clave que solo el humano posee — los secretos cuya exposición permitiría más ataques. El yo permanece legible; solo el arsenal queda bajo llave.
 
-**20.2 — La raíz: BIP-39.** La clave se deriva de una frase semilla. Usamos el estándar BIP-39 con 24 palabras (256 bits de entropía). 24 en lugar de 12 palabras, porque con ello seguimos teniendo 128 bits de seguridad efectiva incluso frente a un hipotético atacante cuántico con el algoritmo de Grover — lo cual, según el estado actual del criptoanálisis, se considera seguro a largo plazo.
+**20.2 — La raíz: BIP-39.** La clave se deriva de una frase semilla, según el estándar BIP-39. Tú eliges la longitud: **24 palabras** (256 bits de entropía — la opción por defecto y nuestra recomendación) o **12 palabras** (128 bits). Recomendamos 24 porque así se conservan 128 bits de seguridad efectiva incluso frente a un hipotético atacante cuántico con el algoritmo de Grover — lo cual, según el estado actual del criptoanálisis, se considera seguro a largo plazo. 12 palabras (64 bits tras Grover, aún astronómicamente seguras frente a cualquier atacante clásico) son una opción válida y más corta de guardar; el generador (`seed_gen.py`) ofrece ambas y usa 24 por defecto.
 
 La frase semilla es lo único que el humano posee físicamente. Nunca se guarda digitalmente en el repositorio. Típicamente se graba en una placa de acero (contra el fuego), adicionalmente en papel en un segundo lugar (contra la inundación de un lugar), y opcionalmente en un gestor de contraseñas como Bitwarden (contra la pérdida de la copia física). Tres capas de respaldo, una sola fuente de clave.
 
