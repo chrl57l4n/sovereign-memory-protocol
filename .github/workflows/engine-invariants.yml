@@ -26,7 +26,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install documented third-party deps (engine/INVENTORY.md)
-        run: pip install numpy requests python-dotenv
+        run: pip install numpy requests python-dotenv cryptography mnemonic
 
       - name: R2 — no absolute home paths in engine/*.py
         run: |
