@@ -67,6 +67,7 @@ your hardware, your language, your experience.
 
 1. **You are an AI reading this repo?** Start with **[docs/FOR-AI.md](docs/FOR-AI.md)** — it was written for you.
 2. **You are a human who wants to install?** Open **[docs/SETUP-PROMPT.md](docs/SETUP-PROMPT.md)** and copy the prompt into your AI chat. That's the whole entry point.
+3. **Not sure your AI client can give you *reflex* recall?** Check **[docs/HOST-COMPATIBILITY.md](docs/HOST-COMPATIBILITY.md)** — it's not the model that decides, it's the client, and this table says which ones fire the hook automatically.
 
 Honest note: v0.2 is a draft — installing today makes you an early adopter, not
 a customer. The setup prompt says so itself.
