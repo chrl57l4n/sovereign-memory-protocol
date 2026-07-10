@@ -5,6 +5,31 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## 2026-07-11
+
+### Added — affective recurrence buffer (Sections 15.5–15.6), honestly scoped
+- The reference implementation gains a two-stage layer for low-signal patterns that
+  only emerge across days (a passing *"I'm not doing well"* said a few times through
+  the week). **Stage 1 — buffer** (running since 2026-07-01): the raw scratchpad is
+  archived to a rolling 30-day buffer before nightly consolidation deletes it.
+  **Stage 2 — recurrence scan** (built + cron-live 2026-07-11, `affect_recurrence_scan.py`):
+  a weekly, **proposal-only** pass that clusters affectively-toned utterances and
+  surfaces cross-day recurring threads through the report channel. It **writes nothing
+  into memory** — the lens reads the proposal, names the affect, and decides.
+- **Honesty corrections (no false promises):**
+  - The README's "it sleeps / forgets wisely" bullet previously implied this pattern
+    detection already worked ("*is kept … your AI can see the pattern and remember it*").
+    Until 2026-07-11 only stage 1 existed — the buffer collected, nothing surfaced.
+    The bullet is rewritten to the truth: buffer holds, scan **proposes**, the AI decides.
+  - Limits stated in the whitepaper text, not hidden: affect isolation is **lexical**
+    (explicit affect only; implicit affect is *not yet* caught — a learned classifier is
+    named as future, not shipped); the embedding measures similarity, not valence; the
+    scan is **new and its thresholds are uncalibrated**; proposal-only by design (a script
+    that could write memory might loop). Framed ethically: not the AI *feeling*, but
+    *noticing a pattern in what you already told it, and choosing to care*.
+- INVENTORY marks both stages `private/port planned` (live on the reference; need R2
+  de-instancing + real-data calibration before any public port).
+
 ## 2026-07-10
 
 ### Changed — memory integrity is now keyless (architecture revision)

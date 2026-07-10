@@ -20,6 +20,8 @@
 | §14.2 | Monthly threshold auto-calibration | — | private/port planned (`esv_calibrate.py` on the reference) |
 | §15 | REM consolidation (nightly) | `rem_consolidate.py` | public/live |
 | §15 | Cascade upkeep around REM | `weekly_archive.py`, `daily_consolidate.py`, `weekly_consolidate.py` | public/live (the two consolidate reflexes are notify-only by design: scripts remind, the lens consolidates) |
+| §15.5 | Affective recurrence — buffer (stage 1) | — | private/port planned (`rem_consolidate.py` `archive_scratchpad_to_buffer` live on the reference since 2026-07-01; needs R2 de-instancing) |
+| §15.5 | Affective recurrence — scan (stage 2, proposal-only) | — | private/port planned (`affect_recurrence_scan.py` on the reference, built + cron-live 2026-07-11; **v1 — lexical affect gate, thresholds uncalibrated, ran once**; proposes only, never writes memory; needs R2 de-instancing + real-data calibration before public port) |
 | §16 | Self-recall layer (recall on own output) | `esv_self_recall.py`, `self_recall_beta.py` | public/BETA |
 | §17 | Hash chain + external witness (per-tier append-only, fork-once, Block 0, keyless) | — | private/port planned (`memory_chain.py` + tick/cron + `memory_chain_block0.py` live on the reference in shadow mode since 2026-07-09; needs R2 de-instancing before public port) |
 | §24 (1) | Guardian: structural hygiene (daily) | `lint_memory.py` | public/live |
