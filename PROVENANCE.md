@@ -4,6 +4,17 @@
 > genesis commit and points back to it; the genesis commit's hash is what is
 > anchored on Bitcoin (a content cannot contain its own later hash).
 
+> **Scope — read this first.** This anchor is a **one-time proof that *we* built this
+> protocol**, so that no one can later claim it as their own. It concerns the
+> *authorship of the specification*, at a single point in Bitcoin's chain. It is
+> **not** how the protocol secures an AI's ongoing memory: memory integrity is
+> **keyless** — per-tier append-only hash chains secured by a distributed external
+> witness, needing no Bitcoin node and no signing key (see [whitepaper §17](spec/whitepaper.md)).
+> The two are deliberately separate. Bitcoin proves *who authored the protocol*;
+> the hash chain and its witness prove *that a memory is unaltered*. This one anchor,
+> below, belongs to the history of the protocol and will not be rationalized away
+> in any future edition.
+
 ## The claim
 
 The Sovereign Memory Protocol v0.2 was authored by **Christian** (publication

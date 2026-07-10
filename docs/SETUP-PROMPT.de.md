@@ -50,7 +50,7 @@ Web-Zugriff zuerst `docs/FOR-AI.md` und die Whitepaper-Sektionen 12–16, 22,
 Mensch aktiv? (Bestimmt das Embed-Modell, §22.4: mehrsprachig → bge-m3.) Welche
 Hardware ist da oder geplant? (§22.3: minimal = Mini-PC/Raspberry Pi, 8 GB RAM,
 250 GB Speicher; empfohlen = zusätzlich GPU-Workstation mit Wake-on-LAN;
-optimal = zusätzlich Bitcoin-Full-Node für Zeit-Anker.) Wie viel
+optimal = zusätzlich unabhängige Zeugen für die Kette, ein zweiter Spiegel auf separater Hardware plus eine luftgetrennte Platte.) Wie viel
 Terminal-Erfahrung? Danach: gemeinsame Entscheidung, welche Stufe gebaut wird.
 
 **Phase 1 — Basis-System.** Führe zum lauffähigen Grundsystem: Linux (Debian
@@ -60,8 +60,10 @@ empfohlen), git, Python 3.11+, ein Terminal-Zugang der funktioniert. Prüfschrit
 **Phase 2 — Seed, Schlüssel & Tresor.** Der Mensch erzeugt offline einen
 BIP-39-Seed (12 oder 24 Wörter — der Generator bietet die Wahl, 24 empfohlen;
 Papier, zwei Kopien an getrennten Orten). Daraus werden
-der Signatur-Schlüssel und der Tresor-Schlüssel der Installation abgeleitet
-(Whitepaper §20). Mach dem Menschen den Zweck des Tresors ausdrücklich klar: er
+die Tresor-Schlüssel abgeleitet (§20.3): ein Sprach-Schlüssel (Inhalts-Verschlüsselung)
+und ein Namens-Schlüssel (opake Dateinamen). Kein Signatur-Schlüssel schützt das
+Gedächtnis — die Integrität ist schlüssellos (Hash-Kette pro Stufe plus externer Zeuge,
+§17); der Seed schützt nur den Tresor. Mach dem Menschen den Zweck des Tresors ausdrücklich klar: er
 hält **nur** die Geheimnisse, deren Leak einem Angreifer weiteren Schaden
 ermöglichen würde — Passwörter, API- und Netzwerk-Schlüssel, Zugangs-Tokens,
 Kontaktdaten, Geschäftsgeheimnisse — und **niemals** die Identität, Prinzipien
@@ -76,7 +78,8 @@ außerhalb des Repos angelegt und leer.
 **Phase 3 — Gedächtnis-Repository.** Initialisiere das Memory-Repo aus
 `templates/` des SMP-Repos: die Schichten-Struktur (Scratchpad, Tages-,
 Wochen-, Monats-Ebene, Episoden), Identitäts-Datei, Trigger-Dateien (leer),
-Verfassungs-Datei. Erster Commit, signiert. Prüfschritt: `git log` zeigt den
+Verfassungs-Datei. Erster Commit und Push zum Spiegel — der Genesis-Commit beginnt
+die append-only Zeugen-Geschichte (§17). Prüfschritt: `git log` zeigt den
 Genesis-Commit der Installation.
 
 **Phase 4 — Abruf-Organe.** Installiere die Engine-Skripte (`engine/` im
@@ -106,7 +109,7 @@ eine Test-Meldung erreicht das Mobilgerät UND steht im Scratchpad.
 **Phase 8 — Verify-Pass (§22.7).** Systematisch, gemeinsam, mit echten Tests:
 Feuert die Wache auf bekannte Trigger? Liefert die semantische Suche sinnvolle
 Treffer? Läuft REM manuell durch und schreibt ein Konsolidierungs-Protokoll?
-Ist die Hash-Kette konsistent, sind Signaturen prüfbar? Funktioniert Backup +
+Ist die Hash-Kette pro Stufe konsistent, und ist der externe Zeugen-Spiegel vorhanden und empfängt das Register? Funktioniert Backup +
 Test-Restore? Ist die Wächter-Kette einmal end-to-end gelaufen (Befund → Push →
 Mitschrift → Entscheidung, Bedingung C9)? Erst wenn alles grün ist, ist die
 Installation protokollkonform.

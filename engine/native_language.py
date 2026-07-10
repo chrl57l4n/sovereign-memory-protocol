@@ -42,7 +42,10 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCMSIV
 HKDF_SALT = b"smp-native-language-v1"
 INFO_LANGUAGE = b"smp:language-key:v1"   # AES-256-GCM der Inhalte
 INFO_NAME = b"smp:name-key:v1"           # HMAC → opake Dateinamen
-INFO_SIGNATURE = b"smp:signature-key:v1"  # Provenienz (später)
+INFO_SIGNATURE = b"smp:signature-key:v1"  # RESERVIERT, ungenutzt: Integrität ist keyless (§17,
+                                          # Pro-Stufe-Hashkette + externer Zeuge). Kein Eintrag wird
+                                          # signiert; dieser Schlüssel schützt NICHTS am Gedächtnis.
+                                          # Bleibt im Ableitungsbaum nur aus Stabilität (Tuple/Tests).
 # scrypt-Parameter der Warm-Tür. n=2^17 (OWASP-2026-Empfehlung, ~134 MB, ~0.4s):
 # gehärtet gegen Offline-Brute-Force der Betriebs-Passphrase (Sia-Befund #5). argon2id
 # wäre die modernere Alternative — als Cipher-Agility-Slot notiert, nicht v1-nötig.
@@ -68,7 +71,10 @@ def derive_key(seed: bytes, info: bytes, length: int = KEY_LEN) -> bytes:
 
 
 def keys_from_seed(seed: bytes) -> Tuple[bytes, bytes, bytes]:
-    """Der kanonische Ableitungsbaum: (language_key, name_key, signature_key)."""
+    """Der kanonische Ableitungsbaum: (language_key, name_key, signature_key).
+    language_key = Inhalts-Verschlüsselung (Vault), name_key = opake Dateinamen.
+    signature_key ist RESERVIERT und ungenutzt — Gedächtnis-Integrität ist keyless
+    (§17). Der Seed schützt nur den Vault, nie die Echtheit des Ketten-Records."""
     return (
         derive_key(seed, INFO_LANGUAGE),
         derive_key(seed, INFO_NAME),

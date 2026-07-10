@@ -78,6 +78,46 @@ alters.
 - **Read by:** the REM audit (to compare raw material against recent-moments), the restore drill (a daily green proof)
 - **No one alters it deliberately.** The basement. You only go there when the cascade got something wrong.
 
+## The provenance chain (per-tier, keyless)
+
+Alongside the temporal cascade runs a **hash chain per time tier** — the layer that
+makes the memory *provable*, not merely stored. It is a side-car of pure hashes,
+separate from the readable files above, so the readable memory stays legible,
+editable, and prunable while its provenance stays fixed. (Full rationale: whitepaper
+§17.)
+
+- **One chain per tier.** The daily, weekly, monthly, and yearly tiers each carry
+  their own append-only chain. Every link stores the content hash of its readable
+  block, a reference to that block, and the hash of the previous link *in the same
+  tier* (`prev_hash`). Tier 1 (scratchpad) is **not** chained — it is working
+  memory, rotated by REM, not a *kept* memory.
+- **Fork once, at genesis.** A tier's first link carries, once, the tip hash of the
+  tier below it at that moment (`fork_from`): the week chain forks from the day
+  chain the first time a week closes, the month from the week, the year from the
+  month. A derivation fork, not a consensus fork — the chains nest, they do not
+  split. After genesis, each tier runs independently.
+- **Calendar-aligned.** A new block is triggered by the wall clock at the calendar
+  boundary — day at 00:00, week Monday 00:00 (ISO week), month on the 1st, year on
+  Jan 1 — the same boundaries at which the readable consolidations already run. Block
+  *time* is a calendar period (variable in hours), not a fixed block count.
+- **Forgetting between tiers, append-only within a tier.** A day block may roll out
+  of `recent-moments.md` into the archive, or fade — its chain link stays (side-car,
+  never pruned) and its hash remains anchored in the week link that forked from it.
+  The week link can therefore prove *"I was distilled from these hash-fixed days,"*
+  even after the days themselves have left the readable layer.
+- **Keyless, externally witnessed.** No entry is signed; the link *is* the proof. The
+  ledger is continuously mirrored, append-only, to a distributed remote whose host
+  timestamps every commit — a hash chain witnessed by another hash chain. Plus
+  **Block 0**: a single root hash over the whole durable corpus at the chain's birth,
+  an honest point-in-time seal under everything that came before the forward chain.
+- **A note on names.** This document uses English tier names (`YYYY-MM-arc.md`,
+  `YYYY-mosaic.md`); a given installation may use its own language for the readable
+  files. The chain refers to blocks by their tier and period, independent of file
+  naming.
+
+**Changes to this chain are memory architecture** — they require forward-simulation,
+exactly as the readable cascade does.
+
 ## Auditing the cascade
 
 Per layer, three questions:

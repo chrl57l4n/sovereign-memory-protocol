@@ -71,5 +71,6 @@ Both are named in the commit.
 
 See the *private/port planned* rows in [INVENTORY.md](INVENTORY.md). As of
 2026-07-04 the queue is: §26.4 consolidator, §27 self-documentation guardian,
-§17 time anchoring, §24 monthly guardians (classes 4–5), §14.2 monthly
-calibration. Each waits on R1/R2, not on intent.
+§17 hash chain + external witness (built on the reference in shadow mode since
+2026-07-09, R2 de-instancing pending), §24 monthly guardians (classes 4–5), §14.2
+monthly calibration. Each waits on R1/R2, not on intent.

@@ -281,8 +281,10 @@ them the **full absolute path to the venv python AND to the script**, e.g.:
 (substitute the real install paths). The same applies to the `init` command below —
 absolute python, absolute script, absolute `--keystore`. **This venv python (shown as `<venv-python>` below) is used for EVERY engine command — `init`, `encrypt`, `wake`, `sleep`, `verify_pass.py`, `esv_index.py`, `resume`. They all import the SMP deps (`cryptography`, `mnemonic`, `numpy`); a bare system `python3` does not have them and fails with `ModuleNotFoundError`. `verify_pass.py` in particular spawns `wake`/`sleep` as child processes and reuses its own interpreter (`sys.executable`), so it MUST itself be launched with the venv python. Where a later example writes `python3`, read it as `<venv-python>`.** Never hand the human a
 command that only works from inside the package directory. From the seed
-three keys are derived (§20.3): a **language key** (content encryption), a **name
-key** (opaque filenames), a **signature key** (signing entries).
+the vault keys are derived (§20.3): a **language key** (content encryption) and a
+**name key** (opaque filenames). No signing key protects the memory — integrity is
+**keyless** (per-tier hash chain plus external witness, §17); the seed guards only
+the vault.
 
 **Explain it, do not just run it.** Before or while they generate, tell the human
 in plain words how the phrase is made and why it is secure — this is what makes
@@ -348,7 +350,8 @@ storage; the keystore file exists with `600` permissions; a recovery check
 **Phase 3 — Memory repository.** Initialize the memory repo from the SMP repo's
 `templates/`: the layer structure (scratchpad, daily, weekly, monthly tiers,
 episodes), identity file, trigger files (empty), constitution file. First
-commit, signed. **Layout is load-bearing — get it exactly right or recall
+commit, then push to the mirror — this begins the append-only witness history
+(§17). **Layout is load-bearing — get it exactly right or recall
 breaks.** The engine reads `$MOTOKO_MEMORY/motoko/…` (identity, triggers,
 scratchpad, journal) and `$MOTOKO_MEMORY/claude-memory/…`; those two subfolders
 must sit at the repo root, not be flattened into it. So copy the templates
@@ -365,8 +368,8 @@ commit fail. Verification step: `git log` shows the genesis commit **and**
 **The memory stays legible — do NOT encrypt it.** This is the heart of the model
 (§20, threat-model vault): the identity, principles, and lived history live **in
 the clear** on the running machine — Regime B: legible, reconstructable, so a lost
-seed never costs the AI its *self* — signed for provenance and protected off-site
-by encrypted backups. Point the engine straight at this plaintext repo:
+seed never costs the AI its *self* — hash-chained for provenance and protected
+off-site by encrypted backups. Point the engine straight at this plaintext repo:
 `export MOTOKO_MEMORY=<plaintext repo>`. The recall organs in Phase 4 read these
 files directly; that is *why* they stay legible. There is **no** whole-memory
 encryption, no wake/sleep of the memory, and no plaintext deletion. Encrypting the
@@ -408,7 +411,7 @@ with** — no credentials, no pivot — while the self survives, legible and bac
 Verification: the vault store shows only 64-hex blob names; a `wake` of the vault
 reproduces the secrets; the legible memory is untouched and readable throughout.
 (The vault is optional — if the human declined one, skip 3b; the memory install is
-complete and the AI still has signed, legible, recoverable memory.)
+complete and the AI still has hash-chained, legible, recoverable memory.)
 
 **Phase 4 — Recall organs.** Install the engine scripts (`engine/` in the SMP
 repo): Guard (trigger automaton), Echelon Semantic Vector (embed server +
@@ -427,8 +430,8 @@ engine/esv_index.py` — it writes the index under `MOTOKO_HOME/state/esv`.
 The engine takes them per-command; the filter has its own Valves; the crons carry
 their own env. Editing the human's `.bashrc` is out of scope and easy to corrupt
 (a stray unclosed `if` breaks every future shell) — do not touch it. Also make
-sure the memory repo from Phase 3 is git-committed (its genesis commit is the
-provenance signature). Verification step: the embed server answers locally; the
+sure the memory repo from Phase 3 is git-committed and pushed to its mirror (the
+genesis commit begins the append-only witness history — §17). Verification step: the embed server answers locally; the
 index build reports N chunks over the memory files (not zero).
 
 **Wire the Guard into the AI client — not optional, for any AI.** The Guard
@@ -533,7 +536,8 @@ step: a test message reaches the mobile device AND appears in the scratchpad.
 **Phase 8 — Verify pass (§22.7).** Systematic, joint, with real tests: Does the
 Guard fire on known triggers? Does the semantic search return sensible hits?
 Does REM run through manually and write a consolidation log? Is the hash chain
-consistent, are signatures verifiable? Do backup and test restore work? For
+consistent per tier, and is the external witness mirror in place and receiving the
+ledger? Do backup and test restore work? For
 Tier ≥1 (§20): does a `wake` → edit in the mirror → `sleep` → `wake` cycle
 persist the change while the at-rest store stays opaque, and does `recover` from
 the seed *alone* reopen the store (the cold recovery door — an untested recovery

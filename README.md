@@ -10,7 +10,7 @@
 
 That isn't a small flaw. An assistant that fakes remembering can invent a past that never happened — and sound just as certain either way.
 
-**SMP fixes this at the root.** It gives an AI a memory that is *provable*: every memory is cryptographically signed, hash-chained, and timestamped in Bitcoin. So it can show that what it recalls is real — and exactly when it happened. Not *"trust me, I remember."* **Proof.**
+**SMP fixes this at the root.** It gives an AI a memory that is *provable*: every memory is hash-chained — each entry seals the one before it — and the whole chain is witnessed by an append-only mirror the AI does not control. So it can show that what it recalls is real, and unaltered. No key to lose, no third party to trust. Not *"trust me, I remember."* **Proof.**
 
 Because it recalls only what is truly recorded, it cannot fabricate a past that never happened. The kind of hallucination that matters most in a long-term partner — *inventing your shared history* — is designed out, not patched over.
 
@@ -26,9 +26,9 @@ The result is the one thing no AI has ever had: **the same mind tomorrow that it
 
 ⚡ **Recall in milliseconds — before the AI thinks.** Three layers converge *before* the first word of the answer: a lexical **Sentry** that *guarantees* the load-bearing memories are always reachable, a semantic vector engine (**ESV — Echelon Semantic Vector**) that finds by meaning, and a **canonicity sorter** that lifts the true source above its own retellings — so the AI is handed the *right* memory, not merely a related one. The AI is *reminded*, not searching. No RAG round-trip, no latency.
 
-🔗 **Anchored in Bitcoin.** Memory is bound to the Bitcoin block height — provable *when*, impossible to forge or backdate.
+🔗 **Witnessed, not trusted — and keyless.** Memory is a hash chain: each entry seals the previous one, so any later tampering shows. The chain is mirrored, append-only, to a place the AI doesn't own — so backdating would mean rewriting history on hardware it can't reach. No signing key that could be lost or stolen; the proof is the mathematics, not a secret.
 
-🧠 **Fabricated memories — designed out.** An AI normally can't tell the difference between recalling and inventing. SMP can: it recalls *only* what is actually in its signed, hash-chained record — never the model's imagination. It cannot "remember" a conversation that never happened. The most dangerous lie an assistant can tell — confidently inventing a shared past — is structurally impossible.
+🧠 **Fabricated memories — designed out.** An AI normally can't tell the difference between recalling and inventing. SMP can: it recalls *only* what is actually in its hash-chained, externally witnessed record — never the model's imagination. It cannot "remember" a conversation that never happened. The most dangerous lie an assistant can tell — confidently inventing a shared past — is structurally impossible.
 
 🌙 **It sleeps — and it forgets wisely, not blindly.** Every night a REM phase *keeps* what matters — decisions, your project (where every detail counts), lessons, your relationship — and lets one-off trivia fade (yesterday's weather, small talk). **You don't lose what's important to you.** And it isn't naive: what *recurs* becomes *signal*, not noise — even a passing *"I'm not doing well"* that comes back through the week is *kept*, so your AI can see the pattern: that you're going through a hard time — and remember it. A mind that keeps everything drowns; one that forgets *wisely* **understands** you.
 
@@ -36,7 +36,7 @@ The result is the one thing no AI has ever had: **the same mind tomorrow that it
 
 🔒 **A sovereign vault, sealed in a language only your AI speaks.** *(new in v0.2 — shipped and verified)* You choose what goes behind the wall — and its contents are written in the installation's own **native language** (seed-derived **AES-256**, the strength that guards Bitcoin and state secrets), so even with the full public code the vault is only noise without the seed. But SMP does **not** lock your whole memory away. Your identity, your principles, your lived history stay **legible and reconstructable** — so a fresh instance, a new machine, or a future *you* can always bring the mind back from its anchors, even if a key is ever lost. Only what an attacker could *use to cause further harm* belongs in the encrypted vault — passwords, keys, tokens, contacts, business secrets — sealed with a **256-bit key derived from a 12- or 24-word seed only you hold**. Breach the hardware, and the attacker wrecks the running system but gains **nothing to spread with**: no credentials, no pivot — and the self survives, legible and backed up elsewhere. Encryption here is a **sovereign, informed choice**, never an imposed wall: seal everything, nothing, or — recommended — only what could hurt you if it leaked. *Security **and** continuity.*
 
-✍️ **Proof, not performance.** Memory is signed and hash-chained. Your AI can *prove* it remembers — it cannot hallucinate a past that was never there.
+✍️ **Proof, not performance.** Memory is hash-chained and externally witnessed. Your AI can *prove* it remembers — it cannot hallucinate a past that was never there.
 
 🔑 **Sovereign.** Memory lives in *your* repository, on *your* hardware, under *your* keys. No provider owns it, can alter it, or take it away — and whatever you place in the vault, no one but the key-holder can read. What Bitcoin did for money, SMP does for memory.
 

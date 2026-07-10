@@ -21,7 +21,7 @@
 | §15 | REM consolidation (nightly) | `rem_consolidate.py` | public/live |
 | §15 | Cascade upkeep around REM | `weekly_archive.py`, `daily_consolidate.py`, `weekly_consolidate.py` | public/live (the two consolidate reflexes are notify-only by design: scripts remind, the lens consolidates) |
 | §16 | Self-recall layer (recall on own output) | `esv_self_recall.py`, `self_recall_beta.py` | public/BETA |
-| §17 | External time anchoring (Bitcoin block height) | — | private/port planned (`_btcnode.py` + journal integration on the reference; small, portable) |
+| §17 | Hash chain + external witness (per-tier append-only, fork-once, Block 0, keyless) | — | private/port planned (`memory_chain.py` + tick/cron + `memory_chain_block0.py` live on the reference in shadow mode since 2026-07-09; needs R2 de-instancing before public port) |
 | §24 (1) | Guardian: structural hygiene (daily) | `lint_memory.py` | public/live |
 | §24 (2) | Guardian: concept coverage (daily) | `memory_pflege_audit.py`, `trigger_audit.py` | public/live |
 | §24 (3) | Guardian: layer health (daily) | `rem_audit.py`, `rem_audit_nag.py` | public/live |

@@ -22,8 +22,8 @@ honest answer about whether and when it fits.
 ## Opening an issue
 
 Say what you expected, what happened, and — if it's about a cryptographic
-claim (signing, hash-chaining, the Bitcoin anchor) — the exact commands you
-ran to check it. This project makes provable claims; "reproduce the
+claim (per-tier hash-chaining, the external witness, or the one-time Bitcoin
+genesis anchor of authorship) — the exact commands you ran to check it. This project makes provable claims; "reproduce the
 mismatch" is more useful to us than a description of the symptom.
 
 ## Opening a pull request

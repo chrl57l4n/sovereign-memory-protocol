@@ -5,6 +5,43 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## 2026-07-10
+
+### Changed — memory integrity is now keyless (architecture revision)
+- **Section 17 rewritten** from "external time anchoring (Bitcoin block height)"
+  to "the hash chain and its external witness." Memory integrity no longer
+  depends on a per-entry Bitcoin block height, nor on a seed-derived signature.
+  It rests on two keyless mechanisms:
+  - **Per-tier append-only hash chains**, forked *once* at each tier's genesis
+    from the tip of the tier below (day → week → month → year). A derivation
+    fork, not a consensus fork; the chains nest, they do not split. This lets a
+    memory that must *forget* stay tamper-evident: forgetting acts on the
+    readable content between tiers, never on the append-only links within one.
+  - **A distributed external witness** — the hash-chain ledger is continuously
+    mirrored, append-only (never force-pushed), to a hosted forge whose commit
+    graph timestamps and preserves every link. A hash chain witnessed by another
+    hash chain, with no key and no node to trust. Plus **Block 0**, a single
+    root hash over the whole durable corpus at the chain's birth (an honest
+    point-in-time seal, not a per-date proof).
+- **Why.** A signing key would make the integrity of the *entire* memory hang on
+  one secret — a single point of failure. A per-entry Bitcoin anchor would add a
+  hard external dependency (node or trusted explorer) to a protocol whose whole
+  point is independence. Keyless removes both: nothing to lose, nothing to leak,
+  nothing to depend on.
+- **Unchanged:** the **one-time Bitcoin anchor of the protocol's own genesis**
+  ([PROVENANCE.md](PROVENANCE.md)) — a proof of *authorship*, that we built this
+  protocol and no one can claim it later. That is a separate concern from ongoing
+  memory integrity, and the only place a Bitcoin anchor is needed.
+- **Touched (English master + code):** whitepaper §§0.4, 0.6, 3.2, 3.3, 4, 4.5,
+  5 (properties 3 & 8), 6, 8 (T4/T6/T9), 10, 17, 18.5, 19, 20.3, 22.3, 22.7, C5;
+  README, PROVENANCE, docs/CASCADE (new provenance-chain section), CONTRIBUTING,
+  SECURITY, GLOSSARY, FOR-AI, SETUP-PROMPT, INVENTORY, SYNC-PROCESS,
+  `engine/native_language.py` (signature key marked reserved/unused — kept in the
+  derivation tree for tuple/test stability, protects nothing). Reference
+  implementation: `memory_chain.py` + tick/cron + `memory_chain_block0.py`, live
+  in shadow mode on the reference since 2026-07-09; public port pending R2
+  de-instancing. **Translations (de/es/ru) follow in a synchronized pass.**
+
 ## 2026-07-07
 
 ### Milestone — end-to-end verified on independent hardware

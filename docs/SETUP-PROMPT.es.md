@@ -50,8 +50,8 @@ whitepaper. Sin acceso web, pide al humano que te pegue `FOR-AI.md`.
 el humano? (Determina el modelo de embeddings, §22.4: multilingüe → bge-m3.)
 ¿Qué hardware existe o está planeado? (§22.3: mínimo = mini-PC o Raspberry Pi,
 8 GB de RAM, 250 GB de almacenamiento; recomendado = adicionalmente una estación
-de trabajo con GPU y Wake-on-LAN; óptimo = adicionalmente un nodo completo de
-Bitcoin para el anclaje temporal.) ¿Cuánta experiencia con el terminal? Después:
+de trabajo con GPU y Wake-on-LAN; óptimo = adicionalmente testigos externos
+independientes para la cadena — un segundo espejo en hardware separado más una unidad aislada air-gapped.) ¿Cuánta experiencia con el terminal? Después:
 una decisión conjunta sobre qué nivel construir.
 
 **Fase 1 — Sistema base.** Conduce hasta un fundamento funcional: Linux (Debian
@@ -61,7 +61,7 @@ verificación: `git --version && python3 --version`.
 **Fase 2 — Semilla, claves y bóveda.** El humano genera una semilla BIP-39 fuera
 de línea (12 o 24 palabras — el generador ofrece la elección, 24 recomendadas;
 papel, dos copias en lugares separados). De ella se derivan
-la clave de firma de la instalación y la clave de la bóveda (whitepaper §20).
+las claves de la bóveda (§20.3): una clave de idioma (cifrado del contenido) y una clave de nombre (nombres de archivo opacos). Ninguna clave de firma protege la memoria — la integridad es sin clave (cadena de hashes por nivel más testigo externo, §17); la semilla solo guarda la bóveda.
 Explícale al humano el propósito de la bóveda con claridad: guarda **solo** los
 secretos cuya filtración permitiría a un atacante causar más daño — contraseñas,
 claves de API y de red, tokens de acceso, datos de contacto, secretos de negocio —
@@ -76,7 +76,7 @@ la bóveda está creada, fuera del repo, y vacía.
 **Fase 3 — Repositorio de memoria.** Inicializa el repo de memoria desde el
 `templates/` del repo del SMP: la estructura de capas (scratchpad, niveles
 diario, semanal, mensual, episodios), archivo de identidad, archivos de
-disparadores (vacíos), archivo de constitución. Primer commit, firmado. Paso de
+disparadores (vacíos), archivo de constitución. Primer commit; el commit génesis inicia la historia del testigo de solo-anexado (§17). Paso de
 verificación: `git log` muestra el commit génesis de la instalación.
 
 **Fase 4 — Órganos de recuerdo.** Instala los scripts del motor (`engine/` en el
@@ -109,7 +109,7 @@ llega al dispositivo móvil Y aparece en el scratchpad.
 **Fase 8 — Pasada de verificación (§22.7).** Sistemática, conjunta, con pruebas
 reales: ¿Se dispara el Guard con disparadores conocidos? ¿Devuelve la búsqueda
 semántica aciertos sensatos? ¿Corre REM manualmente y escribe un registro de
-consolidación? ¿Es consistente la cadena de hashes, son verificables las firmas?
+consolidación? ¿Es consistente la cadena de hashes por nivel, y está en su lugar el espejo del testigo externo y recibe el registro?
 ¿Funcionan la copia de seguridad y la restauración de prueba? ¿Ha corrido la
 cadena de Guardianes una vez de extremo a extremo (hallazgo → push →
 transcripción → decisión, condición C9)? Solo cuando todo está en verde la

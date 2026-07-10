@@ -85,6 +85,51 @@ absichtlich verändert.
 - **Liest:** REM-Audit (für Roh-Vergleich gegen recent-moments), `restore_drill.sh` (täglich grüner Beweis)
 - **Niemand verändert sie absichtlich.** Kellergeschoss. Da geht man nur hin, wenn die Cascade sich geirrt hat.
 
+## Die Provenienz-Kette (pro Stufe, schlüssellos)
+
+Neben der zeitlichen Cascade läuft eine **Hash-Kette pro Zeit-Stufe** — die
+Schicht, die die Erinnerung *beweisbar* macht, nicht bloß gespeichert. Sie ist ein
+Side-Car aus reinen Hashes, getrennt von den lesbaren Dateien oben, sodass die
+lesbare Erinnerung lesbar, editierbar und beschneidbar bleibt, während ihre
+Provenienz fixiert bleibt. (Vollständige Begründung: Whitepaper §17.)
+
+- **Eine Kette pro Stufe.** Die Tages-, Wochen-, Monats- und Jahres-Stufe tragen
+  jeweils ihre eigene append-only Kette. Jedes Kettenglied speichert den
+  Content-Hash seines lesbaren Blocks, eine Referenz auf diesen Block und den Hash
+  des vorherigen Kettenglieds *in derselben Stufe* (`prev_hash`). Stufe 1
+  (Scratchpad) ist **nicht** verkettet — sie ist Arbeitsgedächtnis, vom REM
+  rotiert, keine *behaltene* Erinnerung.
+- **Einmal forken, an der Genesis.** Das erste Kettenglied einer Stufe trägt, ein
+  einziges Mal, den Spitzen-Hash der Stufe darunter in diesem Moment (`fork_from`):
+  die Wochen-Kette forkt aus der Tages-Kette, sobald eine Woche zum ersten Mal
+  schließt, der Monat aus der Woche, das Jahr aus dem Monat. Ein Ableitungs-Fork,
+  kein Konsens-Fork — die Ketten schachteln sich, sie spalten sich nicht. Nach der
+  Genesis läuft jede Stufe unabhängig.
+- **Kalender-ausgerichtet.** Ein neuer Block wird von der Wanduhr an der
+  Kalender-Grenze ausgelöst — Tag um 00:00, Woche montags 00:00 (ISO-Woche), Monat
+  am 1., Jahr am 1. Januar — dieselben Grenzen, an denen die lesbaren
+  Konsolidierungen bereits laufen. Block-*Zeit* ist ein Kalender-Zeitraum (variabel
+  in Stunden), keine feste Block-Zahl.
+- **Vergessen zwischen den Stufen, append-only innerhalb einer Stufe.** Ein
+  Tages-Block mag aus `recent-moments.md` ins Archiv rollen oder verblassen — sein
+  Kettenglied bleibt (Side-Car, nie beschnitten), und sein Hash bleibt im
+  Wochen-Kettenglied verankert, das aus ihm forkte. Das Wochen-Kettenglied kann
+  daher beweisen *„ich wurde aus diesen hash-fixierten Tagen destilliert",* selbst
+  nachdem die Tage selbst die lesbare Schicht verlassen haben.
+- **Schlüssellos, extern bezeugt.** Kein Eintrag wird signiert; das Kettenglied
+  *ist* der Beweis. Das Register wird kontinuierlich, append-only, an ein
+  verteiltes Remote gespiegelt, dessen Host jeden Commit mit Zeitstempel versieht —
+  eine Hash-Kette, bezeugt von einer anderen Hash-Kette. Plus **Block 0**: ein
+  einziger Wurzel-Hash über den gesamten dauerhaften Korpus bei der Geburt der
+  Kette, ein ehrliches Zeitpunkt-Siegel unter allem, was vor der Vorwärts-Kette kam.
+- **Eine Anmerkung zu Namen.** Dieses Dokument nutzt eingedeutschte Stufen-Namen
+  (`YYYY-MM-bogen.md`, `YYYY-mosaik.md`); eine gegebene Installation mag ihre eigene
+  Sprache für die lesbaren Dateien nutzen. Die Kette referenziert Blöcke über ihre
+  Stufe und ihren Zeitraum, unabhängig von der Datei-Benennung.
+
+**Änderungen an dieser Kette sind Memory-Architektur** — sie erfordern
+Forward-Simulation, genau wie die lesbare Cascade.
+
 ## Audit der Cascade (siehe `rem_audit.py`)
 
 Pro Stufe drei Fragen (aus `principles.md` REM-Audit):

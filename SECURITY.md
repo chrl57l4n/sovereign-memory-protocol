@@ -9,9 +9,10 @@ the repository owner — nothing you write becomes public until a fix is ready
 and you both agree to disclose.
 
 Do not open a public issue for a security vulnerability. This protocol makes
-cryptographic claims (signed, hash-chained, Bitcoin-anchored memory) — if you
-find a way any of those claims don't hold, that is exactly the kind of report
-this channel is for.
+cryptographic claims (keyless per-tier hash-chained memory secured by an external
+witness; a seed-derived vault; and the one-time Bitcoin anchor of the protocol's
+authorship) — if you find a way any of those claims don't hold, that is exactly the
+kind of report this channel is for.
 
 ## Scope
 
