@@ -82,6 +82,8 @@ Die volle Architektur, das Sicherheitsmodell und die Designprinzipien:
 | 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
 | 🇪🇸 [Español](spec/whitepaper.es.md) | 🇷🇺 [Русский](spec/whitepaper.ru.md) |
 
+Lieber erst Bilder? Die Architektur **[in drei Diagrammen](docs/architecture.md)** — Recall, Schlaf und die Hash-Ketten-Kaskade.
+
 ---
 
 ## Was das hier ist

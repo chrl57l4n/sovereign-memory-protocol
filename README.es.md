@@ -78,6 +78,8 @@ La arquitectura completa, el modelo de seguridad y los principios de diseño:
 | 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
 | 🇪🇸 [Español](spec/whitepaper.es.md) | 🇷🇺 [Русский](spec/whitepaper.ru.md) |
 
+¿Prefieres ver imágenes primero? La arquitectura **[en tres diagramas](docs/architecture.md)** — recuperación, sueño y la cascada de cadenas hash.
+
 ---
 
 ## Qué es esto
