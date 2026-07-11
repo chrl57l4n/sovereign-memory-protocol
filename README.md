@@ -83,6 +83,8 @@ The complete architecture, the security model, and the design principles:
 | 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
 | 🇪🇸 [Español](spec/whitepaper.es.md) | 🇷🇺 [Русский](spec/whitepaper.ru.md) |
 
+Prefer pictures first? See the architecture **[in three diagrams](docs/architecture.md)** — recall, sleep, and the hash-chain cascade.
+
 ---
 
 ## What this is
