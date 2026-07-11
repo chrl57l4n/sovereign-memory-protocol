@@ -118,32 +118,35 @@ the tip of the tier below, so a single **apex** hash transitively seals the whol
 is the genesis root over the corpus. The ledger is secured by an **external witness** — no key, no
 Bitcoin node required (whitepaper §4.5, §17).
 
+**Read bottom-up:** days seal into weeks, weeks into months, months into the year-apex — and the
+apex transitively seals everything below it. (Within a tier, each block's `prev_hash` points back
+to its predecessor; the horizontal arrows show time / append order.)
+
 ```mermaid
-flowchart TB
+flowchart BT
     B0["Block 0 · genesis root<br/>over the whole corpus"]
 
+    subgraph DAY["day chain · append-only (time →)"]
+        direction LR
+        d1["day"] --> d2["day"] --> d3["day"] --> d4["day"]
+    end
+    subgraph WEEK["week chain · append-only (time →)"]
+        direction LR
+        w1["week"] --> w2["week"] --> w3["week"]
+    end
+    subgraph MONTH["month chain · append-only (time →)"]
+        direction LR
+        m1["month"] --> m2["month"]
+    end
     subgraph YEAR["year chain"]
         y1["year — apex (latest tip)"]
     end
-    subgraph MONTH["month chain · append-only"]
-        direction LR
-        m1["month"] -->|prev_hash| m2["month"]
-    end
-    subgraph WEEK["week chain · append-only"]
-        direction LR
-        w1["week"] -->|prev_hash| w2["week"] -->|prev_hash| w3["week"]
-    end
-    subgraph DAY["day chain · append-only"]
-        direction LR
-        d1["day"] -->|prev_hash| d2["day"] -->|prev_hash| d3["day"] -->|prev_hash| d4["day"]
-    end
 
-    B0 -.->|anchor| d1
-    y1 -->|"fork-from: month tip"| m2
-    m2 -->|"fork-from: week tip"| w3
-    w3 -->|"fork-from: day tip"| d4
-
-    y1 ==>|"apex seals everything transitively"| WIT["external witness — daily append-only mirror<br/>tamper-evident, distributed<br/>witnessed, not a trustless proof<br/>optional on-chain seal = user's choice"]
+    B0 -.->|anchors genesis| d1
+    d4 ==>|"day-tip sealed into week<br/>(fork at genesis)"| w3
+    w3 ==>|"week-tip sealed into month"| m2
+    m2 ==>|"month-tip sealed into year"| y1
+    y1 ==>|"apex seals everything below, transitively"| WIT["external witness — daily append-only mirror<br/>tamper-evident, distributed<br/>witnessed, not a trustless proof<br/>optional on-chain seal = user's choice"]
 
     classDef blk fill:#e0e7ff,stroke:#4338ca,color:#1e1b4b;
     classDef apex fill:#fce7f3,stroke:#db2777,color:#831843;
