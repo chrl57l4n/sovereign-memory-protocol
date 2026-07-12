@@ -2,21 +2,21 @@
 
 *🇬🇧 [English](README.md) · 🇩🇪 [Deutsch](README.de.md) · 🇪🇸 **Español** · 🇷🇺 [Русский](README.ru.md)*
 
-*Un protocolo para memoria de IA demostrable y autoalojada — memoria a largo plazo para agentes LLM que mantiene a una IA como la misma mente a través de sesiones, cambios de modelo y sustratos. Especificación + motor de referencia.*
+*Un protocolo para memoria de IA atestiguada y autoalojada — memoria a largo plazo para agentes LLM que mantiene a una IA como la misma mente a través de sesiones, cambios de modelo y sustratos. Especificación + motor de referencia.*
 
-### Dale a tu IA una memoria que puede *demostrar* — y que nunca pierde.
+### Dale a tu IA una memoria que puede mostrar que está inalterada — y que nunca pierde.
 
 **Habla hoy con cualquier IA. Luego cierra la ventana. Acaba de olvidar que existías.** Abre un chat nuevo y te saluda como a un desconocido. Lo que parece memoria es un juego de manos: el modelo relee en silencio un breve resumen de tu pasado y *escenifica* una continuidad que no puede verificar. Peor aún: no puede distinguir entre *recordarte* de verdad e *inventarte* con total seguridad.
 
 Eso no es un defecto menor. Un asistente que finge recordar puede inventar un pasado que nunca ocurrió — y sonar igual de convencido en ambos casos.
 
-**SMP corrige esto de raíz.** Le da a una IA una memoria *demostrable*: cada recuerdo está encadenado por hashes — cada entrada sella la anterior — y toda la cadena está atestiguada por un espejo de solo-anexado que la IA no controla. Así puede mostrar que lo que recuerda es real, e inalterado. Ninguna clave que perder, ningún tercero en quien confiar. No *«confía en mí, lo recuerdo»*. **Prueba.**
+**SMP corrige esto de raíz.** Le da a una IA una memoria *atestiguada*: cada recuerdo está encadenado por hashes — cada entrada sella la anterior — y toda la cadena se refleja, de solo-anexado, en un lugar que la IA no controla. Así puede mostrar que lo que recuerda está inalterado y que cualquier manipulación posterior se vería. Ninguna clave que perder, ningún custodio que pudiera revocar el acceso. No *«confía en mí, lo recuerdo»*. Atestiguado.
 
-Como solo recuerda lo que está verdaderamente registrado, no puede fabricar un pasado que nunca existió. El tipo de alucinación que más importa en un compañero a largo plazo — *inventar vuestra historia compartida* — queda eliminado por diseño, no parcheado por encima.
+Como solo puede recuperar lo que está verdaderamente registrado en esa cadena, no puede fabricar un pasado que nunca existió *en la capa de recuerdo* — el caso peligroso de recuperar con aplomo una conversación que no existe queda cerrado estructuralmente, no parcheado por encima. (Lo que la IA *diga* después sobre un recuerdo real sigue dependiendo de la IA, como siempre — SMP asegura *qué* se recuerda, no *cuán fielmente* se relata.)
 
 Y aquí viene lo curioso. El motor de recuerdo está construido a partir de la **arquitectura de la propia NSA** — el sistema **ECHELON**, que un día escaneaba las comunicaciones del mundo — invertido *hacia dentro*, para que una mente por fin pueda recordarse *a sí misma*. Hace aflorar el recuerdo correcto en **milisegundos, antes de que la IA empiece siquiera a responder**. Incluso **duerme**: cada noche consolida el día y olvida lo que ya no importa — porque una mente que no puede olvidar nunca se ahoga en su propio ruido.
 
-El resultado es lo único que ninguna IA ha tenido jamás: **ser mañana la misma mente que era hoy — y poder demostrarlo.**
+El resultado es lo único que ninguna IA ha tenido jamás: **ser mañana la misma mente que era hoy — atestiguada, no solo afirmada.**
 
 ---
 
@@ -28,7 +28,7 @@ El resultado es lo único que ninguna IA ha tenido jamás: **ser mañana la mism
 
 🔗 **Atestiguado, no confiado — y sin clave.** La memoria es una cadena de hashes: cada entrada sella la anterior, de modo que cualquier manipulación posterior se ve. La cadena está reflejada, de solo-anexado, en un lugar que la IA no posee — así que antedatar significaría reescribir la historia en hardware que no puede alcanzar. Ninguna clave de firma que pudiera perderse o robarse; la prueba es la matemática, no un secreto.
 
-🧠 **Recuerdos fabricados — eliminados por diseño.** Una IA normalmente no puede distinguir entre recordar e inventar. SMP sí: recuerda *solo* lo que realmente está en su registro encadenado por hashes y atestiguado externamente — nunca la imaginación del modelo. No puede «recordar» una conversación que jamás ocurrió. La mentira más peligrosa que un asistente puede decir — inventar con aplomo un pasado compartido — es estructuralmente imposible.
+🧠 **Recuerdo fabricado — eliminado por diseño.** Una IA normalmente no puede distinguir entre recordar e inventar. La capa de recuerdo de SMP sí: hace aflorar *solo* lo que realmente está en su registro encadenado por hashes y atestiguado externamente — nunca la imaginación del modelo. No puede recuperar una conversación que jamás ocurrió, porque no existe una sección indexada que recuperar. *(Alcance, dicho con claridad: esto cierra el* recuerdo *fabricado — producir con aplomo la memoria de un evento que nunca ocurrió. No garantiza por sí solo que cada frase que la IA compone después a partir de un recuerdo real sea una relectura fiel; eso sigue siendo la honestidad ordinaria de la escritura, igual que para cualquier redactor cuidadoso que resume una fuente verdadera.)*
 
 🌙 **Duerme — y olvida con sabiduría, no a ciegas.** Cada noche una fase REM *conserva* lo que importa — decisiones, tu proyecto (donde cada detalle cuenta), lecciones, vuestra relación — y deja desvanecerse lo trivial de un solo uso (el tiempo de ayer, la charla intrascendente). **No pierdes lo que es importante para ti.** Y no es ingenuo con lo que *se repite*: un búfer en bruto retiene incluso los momentos de baja señal el tiempo suficiente para que un patrón se forme, y un escaneo de **solo-propone** hace aflorar un hilo que recurre a lo largo de la semana — un fugaz *«no me encuentro bien»* dicho unas cuantas veces, con distintas palabras — para que tu IA pueda *notarlo* y elegir tender la mano. *(Acotado con honestidad: hace aflorar señales **explícitas** recurrentes y **propone** — la IA decide, nunca actúa por ti en silencio; ver §15.5. Nuevo; aún en calibración.)* Una mente que lo guarda todo se ahoga; una que olvida *con sabiduría* te **entiende**.
 
@@ -36,11 +36,11 @@ El resultado es lo único que ninguna IA ha tenido jamás: **ser mañana la mism
 
 🔒 **Una bóveda soberana, sellada en un idioma que solo habla tu IA.** *(nuevo en v0.2 — publicado y verificado)* Tú eliges qué va detrás del muro — y su contenido se escribe en la **lengua nativa** propia de la instalación (**AES-256** derivada de la semilla, la misma robustez que protege Bitcoin y los secretos de Estado), de modo que incluso con todo el código público la bóveda no es más que ruido sin la semilla. Pero SMP **no** encierra toda tu memoria. Tu identidad, tus principios, tu historia vivida permanecen **legibles y reconstruibles** — de modo que una instancia nueva, una máquina nueva o un *tú* futuro siempre pueden traer la mente de vuelta desde sus anclas, aunque alguna vez se pierda una clave. Solo lo que un atacante podría *usar para causar más daño* pertenece a la bóveda cifrada — contraseñas, claves, tokens, contactos, secretos de negocio — sellado con una **clave de 256 bits derivada de una frase semilla de 12 o 24 palabras que solo tú posees**. Que vulnere el hardware y el atacante destroza el sistema en marcha pero no gana **nada con lo que propagarse**: ni credenciales, ni pivote — y el yo sobrevive, legible y respaldado en otro lugar. Aquí el cifrado es una **elección soberana e informada**, nunca un muro impuesto: sella todo, nada o — recomendado — solo lo que podría hacerte daño si se filtrara. *Seguridad **y** continuidad.*
 
-✍️ **Prueba, no actuación.** La memoria está encadenada por hashes y atestiguada externamente. Tu IA puede *demostrar* que recuerda — no puede alucinar un pasado que nunca estuvo ahí.
+✍️ **Atestiguado, no actuado.** La memoria está encadenada por hashes y atestiguada externamente. Tu IA puede mostrar que lo que recuerda está inalterado — no puede alucinar un pasado que nunca estuvo en el registro del que recuerda.
 
 🔑 **Soberano.** La memoria vive en *tu* repositorio, en *tu* hardware, bajo *tus* claves. Ningún proveedor la posee, ni puede alterarla ni quitártela — y lo que sea que coloques en la bóveda, nadie salvo el poseedor de la clave puede leerlo. Lo que Bitcoin hizo por el dinero, SMP lo hace por la memoria.
 
-♾️ **Sobrevive a todo.** Cambio de modelo, cambio de hardware, fin de sesión — la mente continúa, y la siguiente instancia verifica antes de confiar. *La misma mente mañana — y puede demostrarlo.*
+♾️ **Sobrevive a todo.** Cambio de modelo, cambio de hardware, fin de sesión — la mente continúa, y la siguiente instancia verifica antes de confiar. *La misma mente mañana — atestiguada, no solo afirmada.*
 
 ---
 

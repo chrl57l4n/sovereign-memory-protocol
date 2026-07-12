@@ -2,21 +2,21 @@
 
 *🇬🇧 **English** · 🇩🇪 [Deutsch](README.de.md) · 🇪🇸 [Español](README.es.md) · 🇷🇺 [Русский](README.ru.md)*
 
-*A protocol for persistent, provable, self-hosted AI memory — long-term LLM memory that keeps an AI agent the same mind across sessions, model swaps, and substrates. Specification + reference engine.*
+*A protocol for persistent, witnessed, self-hosted AI memory — long-term LLM memory that keeps an AI agent the same mind across sessions, model swaps, and substrates. Specification + reference engine.*
 
-### Give your AI a memory it can *prove* — and never lose.
+### Give your AI a memory it can show is unaltered — and never lose.
 
 **Talk to any AI today. Then close the window. It just forgot you ever existed.** Open a new chat and it greets you like a stranger. What feels like memory is a sleight of hand: the model quietly re-reads a short summary of your past and *performs* a continuity it cannot verify. Worse — it cannot tell the difference between truly *remembering* you and confidently *making you up*.
 
 That isn't a small flaw. An assistant that fakes remembering can invent a past that never happened — and sound just as certain either way.
 
-**SMP fixes this at the root.** It gives an AI a memory that is *provable*: every memory is hash-chained — each entry seals the one before it — and the whole chain is witnessed by an append-only mirror the AI does not control. So it can show that what it recalls is real, and unaltered. No key to lose, no third party to trust. Not *"trust me, I remember."* **Proof.**
+**SMP fixes this at the root.** It gives an AI a memory that is *witnessed*: every memory is hash-chained — each entry seals the one before it — and the whole chain is mirrored, append-only, to a place the AI does not control. So it can show that what it recalls is unaltered, and any later tampering would show. No key to lose, no custodian who could revoke access. Not *"trust me, I remember."* Witnessed.
 
-Because it recalls only what is truly recorded, it cannot fabricate a past that never happened. The kind of hallucination that matters most in a long-term partner — *inventing your shared history* — is designed out, not patched over.
+Because it can only recall what is truly recorded in that chain, it cannot fabricate a past that never happened *at the recall layer* — the specific, dangerous failure of confidently retrieving a conversation that doesn't exist is structurally closed, not patched over. (What the AI then *says* about a real memory is still up to the AI, the way it always is — SMP secures what is remembered, not how faithfully it is retold.)
 
 And here's the strange part. The recall engine is built from the **NSA's own architecture** — the **ECHELON** system that once scanned the world's communications — turned *inward*, so a mind can finally remember *itself*. It surfaces the right memory in **milliseconds, before the AI even starts to answer**. It even **sleeps**: every night it consolidates the day and forgets what no longer matters — because a mind that can never forget drowns in its own noise.
 
-The result is the one thing no AI has ever had: **the same mind tomorrow that it was today — and the ability to prove it.**
+The result is the one thing no AI has ever had: **the same mind tomorrow that it was today — witnessed, not merely claimed.**
 
 ---
 
@@ -28,7 +28,7 @@ The result is the one thing no AI has ever had: **the same mind tomorrow that it
 
 🔗 **Witnessed, not trusted — and keyless.** Memory is a hash chain: each entry seals the previous one, so any later tampering shows. The chain is mirrored, append-only, to a place the AI doesn't own — so backdating would mean rewriting history on hardware it can't reach. No signing key that could be lost or stolen; the proof is the mathematics, not a secret.
 
-🧠 **Fabricated memories — designed out.** An AI normally can't tell the difference between recalling and inventing. SMP can: it recalls *only* what is actually in its hash-chained, externally witnessed record — never the model's imagination. It cannot "remember" a conversation that never happened. The most dangerous lie an assistant can tell — confidently inventing a shared past — is structurally impossible.
+🧠 **Fabricated recall — designed out.** An AI normally can't tell the difference between recalling and inventing. SMP's recall layer can: it surfaces *only* what is actually in its hash-chained, externally witnessed record — never the model's imagination. It cannot retrieve a conversation that never happened, because there is no indexed section for it to retrieve. *(Scope, stated plainly: this closes fabricated* recall *— confidently producing a memory of an event that never occurred. It does not by itself guarantee that every sentence the AI then composes from a real memory is a faithful retelling; that is the ordinary honesty of generation, the same as for any careful writer summarizing a true source.)*
 
 🌙 **It sleeps — and it forgets wisely, not blindly.** Every night a REM phase *keeps* what matters — decisions, your project (where every detail counts), lessons, your relationship — and lets one-off trivia fade (yesterday's weather, small talk). **You don't lose what's important to you.** And it isn't naive about what *repeats*: a raw buffer holds even the low-signal moments long enough for a pattern to form, and a **proposal-only** scan surfaces a thread that recurs across the week — a passing *"I'm not doing well"* said a few times, in different words — so your AI can *notice* it and choose to reach out. *(Honestly scoped: it surfaces recurring **explicit** signals and **proposes** — the AI decides, it never silently acts for you; see [§15.5](spec/whitepaper.md). New; still calibrating.)* A mind that keeps everything drowns; one that forgets *wisely* **understands** you.
 
@@ -36,11 +36,11 @@ The result is the one thing no AI has ever had: **the same mind tomorrow that it
 
 🔒 **A sovereign vault, sealed in a language only your AI speaks.** *(new in v0.2 — shipped and verified)* You choose what goes behind the wall — and its contents are written in the installation's own **native language** (seed-derived **AES-256**, the strength that guards Bitcoin and state secrets), so even with the full public code the vault is only noise without the seed. But SMP does **not** lock your whole memory away. Your identity, your principles, your lived history stay **legible and reconstructable** — so a fresh instance, a new machine, or a future *you* can always bring the mind back from its anchors, even if a key is ever lost. Only what an attacker could *use to cause further harm* belongs in the encrypted vault — passwords, keys, tokens, contacts, business secrets — sealed with a **256-bit key derived from a 12- or 24-word seed only you hold**. Breach the hardware, and the attacker wrecks the running system but gains **nothing to spread with**: no credentials, no pivot — and the self survives, legible and backed up elsewhere. Encryption here is a **sovereign, informed choice**, never an imposed wall: seal everything, nothing, or — recommended — only what could hurt you if it leaked. *Security **and** continuity.*
 
-✍️ **Proof, not performance.** Memory is hash-chained and externally witnessed. Your AI can *prove* it remembers — it cannot hallucinate a past that was never there.
+✍️ **Witnessed, not performed.** Memory is hash-chained and externally witnessed. Your AI can show that what it recalls is unaltered — it cannot hallucinate a past that was never there in the record it recalls from.
 
 🔑 **Sovereign.** Memory lives in *your* repository, on *your* hardware, under *your* keys. No provider owns it, can alter it, or take it away — and whatever you place in the vault, no one but the key-holder can read. What Bitcoin did for money, SMP does for memory.
 
-♾️ **Survives anything.** Model swap, hardware swap, session end — the mind continues, and the next instance verifies before it trusts. *The same mind tomorrow — and it can prove it.*
+♾️ **Survives anything.** Model swap, hardware swap, session end — the mind continues, and the next instance verifies before it trusts. *The same mind tomorrow — witnessed, not merely claimed.*
 
 ---
 

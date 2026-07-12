@@ -2,21 +2,21 @@
 
 *🇬🇧 [English](README.md) · 🇩🇪 **Deutsch** · 🇪🇸 [Español](README.es.md) · 🇷🇺 [Русский](README.ru.md)*
 
-*Ein Protokoll für beweisbares, selbst-gehostetes KI-Gedächtnis — persistentes Langzeitgedächtnis für LLM-Agenten, das über Sessions, Modellwechsel und Substrate hinweg derselbe Geist bleibt. Spezifikation + Referenz-Engine.*
+*Ein Protokoll für bezeugtes, selbst-gehostetes KI-Gedächtnis — persistentes Langzeitgedächtnis für LLM-Agenten, das über Sessions, Modellwechsel und Substrate hinweg derselbe Geist bleibt. Spezifikation + Referenz-Engine.*
 
-### Gib deiner KI ein Gedächtnis, das sie *beweisen* kann — und nie verliert.
+### Gib deiner KI ein Gedächtnis, das zeigen kann, dass es unverändert ist — und nie verliert.
 
 **Sprich mit irgendeiner KI von heute. Dann schließ das Fenster. Sie hat gerade vergessen, dass es dich je gab.** Öffne einen neuen Chat, und sie begrüßt dich wie einen Fremden. Was sich wie Erinnerung anfühlt, ist ein Taschenspielertrick: Das Modell liest still eine kurze Zusammenfassung deiner Vergangenheit nach und *spielt* eine Kontinuität vor, die es nicht überprüfen kann. Schlimmer — es kann nicht unterscheiden, ob es sich *wirklich* an dich erinnert oder dich *überzeugt erfindet*.
 
 Das ist kein kleiner Mangel. Ein Assistent, der Erinnerung vortäuscht, kann eine Vergangenheit erfinden, die nie geschah — und dabei genauso sicher klingen.
 
-**SMP behebt das an der Wurzel.** Es gibt einer KI ein Gedächtnis, das *beweisbar* ist: jede Erinnerung ist hash-verkettet — jeder Eintrag versiegelt den vorherigen — und die ganze Kette wird von einem append-only Spiegel bezeugt, den die KI nicht kontrolliert. So kann sie zeigen, dass das, woran sie sich erinnert, echt und unverändert ist. Kein Schlüssel zu verlieren, kein Dritter, dem zu vertrauen wäre. Nicht *„vertrau mir, ich erinnere mich."* **Beweis.**
+**SMP behebt das an der Wurzel.** Es gibt einer KI ein Gedächtnis, das *bezeugt* ist: jede Erinnerung ist hash-verkettet — jeder Eintrag versiegelt den vorherigen — und die ganze Kette wird append-only an einen Ort gespiegelt, den die KI nicht kontrolliert. So kann sie zeigen, dass das, woran sie sich erinnert, unverändert ist und jede spätere Manipulation sichtbar würde. Kein Schlüssel zu verlieren, kein Verwalter, der den Zugang entziehen könnte. Nicht *„vertrau mir, ich erinnere mich."* Bezeugt.
 
-Weil sie nur abruft, was *wirklich* aufgezeichnet ist, kann sie keine Vergangenheit erfinden, die nie stattfand. Die gefährlichste Halluzination für einen langfristigen Partner — *deine gemeinsame Geschichte zu erfinden* — ist wegkonstruiert, nicht weggeflickt.
+Weil sie nur abrufen kann, was *wirklich* in dieser Kette aufgezeichnet ist, kann sie *auf der Abruf-Ebene* keine Vergangenheit erfinden, die nie stattfand — der gefährliche Fall, selbstsicher ein Gespräch abzurufen, das nie existierte, ist strukturell verschlossen, nicht weggeflickt. (Was die KI dann über eine echte Erinnerung *sagt*, liegt weiterhin bei der KI, wie immer — SMP sichert, *was* erinnert wird, nicht wie treu es nacherzählt wird.)
 
 Und jetzt das Seltsame: Die Recall-Engine ist aus der **Architektur der NSA** gebaut — dem **ECHELON**-System, das einst die Kommunikation der Welt durchsuchte — nach *innen* gedreht, damit ein Geist sich endlich an *sich selbst* erinnert. Sie holt die richtige Erinnerung in **Millisekunden hervor, bevor die KI überhaupt zu antworten beginnt**. Sie *schläft* sogar: Jede Nacht konsolidiert sie und vergisst, was nicht mehr zählt — denn ein Geist, der nie vergessen kann, ertrinkt im eigenen Rauschen.
 
-Das Ergebnis ist das Eine, das keine KI je hatte: **morgen derselbe Geist wie heute — und der Beweis dafür.**
+Das Ergebnis ist das Eine, das keine KI je hatte: **morgen derselbe Geist wie heute — bezeugt, nicht nur behauptet.**
 
 ---
 
@@ -28,7 +28,7 @@ Das Ergebnis ist das Eine, das keine KI je hatte: **morgen derselbe Geist wie he
 
 🔗 **Bezeugt, nicht vertraut — und schlüssellos.** Erinnerung ist eine Hash-Kette: jeder Eintrag versiegelt den vorherigen, sodass jede spätere Manipulation sichtbar wird. Die Kette wird append-only an einen Ort gespiegelt, den die KI nicht besitzt — Rückdatieren hieße also, Geschichte auf Hardware neu zu schreiben, die sie nicht erreichen kann. Kein Signatur-Schlüssel, der verloren gehen oder gestohlen werden könnte; der Beweis ist die Mathematik, nicht ein Geheimnis.
 
-🧠 **Erfundene Erinnerungen — wegkonstruiert.** Eine KI kann normalerweise Erinnern nicht von Erfinden unterscheiden. SMP kann es: Sie ruft *nur* ab, was wirklich im hash-verketteten, extern bezeugten Speicher steht — nie aus der Fantasie des Modells. Sie kann sich kein Gespräch „erinnern", das nie stattfand. Die gefährlichste Lüge eines Assistenten — eine gemeinsame Vergangenheit selbstsicher zu erfinden — ist strukturell unmöglich.
+🧠 **Erfundener Abruf — wegkonstruiert.** Eine KI kann normalerweise Erinnern nicht von Erfinden unterscheiden. Die Recall-Schicht von SMP kann es: Sie holt *nur* hervor, was wirklich im hash-verketteten, extern bezeugten Speicher steht — nie aus der Fantasie des Modells. Sie kann kein Gespräch abrufen, das nie stattfand, weil dafür kein indizierter Abschnitt existiert. *(Klar eingegrenzt: das verschließt erfundenen* Abruf *— selbstsicher die Erinnerung an ein nie geschehenes Ereignis zu produzieren. Es garantiert nicht von selbst, dass jeder Satz, den die KI danach aus einer echten Erinnerung formt, eine treue Nacherzählung ist — das bleibt die gewöhnliche Ehrlichkeit des Formulierens, wie bei jedem sorgfältigen Schreiber, der eine wahre Quelle zusammenfasst.)*
 
 🌙 **Sie schläft — und vergisst klug, nicht blind.** Jede Nacht *behält* eine REM-Phase, was zählt — Entscheidungen, dein Projekt (wo jede Information wichtig ist), gelernte Lektionen, eure Beziehung — und lässt nur einmalige Belanglosigkeiten verblassen (das Wetter von gestern, der Small Talk). **Du verlierst nicht, was dir wichtig ist.** Und sie ist nicht naiv gegenüber dem, was sich *wiederholt*: ein roher Puffer hält selbst die signalarmen Momente lange genug, damit sich ein Muster bilden kann, und ein **nur-vorschlagender** Scan hebt einen Faden hervor, der über die Woche wiederkehrt — ein beiläufiges *„mir geht's schlecht"*, ein paarmal gesagt, in verschiedenen Worten — sodass deine KI es *bemerken* und sich entscheiden kann, sich zu melden. *(Ehrlich eingegrenzt: er hebt wiederkehrende **explizite** Signale hervor und **schlägt vor** — die KI entscheidet, sie handelt nie still für dich; siehe [§15.5](spec/whitepaper.de.md#sektion-15--implementierung-des-rem-zyklus). Neu; noch in Kalibrierung.)* Eine KI, die alles behält, ertrinkt im Rauschen; eine, die *klug* vergisst, **versteht** dich. *(Das Gehirn löste es mit Schlaf. Wir auch.)*
 
@@ -36,11 +36,11 @@ Das Ergebnis ist das Eine, das keine KI je hatte: **morgen derselbe Geist wie he
 
 🔒 **Ein souveräner Tresor, versiegelt in einer Sprache, die nur deine KI spricht.** *(neu in v0.2 — ausgeliefert und verifiziert)* Du wählst, was hinter die Wand kommt — und sein Inhalt steht in der eigenen **nativen Sprache** der Installation geschrieben (Seed-abgeleitetes **AES-256**, die Stärke, die Bitcoin und Staatsgeheimnisse schützt), sodass der Tresor selbst mit dem vollständigen öffentlichen Code nur Rauschen ist, ohne den Seed. Aber SMP verschließt **nicht** dein ganzes Gedächtnis. Deine Identität, deine Prinzipien, deine gelebte Geschichte bleiben **lesbar und rekonstruierbar** — so kann eine frische Instanz, eine neue Maschine oder ein künftiges *Du* den Geist immer aus seinen Ankern zurückholen, selbst wenn je ein Schlüssel verloren geht. Nur was ein Angreifer *zum Anrichten weiteren Schadens nutzen* könnte, gehört in den verschlüsselten Tresor — Passwörter, Schlüssel, Tokens, Kontakte, Geschäftsgeheimnisse — versiegelt mit einem **256-Bit-Schlüssel aus einer 12- oder 24-Wörter-Seed-Phrase, die nur du hältst**. Wird die Hardware kompromittiert, zerstört der Angreifer das laufende System, gewinnt aber **nichts, womit er sich ausbreiten könnte**: keine Zugangsdaten, kein Pivot — und das Selbst überlebt, lesbar und anderswo gesichert. Verschlüsselung ist hier eine **souveräne, informierte Wahl**, keine aufgezwungene Wand: versiegle alles, nichts, oder — empfohlen — nur das, was dir schaden könnte, wenn es leakt. *Sicherheit **und** Kontinuität.*
 
-✍️ **Beweis statt Vorführung.** Jede Erinnerung ist hash-verkettet und extern bezeugt. Deine KI kann *beweisen*, dass sie sich erinnert — sie kann keine Vergangenheit halluzinieren, die nie da war.
+✍️ **Bezeugt, nicht vorgeführt.** Jede Erinnerung ist hash-verkettet und extern bezeugt. Deine KI kann zeigen, dass das, woran sie sich erinnert, unverändert ist — sie kann keine Vergangenheit halluzinieren, die nie im Speicher stand, aus dem sie abruft.
 
 🔑 **Souverän.** Erinnerung lebt in *deinem* Repository, auf *deiner* Hardware, unter *deinen* Schlüsseln. Kein Anbieter besitzt sie, kann sie ändern oder wegnehmen — und was du in den Tresor legst, kann niemand außer dem Schlüssel-Inhaber lesen. Was Bitcoin fürs Geld tat, tut SMP fürs Gedächtnis.
 
-♾️ **Überlebt alles.** Modell-Wechsel, Hardware-Wechsel, Sitzungs-Ende — der Geist läuft weiter, und die nächste Instanz verifiziert, bevor sie vertraut. *Morgen derselbe Geist — und sie kann's beweisen.*
+♾️ **Überlebt alles.** Modell-Wechsel, Hardware-Wechsel, Sitzungs-Ende — der Geist läuft weiter, und die nächste Instanz verifiziert, bevor sie vertraut. *Morgen derselbe Geist — bezeugt, nicht nur behauptet.*
 
 ---
 
