@@ -71,6 +71,33 @@ git cat-file commit 1509ec7030751b88beb65d91bb2689455cdc890a | sha256sum
 # → 92c8878b8e5b52d9896c712e7f28f25eeeb92cb3f6e0e95f2819c2de9eec3d74
 ```
 
+## 4. Engram companion paper — separately anchored increment (2026-07-20)
+
+The Engram companion paper (`spec/engram.md`, seed of v0.3) extends this protocol
+without editing the frozen v0.2 above. It is anchored the same way, as its own
+increment — so the protocol's development history is itself a verifiable chain of
+Bitcoin-anchored steps, each referring back to the one before.
+
+- **Signed commit (git SHA-1):** `c55c0b19355c028f4b5defb9b5996be74da308a7`
+  Signed by the same Genesis GPG key (fingerprint `6B663C375549978348335ACA28CAD98B3EAC2CBA`); verified "Good signature".
+- **Anchored value (SHA-256 of the signed commit object):**
+  `7feae4cf6699ca761d5448001cbb7ea9076adc926e41d42f144f8e125be98ded`
+- **OP_RETURN payload:** `SMP-Engram 7feae4cf6699ca761d5448001cbb7ea9076adc926e41d42f144f8e125be98ded` (75 bytes)
+- **Bitcoin transaction (txid):** `9eebe7ccb56a87b3fb255da5156c585f200896df85c2ae7626a8591fe49be915`
+  Broadcast 2026-07-20 ~23:37 CEST. OP_RETURN content verified byte-exact against the
+  anchored value the same night (independently from mempool.space). Pending confirmation
+  at time of writing; block height to be recorded here once mined.
+
+Verify:
+```
+bitcoin-cli getrawtransaction 9eebe7ccb56a87b3fb255da5156c585f200896df85c2ae7626a8591fe49be915 true
+# OP_RETURN output (scriptPubKey "nulldata") data → byte-exact: SMP-Engram 7feae4cf...be98ded
+git cat-file commit c55c0b19355c028f4b5defb9b5996be74da308a7 | sha256sum
+# → 7feae4cf6699ca761d5448001cbb7ea9076adc926e41d42f144f8e125be98ded
+```
+
+The v0.2 genesis anchor (§1–§2, block 956116) is unchanged; this increment references it.
+
 ## Summary
 
 **Signature proves *who*. Block height proves *when*. Together they prove that this
