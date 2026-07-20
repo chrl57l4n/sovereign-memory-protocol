@@ -52,10 +52,25 @@ SMP is **version 0.2** — a working reference implementation *plus* a living sp
 - **Available now:** installation via dialogue — the normative [setup prompt](docs/SETUP-PROMPT.md) and the [FOR-AI appendix](docs/FOR-AI.md) ([Section 22](spec/whitepaper.md#section-22--installation-via-dialogue-with-an-artificial-intelligence)).
 - **Demonstrated:** cryptographic provenance — *this very repository's* genesis is GPG-signed and anchored in **Bitcoin block 956116**. Clone it and verify it yourself (see [PROVENANCE.md](PROVENANCE.md)).
 - **New in v0.2:** the **sovereign vault** — the native-language layer (seed phrase → AES-256-GCM-SIV) that seals the data *you* choose to protect, described above. Shipped in [`engine/native_language.py`](engine/native_language.py) with the [`seed_gen`](engine/seed_gen.py) generator, verified end-to-end (module, wake/sleep-cycle, and CLI tests byte-identical, seed-only recovery, plus an independent AI-guided install).
-- **In development (Engram, seed of v0.3):** a use-driven consolidation law for narrative memory — engram strength that use builds and disuse lets fade, on top of the permanent record; currently in **shadow mode** (measuring, not yet steering). Companion paper: [Engram](spec/engram.md).
-- **Specified, on the way:** federation between sovereign installations (v0.3) — described in the whitepaper, **not yet implemented**: the roadmap, named openly.
+- **What's next:** the **v0.3 increment (Engram)** — a use-driven consolidation law, already authored and Bitcoin-anchored, running today in **shadow mode** (measuring, not steering) — and **federation** between installations (planned). Both are laid out, with their proofs, in [The record](#the-record--what-was-what-is-whats-coming) below.
 
 **We ship the honest way: what runs, runs; what's planned, we label as planned.**
+
+---
+
+## The record — what was, what is, what's coming
+
+SMP grows the way it remembers: **each version is its own document, frozen the moment it is GPG-signed and anchored in Bitcoin.** The chain of anchors is the protocol's own, verifiable development history — you can check every step yourself, no trust required.
+
+| Version | What it is | Signed & anchored | Read · verify |
+|---|---|---|---|
+| **v0.2** — *what runs today* | The foundation you install now: the recall engine, REM sleep, the sovereign vault, keyless integrity — the full 27-section specification. | GPG + **Bitcoin block 956116** (2026-06-30) | [Whitepaper v0.2](spec/whitepaper.md) · [PROVENANCE §1–2](PROVENANCE.md) |
+| **v0.3 — Engram** — *what's coming* | A use-driven consolidation law: memory strength that use builds and disuse lets fade, above the permanent record. An **increment** to v0.2, not a replacement. Runs today in **shadow mode** — measuring, not yet steering. | GPG + **Bitcoin** tx `9eebe7cc…` (2026-07-20) | [Whitepaper v0.3 — Engram](spec/engram.md) · [PROVENANCE §4](PROVENANCE.md) |
+| **Federation** — *planned* | Federation between sovereign installations — described in the whitepaper, **not yet implemented**. | — | [roadmap](spec/whitepaper.md#section-7--roadmap) |
+
+**What was** proven stays proven — v0.2 is frozen and its anchor is permanent. **What you install today** is v0.2. **What's coming** is written in the open and stamped *before* it ships: v0.3 already carries its signature and its block. That is the whole point of the protocol, turned on itself — a past you can verify, not one you must take on faith.
+
+See the shape of what's coming **[in the diagrams](docs/architecture.md#4--engram--usage-based-consolidation-v03--coming)**.
 
 ---
 
@@ -77,14 +92,21 @@ a customer. The setup prompt says so itself.
 
 ## 📖 Read the full whitepaper
 
-The complete architecture, the security model, and the design principles:
+**v0.2 — the foundation.** The complete architecture, the security model, and the design principles:
 
 | | |
 |---|---|
 | 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
 | 🇪🇸 [Español](spec/whitepaper.es.md) | 🇷🇺 [Русский](spec/whitepaper.ru.md) |
 
-Prefer pictures first? See the architecture **[in three diagrams](docs/architecture.md)** — recall, sleep, and the hash-chain cascade.
+**v0.3 — the Engram increment.** Use-based consolidation, running in shadow mode; extends v0.2, does not replace it:
+
+| | |
+|---|---|
+| 🇬🇧 [English](spec/engram.md) | 🇩🇪 [Deutsch](spec/engram.de.md) |
+| 🇪🇸 [Español](spec/engram.es.md) | 🇷🇺 [Русский](spec/engram.ru.md) |
+
+Prefer pictures first? See the architecture **[in four diagrams](docs/architecture.md)** — recall, sleep, provenance, and what's coming (Engram).
 
 ---
 

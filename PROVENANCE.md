@@ -71,10 +71,10 @@ git cat-file commit 1509ec7030751b88beb65d91bb2689455cdc890a | sha256sum
 # → 92c8878b8e5b52d9896c712e7f28f25eeeb92cb3f6e0e95f2819c2de9eec3d74
 ```
 
-## 4. Engram companion paper — separately anchored increment (2026-07-20)
+## 4. Whitepaper v0.3 (Engram) — separately anchored increment (2026-07-20)
 
-The Engram companion paper (`spec/engram.md`, seed of v0.3) extends this protocol
-without editing the frozen v0.2 above. It is anchored the same way, as its own
+The Engram increment (`spec/engram.md`), published as **Whitepaper v0.3**, extends this
+protocol without editing the frozen v0.2 above. It is anchored the same way, as its own
 increment — so the protocol's development history is itself a verifiable chain of
 Bitcoin-anchored steps, each referring back to the one before.
 

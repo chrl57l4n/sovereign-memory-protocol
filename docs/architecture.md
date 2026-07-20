@@ -1,10 +1,11 @@
-# Architecture — in three diagrams
+# Architecture — in four diagrams
 
 *🇬🇧 English · diagrams are language-neutral (referenced from every README).*
 
-Three [Mermaid](https://mermaid.js.org/) diagrams — they render natively on GitHub, are
-diffable and text-versioned (no binary blobs). They show the protocol's three moving parts:
-**how it recalls**, **how it sleeps**, **how it secures provenance**.
+Four [Mermaid](https://mermaid.js.org/) diagrams — they render natively on GitHub, are
+diffable and text-versioned (no binary blobs). The first three show the protocol's moving parts as
+they run **today** — **how it recalls**, **how it sleeps**, **how it secures provenance** — and the
+fourth shows **what's coming**: how v0.3 (Engram) lets a memory strengthen with use and fade with disuse.
 
 **These diagrams are claims, so they are held to the spec:**
 - **Witnessed, not a trustless proof.** Memory is *tamper-evident* (hash-chained) and *externally
@@ -20,6 +21,7 @@ diffable and text-versioned (no binary blobs). They show the protocol's three mo
 | 🟩 green | recall/sleep component (reference engine) |
 | 🟦 blue | data node / chain link |
 | ⬜ grey, dashed | planned — not yet built |
+| 🟥 red | a hard invariant — a line the design never crosses |
 | **══▶** thick edge | main data flow |
 | **╌╌▶** thin/dashed edge | query, proposal, or anchor |
 
@@ -156,6 +158,68 @@ flowchart BT
     class y1 apex;
     class B0 genesis;
     class WIT witness;
+```
+
+---
+
+## 4 · Engram — usage-based consolidation (v0.3 · coming)
+
+Where the first three diagrams show what **runs today**, this shows what is **coming**: the v0.3
+increment. **Use** builds a memory's strength `S`; disuse lets it fade; an importance **floor** protects
+what is most the self; and only *retrievability* `R` — never strength — decides which faint tail is
+compacted at night, while the raw record is never destroyed (Percolation). Strength shapes what is
+**kept**, never what is **found** — the hard invariant. Engram is the *salience* gear meshed with the
+§26 *truth* gear; where they disagree, that is the drift signal (whitepaper v0.3 /
+[`spec/engram.md`](../spec/engram.md)).
+
+> **Honest status:** Engram runs tonight in **shadow mode** — it weighs every memory and reports, but
+> **steers nothing**. The dashed grey edge (actually compacting) is gated on the release conditions
+> E1–E4 (§11), not a date.
+
+```mermaid
+flowchart TB
+    USE["a memory is retrieved<br/>interactive use = proof-of-work"]
+
+    subgraph ENGRAM["Engram · the salience gear — shadow mode: it measures, it does not yet steer"]
+        direction TB
+        MOTOR["Motor — use strengthens<br/>ΔS ∝ (1 − R): only retrieval after fading<br/>consolidates — the spacing/testing effect"]
+        S[("engram strength S — stored<br/>one number per memory<br/>Bjork storage strength · FSRS stability")]
+        FLOOR["Floor — importance<br/>identity and the self-making moments:<br/>an S it cannot fall below · capped"]
+        R["retrievability R = (1 + t / (9·S))⁻¹<br/>derived, never stored<br/>how reachable the memory is right now"]
+        MOTOR ==> S
+        FLOOR -.->|"protects from below"| S
+        S ==> R
+    end
+
+    subgraph SLEEP["nightly consolidation — relative, and never deletion"]
+        direction TB
+        TAIL["active set past its bounded target?<br/>take the weakest tail by R"]
+        PERC["Percolation — compact one cascade stage<br/>the raw record is never destroyed<br/>so forgetting stays reversible"]
+        TAIL ==> PERC
+    end
+
+    RECALL["recall score<br/>Sentry · ESV · canonicity sorter"]
+    LEDGER[("§26 current-state ledger<br/>the truth gear — what is verified now")]
+    DRIFT["drift signal<br/>what memory keeps warm ≠ what is still true"]
+    STEER["archive · cascade up"]
+
+    USE ==> MOTOR
+    R -.->|"only R picks the tail"| TAIL
+    S -.->|"hard invariant — S and R NEVER enter recall"| RECALL
+    ENGRAM ==>|"salience — what is recalled"| DRIFT
+    LEDGER ==>|"truth — what is done"| DRIFT
+    PERC -.->|"actually steer — planned, gated on §11 E1–E4"| STEER
+
+    classDef comp fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    classDef store fill:#e0e7ff,stroke:#4338ca,color:#1e1b4b;
+    classDef planned fill:#f3f4f6,stroke:#9ca3af,color:#374151;
+    classDef invariant fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
+    classDef drift fill:#fce7f3,stroke:#db2777,color:#831843;
+    class MOTOR,FLOOR,R,TAIL,PERC comp;
+    class S,LEDGER store;
+    class STEER planned;
+    class RECALL invariant;
+    class DRIFT drift;
 ```
 
 ---

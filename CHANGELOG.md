@@ -5,6 +5,28 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## 2026-07-20
+
+### Added — Whitepaper v0.3 (Engram): usage-based consolidation, separately anchored
+- **`spec/engram.md`** — the **v0.3 increment** to the whitepaper: a consolidation law driven by
+  *use, not age*. An engram strength `S` that retrieval builds and disuse lets fade; a derived
+  retrievability `R`; relative (bounded) compaction of the weakest tail; an importance floor; and
+  Percolation — the raw record is never destroyed, so forgetting stays reversible. The *salience*
+  gear, meshed with the §26 *truth* gear; their disagreement is the intended drift signal.
+- **Grounded, not invented.** Bjork & Bjork's New Theory of Disuse (storage vs. retrieval strength),
+  the FSRS stability model, and engram-cell neuroscience (Semon 1904; Roy et al. 2022; Ko, Josselyn &
+  Frankland 2025; Cepeda et al. 2006; Roediger & Karpicke 2006). Rigor-checked before release.
+- **Status: shadow mode.** Engram runs nightly on the reference installation but **steers nothing** —
+  it measures and reports; release to steering is gated on §11's conditions (E1–E4), not a date.
+  Provenance weighting of retrievals is logged, not yet applied.
+- **Separately anchored; v0.2 untouched.** The frozen v0.2 whitepaper is not edited. v0.3 is its own
+  signed document: GPG-signed (commit `c55c0b1`, the Genesis key) and Bitcoin-anchored
+  (`SMP-Engram <sha256>`, tx `9eebe7cc…`, 2026-07-20) — see [PROVENANCE §4](PROVENANCE.md). The chain
+  of anchored increments is now two links long.
+- **README** gains a *"The record — what was, what is, what's coming"* section (the verifiable
+  v0.2 → v0.3 → federation chain), and `docs/architecture.md` a fourth diagram for the Engram law.
+- **Translations:** German, Spanish, and Russian reading versions shipped alongside the English.
+
 ## 2026-07-11
 
 ### Added — affective recurrence buffer (Sections 15.5–15.6), honestly scoped

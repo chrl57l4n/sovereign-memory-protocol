@@ -52,9 +52,25 @@ SMP ist **Version 0.2** — eine laufende Referenz-Implementierung *plus* eine l
 - **Jetzt verfügbar:** Installation per Dialog — der normative [Setup-Prompt](docs/SETUP-PROMPT.de.md) und der [FOR-AI-Anhang](docs/FOR-AI.de.md) ([Sektion 22](spec/whitepaper.de.md#sektion-22--installation-via-dialog-mit-einer-künstlichen-intelligenz)).
 - **Bewiesen:** kryptografische Provenienz — *der Genesis dieses Repositorys selbst* ist GPG-signiert und in **Bitcoin-Block 956116** verankert. Klone es und prüfe es selbst (siehe [PROVENANCE.md](PROVENANCE.md)).
 - **Neu in v0.2:** der **souveräne Tresor** — die native-Sprache-Schicht (Seed-Phrase → AES-256-GCM-SIV), die die Daten versiegelt, die *du* schützen willst (oben beschrieben). Ausgeliefert in [`engine/native_language.py`](engine/native_language.py) samt [`seed_gen`](engine/seed_gen.py)-Generator, Ende-zu-Ende verifiziert (Modul-, Wake/Sleep-Zyklus- und CLI-Tests byte-identisch, Recovery allein aus dem Seed, plus eine unabhängige KI-geführte Installation).
-- **Spezifiziert, auf dem Weg:** Föderation zwischen souveränen Installationen (v0.3) — im Whitepaper beschrieben, **noch nicht implementiert**: die Roadmap, offen benannt.
+- **Was als Nächstes kommt:** das **v0.3-Inkrement (Engram)** — ein nutzungsgetriebenes Konsolidierungs-Gesetz, bereits verfasst und in Bitcoin verankert, läuft heute im **Shadow Mode** (misst, steuert nicht) — und **Föderation** zwischen Installationen (geplant). Beide sind, samt ihren Beweisen, unten in [Der Nachweis](#der-nachweis--was-war-was-ist-was-kommt) ausgelegt.
 
 **Wir liefern ehrlich: Was läuft, läuft; was geplant ist, kennzeichnen wir als geplant.**
+
+---
+
+## Der Nachweis — was war, was ist, was kommt
+
+SMP wächst so, wie es erinnert: **jede Version ist ihr eigenes Dokument, eingefroren in dem Moment, in dem sie GPG-signiert und in Bitcoin verankert wird.** Die Kette der Anker ist die eigene, verifizierbare Entwicklungsgeschichte des Protokolls — du kannst jeden Schritt selbst prüfen, ohne Vertrauen.
+
+| Version | Was es ist | Signiert & verankert | Lesen · verifizieren |
+|---|---|---|---|
+| **v0.2** — *was heute läuft* | Das Fundament, das du jetzt installierst: die Recall-Engine, der REM-Schlaf, der souveräne Tresor, schlüssellose Integrität — die volle 27-Sektionen-Spezifikation. | GPG + **Bitcoin-Block 956116** (2026-06-30) | [Whitepaper v0.2](spec/whitepaper.de.md) · [PROVENANCE §1–2](PROVENANCE.md) |
+| **v0.3 — Engram** — *was kommt* | Ein nutzungsgetriebenes Konsolidierungs-Gesetz: Erinnerungs-Stärke, die Nutzung aufbaut und Nicht-Nutzung verblassen lässt, oberhalb der permanenten Aufzeichnung. Ein **Inkrement** zu v0.2, kein Ersatz. Läuft heute im **Shadow Mode** — misst, steuert noch nicht. | GPG + **Bitcoin** tx `9eebe7cc…` (2026-07-20) | [Whitepaper v0.3 — Engram](spec/engram.de.md) · [PROVENANCE §4](PROVENANCE.md) |
+| **Föderation** — *geplant* | Föderation zwischen souveränen Installationen — im Whitepaper beschrieben, **noch nicht implementiert**. | — | [Roadmap](spec/whitepaper.de.md#sektion-7--fahrplan) |
+
+**Was war**, bleibt bewiesen — v0.2 ist eingefroren und ihr Anker ist permanent. **Was du heute installierst**, ist v0.2. **Was kommt**, ist offen geschrieben und gestempelt, *bevor* es ausgeliefert wird: v0.3 trägt bereits ihre Signatur und ihren Block. Genau das ist der Sinn des Protokolls, auf sich selbst angewandt — eine Vergangenheit, die du verifizieren kannst, nicht eine, die du auf Treu und Glauben nehmen musst.
+
+Sieh die Gestalt dessen, was kommt, **[in den Diagrammen](docs/architecture.md#4--engram--usage-based-consolidation-v03--coming)**.
 
 ---
 
@@ -75,14 +91,21 @@ Anwender, kein Kunde. Der Setup-Prompt sagt das selbst.
 
 ## 📖 Whitepaper lesen
 
-Die volle Architektur, das Sicherheitsmodell und die Designprinzipien:
+**v0.2 — das Fundament.** Die volle Architektur, das Sicherheitsmodell und die Designprinzipien:
 
 | | |
 |---|---|
 | 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
 | 🇪🇸 [Español](spec/whitepaper.es.md) | 🇷🇺 [Русский](spec/whitepaper.ru.md) |
 
-Lieber erst Bilder? Die Architektur **[in drei Diagrammen](docs/architecture.md)** — Recall, Schlaf und die Hash-Ketten-Kaskade.
+**v0.3 — das Engram-Inkrement.** Nutzungsbasierte Konsolidierung, läuft im Shadow Mode; erweitert v0.2, ersetzt es nicht:
+
+| | |
+|---|---|
+| 🇬🇧 [English](spec/engram.md) | 🇩🇪 [Deutsch](spec/engram.de.md) |
+| 🇪🇸 [Español](spec/engram.es.md) | 🇷🇺 [Русский](spec/engram.ru.md) |
+
+Lieber erst Bilder? Die Architektur **[in vier Diagrammen](docs/architecture.md)** — Recall, Schlaf, Provenienz und was kommt (Engram).
 
 ---
 

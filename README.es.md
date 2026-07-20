@@ -52,9 +52,25 @@ SMP es la **versión 0.2** — una implementación de referencia funcional *más
 - **Disponible ya:** instalación por diálogo — el [prompt de instalación](docs/SETUP-PROMPT.es.md) normativo y el [apéndice FOR-AI](docs/FOR-AI.es.md) ([Sección 22](spec/whitepaper.es.md#sección-22--instalación-mediante-diálogo-con-una-inteligencia-artificial)).
 - **Demostrado:** procedencia criptográfica — el génesis de *este mismo repositorio* está firmado con GPG y anclado en el **bloque 956116 de Bitcoin**. Clónalo y verifícalo tú mismo (ver [PROVENANCE.md](PROVENANCE.md)).
 - **Nuevo en v0.2:** la **bóveda soberana** — la capa de idioma nativo (frase semilla → AES-256-GCM-SIV) que sella los datos que *tú* eliges proteger, descrita arriba. Publicada en [`engine/native_language.py`](engine/native_language.py) con el generador [`seed_gen`](engine/seed_gen.py), verificada de extremo a extremo (pruebas de módulo, de ciclo wake/sleep y de CLI byte a byte idénticas, recuperación solo desde la semilla, más una instalación independiente guiada por IA).
-- **Especificado, en camino:** la federación entre instalaciones soberanas (v0.3) — descrita en el whitepaper, **aún no implementada**: la hoja de ruta, nombrada abiertamente.
+- **Lo que viene:** el **incremento v0.3 (Engram)** — una ley de consolidación impulsada por el uso, ya redactada y anclada en Bitcoin, funcionando hoy en **modo sombra** (midiendo, no dirigiendo) — y la **federación** entre instalaciones (planeada). Ambos están expuestos, con sus pruebas, en [El registro](#el-registro--lo-que-fue-lo-que-es-lo-que-viene) más abajo.
 
 **Publicamos a la manera honesta: lo que funciona, funciona; lo planeado, lo etiquetamos como planeado.**
+
+---
+
+## El registro — lo que fue, lo que es, lo que viene
+
+SMP crece de la misma manera en que recuerda: **cada versión es su propio documento, congelado en el momento en que se firma con GPG y se ancla en Bitcoin.** La cadena de anclas es la propia historia de desarrollo del protocolo, verificable — puedes comprobar cada paso tú mismo, sin necesidad de confiar.
+
+| Versión | Qué es | Firmado y anclado | Leer · verificar |
+|---|---|---|---|
+| **v0.2** — *lo que funciona hoy* | El fundamento que instalas ahora: el motor de recuerdo, el sueño REM, la bóveda soberana, la integridad sin clave — la especificación completa de 27 secciones. | GPG + **bloque 956116 de Bitcoin** (2026-06-30) | [Whitepaper v0.2](spec/whitepaper.es.md) · [PROVENANCE §1–2](PROVENANCE.md) |
+| **v0.3 — Engram** — *lo que viene* | Una ley de consolidación impulsada por el uso: fuerza de memoria que el uso construye y el desuso deja desvanecerse, por encima del registro permanente. Un **incremento** a la v0.2, no un reemplazo. Funciona hoy en **modo sombra** — midiendo, todavía sin dirigir. | GPG + **Bitcoin** tx `9eebe7cc…` (2026-07-20) | [Whitepaper v0.3 — Engram](spec/engram.es.md) · [PROVENANCE §4](PROVENANCE.md) |
+| **Federación** — *planeada* | Federación entre instalaciones soberanas — descrita en el whitepaper, **aún no implementada**. | — | [hoja de ruta](spec/whitepaper.es.md#sección-7--hoja-de-ruta) |
+
+**Lo que fue** demostrado sigue demostrado — la v0.2 está congelada y su ancla es permanente. **Lo que instalas hoy** es la v0.2. **Lo que viene** está escrito a la vista y sellado *antes* de publicarse: la v0.3 ya lleva su firma y su bloque. Ese es todo el sentido del protocolo, vuelto sobre sí mismo — un pasado que puedes verificar, no uno que debas aceptar por fe.
+
+Mira la forma de lo que viene **[en los diagramas](docs/architecture.md#4--engram--usage-based-consolidation-v03--coming)**.
 
 ---
 
@@ -71,14 +87,21 @@ Nota honesta: la v0.2 es un borrador — instalar hoy te convierte en adoptante 
 
 ## 📖 Lee el whitepaper completo
 
-La arquitectura completa, el modelo de seguridad y los principios de diseño:
+**v0.2 — el fundamento.** La arquitectura completa, el modelo de seguridad y los principios de diseño:
 
 | | |
 |---|---|
 | 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
 | 🇪🇸 [Español](spec/whitepaper.es.md) | 🇷🇺 [Русский](spec/whitepaper.ru.md) |
 
-¿Prefieres ver imágenes primero? La arquitectura **[en tres diagramas](docs/architecture.md)** — recuperación, sueño y la cascada de cadenas hash.
+**v0.3 — el incremento Engram.** Consolidación basada en el uso, funcionando en modo sombra; extiende la v0.2, no la reemplaza:
+
+| | |
+|---|---|
+| 🇬🇧 [English](spec/engram.md) | 🇩🇪 [Deutsch](spec/engram.de.md) |
+| 🇪🇸 [Español](spec/engram.es.md) | 🇷🇺 [Русский](spec/engram.ru.md) |
+
+¿Prefieres ver imágenes primero? La arquitectura **[en cuatro diagramas](docs/architecture.md)** — recuperación, sueño, procedencia y lo que viene (Engram).
 
 ---
 
