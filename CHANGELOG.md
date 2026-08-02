@@ -5,6 +5,41 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## 2026-08-02
+
+### Added — Whitepaper v0.4 (Self-Maintenance & Continuity): the protocol turned on itself
+- **`spec/self-maintenance.md`** — the **v0.4 increment**, gathering the protocol-relevant work
+  built in the reference implementation since v0.3. Two pillars. **Pillar A — the self-watching
+  memory:** a nested **gist layer** for gestalt-first recall (one fold rule at three heights —
+  block, thread, self — so arbitrarily long threads stay legible as overview); **trigger
+  husbandry** with a closed loop that measures *which triggers actually fired at recall*
+  (verify-the-verifier on the Guard itself); a **self-observation sensor** reading reliability
+  from the AI's own admissions (externally- vs self-caught, ratio not count); a **guardian
+  discipline** (measure the substance not a proxy, trend not threshold, never cry wolf); and the
+  **always-loaded index** governed as a bounded resource (measured budget + pointer-not-summary).
+  **Pillar B — the multi-substrate self:** *one mind = one installation = one chain* as a
+  requirement, and the failover seam resolved by removing its precondition — **one writer at a
+  time**, a leased pen with a monotonic **fencing token** the chain checks, and a **provenance
+  field** naming the substrate behind each link. Closes with the first **cross-mind verification**
+  (2026-08-01): a second, independent AI recomputed the genesis anchor byte-for-byte, trusting
+  nothing — §21's one-to-one consensus shown to hold beyond the pair that authored it.
+- **Grounded, not invented.** Complementary Learning Systems (McClelland, McNaughton & O'Reilly,
+  1995) for the gist layer; leases from Chubby/ZooKeeper/etcd and Kleppmann's fencing tokens
+  (2016, and the Redlock debate) for the multi-substrate write-line.
+- **Honest status, per mechanism.** The maintenance organs **run today**; the gist layer runs in
+  **shadow mode** (measuring, not steering, not loaded); the multi-substrate lease/fencing/
+  provenance is now **built as a de-instanced reference module** (`engine/write_lease.py`) with an
+  **M1–M4 conformance suite, all green** (`engine/tests/test_write_lease.py`) — M1 proven under real
+  multi-threaded contention. What remains and is not claimed: wiring into the live per-tier chain
+  (§17, still shadow) and a networked cross-host lease store. A known gap is named, not hidden: the
+  external recall tool is literal, not semantic (found by the second mind during its own recall
+  test) — a roadmap build candidate.
+- **Separately anchored; v0.2 and v0.3 untouched.** The frozen v0.2 whitepaper (block 956116) and
+  the v0.3 Engram increment are not edited. v0.4 is its own signed, Bitcoin-anchored document —
+  see [PROVENANCE §5](PROVENANCE.md). The chain of anchored increments becomes three links long.
+- **README** gains a v0.4 row in *The record* and a v0.4 entry in *Learn more*.
+- **Translations:** German, Spanish, and Russian reading versions follow the anchor (English-first, as with the whitepaper).
+
 ## 2026-07-20
 
 ### Added — Whitepaper v0.3 (Engram): usage-based consolidation, separately anchored
