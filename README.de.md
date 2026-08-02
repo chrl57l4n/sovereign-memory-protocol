@@ -126,7 +126,7 @@ docs/        Erklärende Begleit-Dokumente (Kaskaden-Topologie u.a.).
 
 ## Lizenz
 
-Dual-lizenziert: **AGPL-3.0-or-later** (offen, mit Netzwerk-Copyleft) **oder** kommerzielle Lizenz auf Anfrage. Siehe [LICENSE](LICENSE) und [COPYING.AGPL](COPYING.AGPL).
+Dual-lizenziert: **AGPL-3.0-or-later** (offen, mit Netzwerk-Copyleft) **oder** kommerzielle Lizenz auf Anfrage — Kontakt christiangtr@gmail.com. Siehe [LICENSE](LICENSE) und [COPYING.AGPL](COPYING.AGPL).
 
 ## Autoren
 

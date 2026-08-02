@@ -122,7 +122,7 @@ docs/        Documentos explicativos complementarios (topología de la cascada, 
 
 ## Licencia
 
-Doble licencia: **AGPL-3.0-or-later** (abierta, con copyleft de red) **o** una licencia comercial bajo petición. Ver [LICENSE](LICENSE) y [COPYING.AGPL](COPYING.AGPL).
+Doble licencia: **AGPL-3.0-or-later** (abierta, con copyleft de red) **o** una licencia comercial bajo petición — contacto christiangtr@gmail.com. Ver [LICENSE](LICENSE) y [COPYING.AGPL](COPYING.AGPL).
 
 ## Autores
 

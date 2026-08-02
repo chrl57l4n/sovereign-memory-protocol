@@ -136,7 +136,7 @@ docs/        Explanatory companion documents (cascade topology, etc.).
 
 ## License
 
-Dual-licensed: **AGPL-3.0-or-later** (open, with network copyleft) **or** a commercial license on request. See [LICENSE](LICENSE) and [COPYING.AGPL](COPYING.AGPL).
+Dual-licensed: **AGPL-3.0-or-later** (open, with network copyleft) **or** a commercial license on request — contact christiangtr@gmail.com. See [LICENSE](LICENSE) and [COPYING.AGPL](COPYING.AGPL).
 
 ## Authors
 
