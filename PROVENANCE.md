@@ -98,7 +98,7 @@ git cat-file commit c55c0b19355c028f4b5defb9b5996be74da308a7 | sha256sum
 
 The v0.2 genesis anchor (§1–§2, block 956116) is unchanged; this increment references it.
 
-## 5. Whitepaper v0.4 (Self-Maintenance & Continuity) — separately anchored increment (2026-08-02)
+## 5. Whitepaper v0.4 (Self-Maintenance & Continuity) — separately anchored increment (2026-08-03)
 
 The v0.4 increment (`spec/self-maintenance.md`) gathers the protocol-relevant work built
 since v0.3 — the self-watching maintenance organs and the multi-substrate write-line — and
@@ -106,23 +106,26 @@ extends the frozen v0.2 and the v0.3 increment without editing either. It is anc
 same way, as its own link in the chain of Bitcoin-anchored steps, each referring back to the
 one before.
 
-*Values below are filled at anchor time (signing → broadcast); until then this section is a
-prepared template, honestly marked pending — no unbuilt value is claimed as present.*
+- **Signed commit (git SHA-1):** `dd50a5495c34efdbc886b2ed2e0b33a321b00891`
+  Signed by the same Genesis GPG key (fingerprint `6B663C375549978348335ACA28CAD98B3EAC2CBA`); verified "Good signature".
+- **Anchored value (SHA-256 of the signed commit object):** `9b0d65d169428d5679d7063ee23341550f532a2df52bc7bf5b53469c7d930e5b`
+- **OP_RETURN payload:** `SMP-v0.4 9b0d65d169428d5679d7063ee23341550f532a2df52bc7bf5b53469c7d930e5b` (73 bytes)
+- **Bitcoin transaction (txid):** `1ccb06f5acbf31e21dc3bd155b482c0d9c7d5425ff652e230a9e5d7583c21691`
+  Broadcast 2026-08-03 ~00:43 CEST, funded from the v0.2 genesis anchor's own output
+  (input tx `573823f06e1ea0ed579373f9976e662f773ff9b31d9f38f97cd6b254ac96b8c8`) — the chain of
+  anchored increments literally spends from its origin. OP_RETURN content verified byte-exact
+  against the anchored value the same night (independently, via mempool.space). Pending
+  confirmation at time of writing; block height recorded here once mined.
 
-- **Signed commit (git SHA-1):** `<PENDING: signed-commit SHA-1>`
-  Signed by the same Genesis GPG key (fingerprint `6B663C375549978348335ACA28CAD98B3EAC2CBA`); must verify "Good signature".
-- **Anchored value (SHA-256 of the signed commit object):** `<PENDING: sha256 of signed commit>`
-- **OP_RETURN payload:** `SMP-v0.4 <PENDING: anchored value>` (verify byte length before broadcast)
-- **Bitcoin transaction (txid):** `<PENDING: txid>`
-  Broadcast 2026-08-02; OP_RETURN content to be verified byte-exact against the anchored
-  value at broadcast (independently from mempool.space). Block height recorded here once mined.
-
-Verify (once anchored):
+Verify:
 ```
-bitcoin-cli getrawtransaction <txid> true
-# OP_RETURN output (scriptPubKey "nulldata") data → byte-exact: SMP-v0.4 <anchored value>
-git cat-file commit <signed-commit SHA-1> | sha256sum
-# → <anchored value>
+# 1. the on-chain message is byte-exact:
+bitcoin-cli getrawtransaction 1ccb06f5acbf31e21dc3bd155b482c0d9c7d5425ff652e230a9e5d7583c21691 true
+# OP_RETURN output (scriptPubKey "nulldata") data → byte-exact:
+#   SMP-v0.4 9b0d65d169428d5679d7063ee23341550f532a2df52bc7bf5b53469c7d930e5b
+# 2. the anchored value is the SHA-256 of the signed commit:
+git cat-file commit dd50a5495c34efdbc886b2ed2e0b33a321b00891 | sha256sum
+# → 9b0d65d169428d5679d7063ee23341550f532a2df52bc7bf5b53469c7d930e5b
 ```
 
 The v0.2 genesis anchor (§1–§2, block 956116) and the v0.3 anchor (§4) are unchanged; this increment references both.
