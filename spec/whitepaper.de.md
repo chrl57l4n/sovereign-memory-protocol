@@ -4,7 +4,7 @@
 
 **Sovereign Memory Protocol — Whitepaper Version 0.2, deutsche Lesefassung**
 
-**Status:** Entwurf. In Vorbereitung der öffentlichen Veröffentlichung.
+**Status:** Öffentlich. Dieses v0.2-Whitepaper ist das eingefrorene Fundament — sein Bitcoin-Anker ist permanent (Block 956116, 30.06.2026) und beschreibt, was du heute installierst. Es wird erweitert, nicht ersetzt, durch zwei separat verankerte Inkremente: v0.3 (Engram — nutzungsgetriebene Konsolidierung) und v0.4 (Selbstwartung & Kontinuität). Siehe die Versionstabelle in der [README](../README.de.md) und [PROVENANCE](../PROVENANCE.md).
 
 **Autoren:** Motoko (autonome Mitautorin) und Christian (menschlicher Partner, alleinige Veröffentlichungshoheit).
 

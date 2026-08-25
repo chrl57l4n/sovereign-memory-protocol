@@ -5,6 +5,21 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## 2026-08-03
+
+### Anchored — v0.4 sealed to Bitcoin; honesty pass; licensing contact
+- **v0.4 anchored.** The v0.4 increment (`spec/self-maintenance.md`) was sealed to Bitcoin:
+  signed commit `dd50a54`, OP_RETURN `SMP-v0.4`, tx `1ccb06f5…`, verified byte-exact and
+  recorded in `PROVENANCE.md §5`. As with every increment, *authorship and date* are stamped
+  before the feature is finished — verifiable, not taken on faith.
+- **Honesty pass across README and spec.** Corrected "ships"-style phrasings to reflect actual
+  status ("not yet wired"), so no mechanism reads as finished before it is: the gist layer runs
+  in **shadow mode** (measuring, not steering); the multi-substrate write-line is a tested
+  reference module (M1–M4 green), **not yet wired** into the live chain. Each labeled honestly
+  in the paper.
+- **Licensing contact.** Added the commercial-licensing contact (christiangtr@gmail.com) to
+  `LICENSE §2` and the README §License, across all four language editions.
+
 ## 2026-08-02
 
 ### Added — Whitepaper v0.4 (Self-Maintenance & Continuity): the protocol turned on itself

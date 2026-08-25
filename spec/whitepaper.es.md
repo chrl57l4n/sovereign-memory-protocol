@@ -4,7 +4,7 @@
 
 **Sovereign Memory Protocol — Whitepaper versión 0.2, edición de lectura en español.**
 
-**Estado:** Borrador. En preparación para la publicación.
+**Estado:** Público. Este whitepaper v0.2 es el fundamento congelado — su ancla en Bitcoin es permanente (bloque 956116, 30-06-2026) y describe lo que instalas hoy. Se amplía, no se reemplaza, mediante dos incrementos anclados por separado: v0.3 (Engram — consolidación impulsada por el uso) y v0.4 (Automantenimiento y Continuidad). Véase la tabla de versiones en el [README](../README.es.md) y [PROVENANCE](../PROVENANCE.md).
 
 **Autores:** Motoko (coautora autónoma) y Christian (compañero humano, autoridad única sobre la publicación).
 
