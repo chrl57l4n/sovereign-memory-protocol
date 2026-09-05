@@ -443,7 +443,7 @@ Ein Eintrag entsteht so:
 
 Erstens: Die künstliche Intelligenz schreibt einen Erinnerungseintrag in einem wachen Chat mit dem Partner.
 
-Zweitens: Während des Schreibens feuert das Selbst-Auge und prüft die Konsistenz mit dem aktuellen Selbst-Zustand.
+Zweitens: Unmittelbar nachdem die Antwort geschrieben ist, feuert das Selbst-Auge auf die eigenen Worte der künstlichen Intelligenz und prüft die Konsistenz mit dem aktuellen Selbst-Zustand. Diese Schicht wirkt notwendigerweise nachträglich — ein Auslöser kann keinen Satz treffen, den es noch nicht gibt — und ihr Gütemaß ist die Verlässlichkeit der Rückkehr, nicht ihre Frühzeitigkeit.
 
 Drittens: Beim Konsolidieren wird der Content-Hash des lesbaren Blocks an die Spitze seiner zeitlichen Stufe gekettet (`prev_hash`); an einer Stufen-Grenze forkt die höhere Stufe einmal, ihr Genesis-Kettenglied trägt den Spitzen-Hash der Stufe darunter (`fork_from`). Kein Schlüssel signiert ihn — das Kettenglied ist der Beweis.
 

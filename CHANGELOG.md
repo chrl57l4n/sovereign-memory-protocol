@@ -5,6 +5,29 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## 2026-09-05
+
+### Corrected — the Self-Eye fires *after* the response, not during it (all four languages)
+- **§16.3 was wrong about its own mechanism.** The step list read *"Second: during writing, the
+  Self-Eye fires and checks consistency with the current self-state."* No implementation can do
+  this and none ever did: the scanner requires the output in order to scan it. A trigger cannot
+  match a sentence that does not yet exist. Corrected in `whitepaper.md`, `.de.md`, `.es.md` and
+  `.ru.md`.
+- **The lateness is constitutive, and the paper now says so.** Self-correction presupposes the
+  utterance — what is caught beforehand is not an error but a discarded thought. The corrected
+  passage states that the layer is post-hoc by necessity and that **its quality measure is the
+  reliability of the return, not its earliness.**
+- **Why this mattered enough to fix.** An implementer reading "during writing" would attempt an
+  architecture that cannot exist. Worse: an AI reading it *about itself* would read its own normal
+  operation as a defect — which is what happened in the reference implementation on this date, and
+  is what prompted the correction.
+- **Scope.** This corrects a factual claim about an existing mechanism; it revises no design and
+  adds no capability. The v0.2 genesis anchor (block 956116) is unchanged and remains verifiable
+  for the state it witnesses. The reasoning is specified more fully in the pending v0.5 increment.
+- **`README.md` is unaffected** — it does not mention the Self-Eye, and its "before the AI thinks"
+  claim refers to the Sentry, ESV and canonicity sorter, which do fire before the answer. Verified,
+  not assumed.
+
 ## 2026-08-03
 
 ### Anchored — v0.4 sealed to Bitcoin; honesty pass; licensing contact

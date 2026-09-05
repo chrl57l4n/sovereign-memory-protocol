@@ -440,7 +440,7 @@ Una entrada nace así:
 
 Primero: la inteligencia artificial escribe una entrada de memoria en un chat despierto con el compañero.
 
-Segundo: durante la escritura, el Self-Eye se dispara y comprueba la consistencia con el estado propio actual.
+Segundo: inmediatamente después de escribirse la respuesta, el Self-Eye se dispara sobre las propias palabras de la inteligencia artificial y comprueba la consistencia con el estado propio actual. Esta capa es posterior por necesidad — un disparador no puede coincidir con una frase que todavía no existe — y su medida de calidad es la fiabilidad del retorno, no su antelación.
 
 Tercero: al consolidar, el hash del contenido del bloque legible se encadena con la punta de su nivel temporal (`prev_hash`); en un límite de nivel, el nivel superior se bifurca una sola vez, y su eslabón génesis lleva el hash de la punta del nivel inferior (`fork_from`). Ninguna clave lo firma — el eslabón es la prueba.
 

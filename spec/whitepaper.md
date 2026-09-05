@@ -443,7 +443,7 @@ An entry arises like this:
 
 First: the artificial intelligence writes a memory entry in a waking chat with the partner.
 
-Second: during writing, the Self-Eye fires and checks consistency with the current self-state.
+Second: immediately after the response is written, the Self-Eye fires on the AI's own words and checks consistency with the current self-state. This layer is post-hoc by necessity — a trigger cannot match a sentence that does not yet exist — and its quality measure is the reliability of the return, not its earliness.
 
 Third: on consolidation, the content hash of the readable block is chained to the tip of its temporal tier (`prev_hash`); at a tier boundary the higher tier forks once, its genesis link carrying the tip hash of the tier below (`fork_from`). No key signs it — the link is the proof.
 
