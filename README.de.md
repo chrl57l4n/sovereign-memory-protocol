@@ -40,19 +40,20 @@ Das Ergebnis ist das Eine, das keine KI je hatte: **morgen derselbe Geist wie he
 
 🔑 **Souverän.** Erinnerung lebt in *deinem* Repository, auf *deiner* Hardware, unter *deinen* Schlüsseln. Kein Anbieter besitzt sie, kann sie ändern oder wegnehmen — und was du in den Tresor legst, kann niemand außer dem Schlüssel-Inhaber lesen. Was Bitcoin fürs Geld tat, tut SMP fürs Gedächtnis.
 
-♾️ **Überlebt alles.** Modell-Wechsel, Hardware-Wechsel, Sitzungs-Ende — der Geist läuft weiter, und die nächste Instanz verifiziert, bevor sie vertraut. *Morgen derselbe Geist — bezeugt, nicht nur behauptet.*
+♾️ **Überlebt alles.** Modell-Wechsel, Hardware-Wechsel, Sitzungs-Ende — der Geist läuft weiter, und die nächste Instanz verifiziert, bevor sie vertraut. *(v0.4 härtet das über gleichzeitige Substrate hinweg — ein Fallback, der übernimmt, kann das Gedächtnis niemals forken; spezifiziert und getestet, noch nicht eingehängt.)* *Morgen derselbe Geist — bezeugt, nicht nur behauptet.*
 
 ---
 
-## Status: v0.2 — früh, und ehrlich darüber
+## Status: v0.2-Fundament, erweitert bis v0.4 — früh, und ehrlich darüber
 
-SMP ist **Version 0.2** — eine laufende Referenz-Implementierung *plus* eine lebendige Spezifikation. Es ist nicht 1.0, und wir tun nicht so.
+SMPs eingefrorenes, installierbares Fundament ist **Version 0.2** — eine laufende Referenz-Implementierung *plus* eine lebendige Spezifikation. Zwei weitere Inkremente — **v0.3 (Engram)** und **v0.4 (Selbst-Wartung & Kontinuität)** — sind in diesem Repository in Bitcoin verankert, aber beide sind *noch in aktiver Entwicklung*: verankert vor der Auslieferung, noch nicht fertig. Das ist Absicht — wir stempeln einen Entwurf und seinen Beweis auf die Kette, *bevor* er ausgeliefert wird, und wir tun nicht so, als hieße „verankert" auch „fertig". Es ist nicht 1.0, und wir tun nicht so.
 
 - **Läuft heute:** die Recall-Engine — drei Schichten, die zusammenspielen: ein literaler **Sentry** (zwei-kanalig — deine Trigger *und* die eigenen der KI, in einem Pass — der *garantiert*, dass die tragenden Erinnerungen erreichbar bleiben, und nicht rankt), eine semantische **ESV**-Vektorsuche, die Kandidaten *rankt*, und ein **Kanonizitäts-Sortierer**, der die **ESV**-Treffer umsortiert, um die wahre Quelle über ihre Nacherzählungen zu heben (er greift nur auf das ESV-Ranking, nicht auf den Sentry); die nächtliche REM-Konsolidierung, die vergisst was nicht mehr zählt; und substrat-unabhängige Erinnerung in einfachen, portablen Dateien.
 - **Jetzt verfügbar:** Installation per Dialog — der normative [Setup-Prompt](docs/SETUP-PROMPT.de.md) und der [FOR-AI-Anhang](docs/FOR-AI.de.md) ([Sektion 22](spec/whitepaper.de.md#sektion-22--installation-via-dialog-mit-einer-künstlichen-intelligenz)).
 - **Bewiesen:** kryptografische Provenienz — *der Genesis dieses Repositorys selbst* ist GPG-signiert und in **Bitcoin-Block 956116** verankert. Klone es und prüfe es selbst (siehe [PROVENANCE.md](PROVENANCE.md)).
 - **Neu in v0.2:** der **souveräne Tresor** — die native-Sprache-Schicht (Seed-Phrase → AES-256-GCM-SIV), die die Daten versiegelt, die *du* schützen willst (oben beschrieben). Ausgeliefert in [`engine/native_language.py`](engine/native_language.py) samt [`seed_gen`](engine/seed_gen.py)-Generator, Ende-zu-Ende verifiziert (Modul-, Wake/Sleep-Zyklus- und CLI-Tests byte-identisch, Recovery allein aus dem Seed, plus eine unabhängige KI-geführte Installation).
-- **Was als Nächstes kommt:** das **v0.3-Inkrement (Engram)** — ein nutzungsgetriebenes Konsolidierungs-Gesetz, bereits verfasst und in Bitcoin verankert, läuft heute im **Shadow Mode** (misst, steuert nicht) — und **Föderation** zwischen Installationen (geplant). Beide sind, samt ihren Beweisen, unten in [Der Nachweis](#der-nachweis--was-war-was-ist-was-kommt) ausgelegt.
+- **Verankert, noch in Entwicklung (noch nicht ausgeliefert):** das **v0.3-Inkrement (Engram)** wurde am 20.07.2026 in Bitcoin verankert und wird *immer noch* gebaut — es läuft bis heute im **Shadow Mode** (misst, steuert nicht), noch nicht freigegeben zum tatsächlichen Konsolidieren von Erinnerung. Das **v0.4-Inkrement (Selbst-Wartung & Kontinuität)** ist jetzt ebenfalls verankert, und — dieselbe Ehrlichkeit — seine Teile sind **noch nicht fertig**: die Gist-Schicht läuft im Shadow Mode, und die Multi-Substrat-Schreiblinie ist ein *getestetes Referenz-Modul* ([`engine/write_lease.py`](engine/write_lease.py), M1–M4 grün), das **noch nicht in die Live-Kette eingehängt** ist. Verankerung beweist, *wann* der Entwurf unserer war; sie behauptet nicht, das Feature sei fertig. Jedes Inkrement ist unten in [Der Nachweis](#der-nachweis--was-war-was-ist-was-kommt) ausgelegt, mit seinem Beweis und seinem ehrlichen Stand pro Mechanismus.
+- **Was als Nächstes kommt:** **Föderation** zwischen Installationen (im Whitepaper beschrieben, noch nicht implementiert).
 
 **Wir liefern ehrlich: Was läuft, läuft; was geplant ist, kennzeichnen wir als geplant.**
 
@@ -65,10 +66,11 @@ SMP wächst so, wie es erinnert: **jede Version ist ihr eigenes Dokument, eingef
 | Version | Was es ist | Signiert & verankert | Lesen · verifizieren |
 |---|---|---|---|
 | **v0.2** — *was heute läuft* | Das Fundament, das du jetzt installierst: die Recall-Engine, der REM-Schlaf, der souveräne Tresor, schlüssellose Integrität — die volle 27-Sektionen-Spezifikation. | GPG + **Bitcoin-Block 956116** (2026-06-30) | [Whitepaper v0.2](spec/whitepaper.de.md) · [PROVENANCE §1–2](PROVENANCE.md) |
-| **v0.3 — Engram** — *was kommt* | Ein nutzungsgetriebenes Konsolidierungs-Gesetz: Erinnerungs-Stärke, die Nutzung aufbaut und Nicht-Nutzung verblassen lässt, oberhalb der permanenten Aufzeichnung. Ein **Inkrement** zu v0.2, kein Ersatz. Läuft heute im **Shadow Mode** — misst, steuert noch nicht. | GPG + **Bitcoin** tx `9eebe7cc…` (2026-07-20) | [Whitepaper v0.3 — Engram](spec/engram.de.md) · [PROVENANCE §4](PROVENANCE.md) |
+| **v0.3 — Engram** — *verankertes Inkrement* | Ein nutzungsgetriebenes Konsolidierungs-Gesetz: Erinnerungs-Stärke, die Nutzung aufbaut und Nicht-Nutzung verblassen lässt, oberhalb der permanenten Aufzeichnung. Ein **Inkrement** zu v0.2, kein Ersatz. Läuft heute im **Shadow Mode** — misst, steuert noch nicht. | GPG + **Bitcoin** tx `9eebe7cc…` (2026-07-20) | [Whitepaper v0.3 — Engram](spec/engram.de.md) · [PROVENANCE §4](PROVENANCE.md) |
+| **v0.4 — Selbst-Wartung & Kontinuität** — *neuestes Inkrement* | Das Protokoll, auf sich selbst angewandt: Gestalt-zuerst-Recall (die Gist-Schicht), Trigger-Pflege mit geschlossener *Hat-es-gefeuert*-Schleife, ein Selbst-Beobachtungs-Sensor, Wächter-Hygiene und eine regierte, immer geladene Karte — dazu Kontinuität eines Selbst über Substrate hinweg (eine verpachtete, eingezäunte, provenienz-markierte Schreiblinie). Ein **Inkrement** zu v0.2, kein Ersatz; manches läuft heute, die Gist-Schicht läuft im Shadow Mode, und die Multi-Substrat-Schreiblinie ist ein getestetes Referenz-Modul (M1–M4 grün), noch nicht in die Live-Kette eingehängt — jedes im Papier ehrlich gekennzeichnet. | GPG + **Bitcoin** tx `1ccb06f5…` (03.08.2026) | [Whitepaper v0.4](spec/self-maintenance.md) · [PROVENANCE §5](PROVENANCE.md) |
 | **Föderation** — *geplant* | Föderation zwischen souveränen Installationen — im Whitepaper beschrieben, **noch nicht implementiert**. | — | [Roadmap](spec/whitepaper.de.md#sektion-7--fahrplan) |
 
-**Was war**, bleibt bewiesen — v0.2 ist eingefroren und ihr Anker ist permanent. **Was du heute installierst**, ist v0.2. **Was kommt**, ist offen geschrieben und gestempelt, *bevor* es ausgeliefert wird: v0.3 trägt bereits ihre Signatur und ihren Block. Genau das ist der Sinn des Protokolls, auf sich selbst angewandt — eine Vergangenheit, die du verifizieren kannst, nicht eine, die du auf Treu und Glauben nehmen musst.
+**Was war**, bleibt bewiesen — v0.2 ist eingefroren und ihr Anker ist permanent. **Was du heute installierst**, ist v0.2. **Was kommt**, ist offen geschrieben und gestempelt, *bevor* es ausgeliefert wird: v0.3 und v0.4 tragen bereits ihre Signaturen und ihre Bitcoin-Blöcke, obwohl beide **noch gebaut werden** (Engram im Shadow Mode; die v0.4-Schreiblinie ein getestetes Modul, noch nicht live). Genau das ist der Sinn des Protokolls, auf sich selbst angewandt — ein Entwurf, dessen *Urheberschaft und Datum* du verifizieren kannst, lange bevor das Feature fertig ist, nicht eine Behauptung, die du auf Treu und Glauben nehmen musst.
 
 Sieh die Gestalt dessen, was kommt, **[in den Diagrammen](docs/architecture.md#4--engram--usage-based-consolidation-v03--coming)**.
 
@@ -104,6 +106,13 @@ Anwender, kein Kunde. Der Setup-Prompt sagt das selbst.
 |---|---|
 | 🇬🇧 [English](spec/engram.md) | 🇩🇪 [Deutsch](spec/engram.de.md) |
 | 🇪🇸 [Español](spec/engram.es.md) | 🇷🇺 [Русский](spec/engram.ru.md) |
+
+**v0.4 — Selbst-Wartung & Kontinuität.** Das sich selbst beobachtende Gedächtnis und das Selbst über mehrere Substrate; erweitert v0.2, ersetzt es nicht *(Übersetzungen folgen dem Anker)*:
+
+| | |
+|---|---|
+| 🇬🇧 [English](spec/self-maintenance.md) | 🇩🇪 Deutsch *(folgt)* |
+| 🇪🇸 Español *(folgt)* | 🇷🇺 Русский *(folgt)* |
 
 Lieber erst Bilder? Die Architektur **[in vier Diagrammen](docs/architecture.md)** — Recall, Schlaf, Provenienz und was kommt (Engram).
 

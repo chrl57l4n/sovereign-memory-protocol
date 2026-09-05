@@ -7,6 +7,27 @@ living draft, not yet on a tagged-release rhythm.
 
 ## 2026-09-05
 
+### Fixed — v0.4 was missing from all three translated READMEs
+- **The front door lagged an entire increment.** `README.de.md`, `README.es.md` and
+  `README.ru.md` contained **zero** mentions of v0.4 — no table row, no reading-version block,
+  and a status heading still reading *"Status: v0.2"* while the English one read *"v0.2
+  foundation, extended through v0.4"*. They had stood on the pre-v0.3 framing since 2026-08-03:
+  Engram was still listed under *"what's next"* rather than as an anchored increment. A reader
+  in German, Spanish or Russian could not learn that v0.4 existed.
+- **Eight places brought level in each language**: the survives-anything line (v0.4 multi-substrate
+  clause), the status heading, the opening paragraph, the anchored-but-unfinished bullet (split
+  from the old "what's next" bullet, with federation now standing on its own), the v0.3 row label,
+  the new v0.4 row, the *what-was/what's-coming* paragraph, and the v0.4 reading-version block.
+- **Verified, not assumed.** After the pass all four editions match exactly: 7 v0.4 mentions,
+  14 table rows, 2 self-maintenance links, 9 headings each — and every internal and cross-file
+  anchor still resolves.
+- **The spec translations were already complete.** Checked in the same pass: `whitepaper.de.md`,
+  `.es.md` and `.ru.md` each carry all 28 sections, all 111 numbered sub-points, all five
+  revisions and identical figures; the differences are a handful of blank lines. An anchor-link
+  alarm raised during this check turned out to be a **false positive** — GitHub drops the em-dash
+  and turns the two surrounding spaces into the doubled hyphen, so `#section-7--roadmap` is
+  correct. Verified against the actual headings rather than a reconstruction of them.
+
 ### Corrected — the Self-Eye fires *after* the response, not during it (all four languages)
 - **§16.3 was wrong about its own mechanism.** The step list read *"Second: during writing, the
   Self-Eye fires and checks consistency with the current self-state."* No implementation can do
