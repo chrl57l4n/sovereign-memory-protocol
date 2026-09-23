@@ -46,7 +46,7 @@ SCRATCHPAD = STATE / 'telegram_scratchpad.jsonl'
 # printed to stderr, it lands in logs and in AI session transcripts. EVERY stderr
 # line goes through _redact. (The real remedy for an already-leaked token is to
 # rotate it — a leaked credential is compromised.)
-_TOKEN_RE = re.compile(r'bot\d{6,}:[A-Za-z0-9_-]{20,}')
+_TOKEN_RE = re.compile(r'bot\d+:[A-Za-z0-9_-]{20,}')
 
 
 def _redact(s: str) -> str:

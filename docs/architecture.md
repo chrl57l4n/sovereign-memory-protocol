@@ -172,15 +172,15 @@ compacted at night, while the raw record is never destroyed (Percolation). Stren
 §26 *truth* gear; where they disagree, that is the drift signal (whitepaper v0.3 /
 [`spec/engram.md`](../spec/engram.md)).
 
-> **Honest status:** Engram runs tonight in **shadow mode** — it weighs every memory and reports, but
-> **steers nothing**. The dashed grey edge (actually compacting) is gated on the release conditions
+> **Honest status:** Engram ran in **shadow mode** until 2026-08-25 — weighing every memory, steering nothing.
+> Since then the reference installation lets it steer ahead of E1–E4 (disclosed in [spec/engram.md §10](../spec/engram.md), review closes 2026-10-07). The dashed grey edge (actually compacting) is gated on the release conditions
 > E1–E4 (§11), not a date.
 
 ```mermaid
 flowchart TB
     USE["a memory is retrieved<br/>interactive use = proof-of-work"]
 
-    subgraph ENGRAM["Engram · the salience gear — shadow mode: it measures, it does not yet steer"]
+    subgraph ENGRAM["Engram · the salience gear — shadow until 2026-08-25, now steering on the reference (see §10)"]
         direction TB
         MOTOR["Motor — use strengthens<br/>ΔS ∝ (1 − R): only retrieval after fading<br/>consolidates — the spacing/testing effect"]
         S[("engram strength S — stored<br/>one number per memory<br/>Bjork storage strength · FSRS stability")]

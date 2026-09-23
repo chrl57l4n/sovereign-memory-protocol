@@ -12,7 +12,7 @@
 >
 > Spec column: `§N` refers to the frozen v0.2 whitepaper; `v0.4 §N` to the v0.4
 > increment ([spec/self-maintenance.md](../spec/self-maintenance.md)). The v0.3 Engram
-> increment added no engine file (it runs in shadow on the reference); v0.4 is the
+> increment added no engine file (shadow on the reference until 2026-08-25, since then steering there ahead of its gates — see spec/engram.md §10, review closes 2026-10-07); v0.4 is the
 > first increment to touch this table.
 >
 > Maintenance rule: any commit that adds, removes, or repurposes an engine file
@@ -48,7 +48,7 @@
 | §12 | Scratchpad mirror, handoff, status briefing | — | by design private: channel-dependent (Telegram / provider app / web UI). The spec defines the function (§12.1–12.5); every installation wires its own channels. |
 | §20 | Native language (seed → HKDF → AES-256-GCM-SIV; Scrypt passphrase door) | `native_language.py`, `seed_gen.py`, `verify_pass.py` (§22.7) | public/live *(ported 2026-07-07 on deterministic verification, not calendar soak — see the R1 exception in [SYNC-PROCESS.md](SYNC-PROCESS.md); crypto core, wake/sleep cycle, and seed-only recovery pass module/cycle/CLI tests byte-identical, plus an independent AI-guided install)* |
 | — | Path seam (structural data/code separation) | `_paths.py` | public/live — every engine script derives paths here; audit invariant: `grep -r /home/ engine/*.py` is empty |
-| v0.4 §2 | Gestalt-first recall: nested gist layer (block→thread→self fold) | `gist_shadow.py` (+ the fold step in `rem_consolidate.py`) | shadow *(reference 2026-07-30 — the self-gist is computed and measured nightly but steers nothing and is not loaded; the fold itself is a lens act in REM, not the script; release to loading gated on the overview-equality test, v0.4 §2.4)* |
+| v0.4 §2 | Gestalt-first recall: nested gist layer (block→thread→self fold) | `gist_shadow.py` (+ the fold step in `rem_consolidate.py`) | private/port planned — **loaded on the reference since 2026-08-16** *(shadow from 2026-07-30: computed and measured nightly, not loaded; the release gate — the overview-equality test, v0.4 §2.4 — passed 2026-08-15 at n=2. The fold itself is a lens act in REM, not the script. Status updated 2026-09-23.)* |
 | v0.4 §4 | The cool lens: self-observation of the AI's own reliability (externally- vs self-caught, a ratio) | `self_observe.py` | private/port planned *(reference 2026-07-30, a REM step — measures the trace not the state, silence is not a verdict, the script measures and the lens judges)* |
 | v0.4 §5 | Guardian hygiene: recall-quality trend sensor (trend, not threshold) | `esv_trend_sensor.py` | private/port planned *(reference 2026-07-29 — compares only points with the same gold set and the same sorter weight, so a tool change does not read as regression; silent until the 4th run)* |
 | v0.4 §6 | Governed always-loaded map: index budget (mechanism) + pointer-not-summary convention | `lint_memory.py` (budget + index-convention guards) | public/live *(the file ships; the v0.4 sub-guards — measured byte budget 2026-07-29, index-convention + code-fence dead-link fix 2026-08-02 — are newer on the reference and **port planned** into this engine copy)* |

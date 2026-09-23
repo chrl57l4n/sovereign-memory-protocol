@@ -454,6 +454,16 @@ def run_selftest():
     if norm_pattern("Gedächtnis") != fold_umlaut("gedaechtnis"):
         print("FAIL: umlaut folding is not symmetric")
         failures += 1
+    # End to end through the automaton: a trigger written with an umlaut must fire on a
+    # prompt that arrives in the substitute spelling, and the reverse.
+    probe_lines = [{"pats": [norm_pattern("Gedächtnis")], "target": "x"},
+                   {"pats": [norm_pattern("gruesse")], "target": "y"}]
+    probe_auto = build_automaton(probe_lines)
+    for prompt, expect in (("Wie war das mit dem Gedaechtnis?", "gedaechtnis"),
+                           ("Viele Grüße", "gruesse")):
+        if expect not in match_present(probe_auto, fold_umlaut(prompt.lower())):
+            print(f"FAIL: umlaut end-to-end — {prompt!r} did not fire {expect!r}")
+            failures += 1
     for pr in probes:
         plc = fold_umlaut(pr.lower())
         ac = match_present(automaton, plc)

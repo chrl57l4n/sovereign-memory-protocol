@@ -5,6 +5,44 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## Unreleased — v0.4.2 (honesty pass: public claims that had drifted from the reference installation)
+
+Found by a line-by-line comparison of the public text against the running reference installation
+(2026-09-23). Every item corrects or narrows a claim; none adds a new capability.
+
+### Corrected — the privacy promise overclaimed (`spec/whitepaper.md`, opening)
+- It said no one but you and your AI can read your memory, "not the model provider". Whenever the AI
+  thinks with a memory, that memory is sent as context to whoever runs the model. The paragraph now
+  names three boundaries: the model provider in the moment of thinking, whoever hosts the machine or
+  repository (plain text outside the vault), and the witness, which needs only the hash ledger.
+
+### Corrected — the Self-Eye does not run "token by token" (§16.2, §16.4)
+- The 2026-09-05 correction fixed the step list and missed these two paragraphs. The Self-Eye fires on
+  the AI's own output once it exists: at the close of the turn (it can send the AI back to correct
+  itself) and at the start of the next turn (as an echo).
+
+### Corrected — numbers that were true once (§14)
+- The ESV threshold is not a constant 0.45: the optimum drifts with the corpus (0.41 → 0.46 on the
+  reference installation, July → September 2026) and must be re-calibrated periodically.
+- A full re-index is no longer "about 100 minutes for 13,000 chunks": about 2.5 hours for roughly
+  57,500 chunks by September 2026.
+
+### Status updated — the gist layer is loaded (`spec/self-maintenance.md` §13, `engine/INVENTORY.md`)
+- No longer "shadow, not loaded": its release gate (overview-equality test, §2.4) passed on 2026-08-15
+  at n=2, and it has been loaded into every session since 2026-08-16.
+
+### Disclosed — Engram steers on the reference installation ahead of its own gates (`spec/engram.md`, `README.md`)
+- Since 2026-08-25 the cascade moves entries by retrievability (with an age floor) and dormant entries
+  are damped ×0.9 in recall ranking. The damping departs from the paper's hard invariant (§6: strength
+  never enters recall), and the full release conditions (§11) had not been met. Disclosed, not
+  smoothed. Review closes 2026-10-07 on a measurement: if damped entries still return when needed, §6 is
+  restated to allow bounded damping that never excludes; if the damping locks entries out, it is withdrawn.
+
+### Hardened — follow-ups from the independent review of v0.4.1
+- `engine/memory_sentry.py` self-test: an end-to-end umlaut check through the automaton (a trigger
+  written with an umlaut fires on the substitute spelling, and the reverse).
+- `engine/_tg.py`: the token pattern no longer assumes a bot id of at least six digits.
+
 ## Unreleased — v0.4.1 (security + correctness, no new claims)
 
 ### Security — Telegram token could leak into logs (`engine/_tg.py`)
