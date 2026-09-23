@@ -21,6 +21,7 @@ Rotation: telegram_scratchpad_rotate.py loescht Eintraege > 24h (Cron).
 """
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -40,6 +41,22 @@ TG_CHAT = os.getenv('TELEGRAM_CHAT_ID') or os.getenv('TELEGRAM_CHAT')
 SCRATCHPAD = STATE / 'telegram_scratchpad.jsonl'
 
 
+# ── Token redaction (security fix, reference installation 2026-09-17) ────────
+# requests exceptions echo the full URL including the token (`.../bot<TOKEN>/...`);
+# printed to stderr, it lands in logs and in AI session transcripts. EVERY stderr
+# line goes through _redact. (The real remedy for an already-leaked token is to
+# rotate it — a leaked credential is compromised.)
+_TOKEN_RE = re.compile(r'bot\d{6,}:[A-Za-z0-9_-]{20,}')
+
+
+def _redact(s: str) -> str:
+    if not s:
+        return s
+    if TG_TOKEN:
+        s = s.replace(TG_TOKEN, '<TG_TOKEN_REDACTED>')
+    return _TOKEN_RE.sub('bot<REDACTED>', s)
+
+
 def _append_scratchpad(text: str, source: str, ok: bool) -> None:
     """Jeden Send mit Timestamp + Source + Erfolg mitschreiben."""
     try:
@@ -54,7 +71,7 @@ def _append_scratchpad(text: str, source: str, ok: bool) -> None:
             f.write(json.dumps(entry, ensure_ascii=False) + '\n')
     except Exception as e:
         # Scratchpad-Fehler darf Send nie blockieren — aber nie stumm bleiben
-        print(f'[_tg] scratchpad write failed: {e} (source={source})',
+        print(_redact(f'[_tg] scratchpad write failed: {e} (source={source})'),
               file=sys.stderr)
     # Zusätzlich in den GETEILTEN Scratchpad (today_scratchpad.md) routen, damit
     # die App-Motoko Alarme/Fehler/Benachrichtigungen SIEHT und proaktiv anstoßen
@@ -86,8 +103,8 @@ def send(text: str, source: str = 'unknown', parse_mode: str = 'HTML') -> bool:
     Jeder Fehlschlag wird nach stderr geloggt (ehrlicher Sensor)."""
     ok = False
     if not TG_TOKEN or not TG_CHAT:
-        print(f'[_tg] send failed: TELEGRAM_BOT_TOKEN/CHAT_ID fehlt '
-              f'(source={source})', file=sys.stderr)
+        print(_redact(f'[_tg] send failed: TELEGRAM_BOT_TOKEN/CHAT_ID fehlt '
+                      f'(source={source})'), file=sys.stderr)
         _append_scratchpad(text, source, ok=False)
         return False
     try:
@@ -95,16 +112,16 @@ def send(text: str, source: str = 'unknown', parse_mode: str = 'HTML') -> bool:
         ok = (r.status_code == 200)
         if not ok and parse_mode and r.status_code == 400:
             # HTML-Parse-Fehler darf den Alarm nicht toeten → Klartext-Retry
-            print(f'[_tg] HTTP 400 mit parse_mode={parse_mode}, '
-                  f'retry als Klartext (source={source}): {r.text[:200]}',
+            print(_redact(f'[_tg] HTTP 400 mit parse_mode={parse_mode}, '
+                          f'retry als Klartext (source={source}): {r.text[:200]}'),
                   file=sys.stderr)
             r = _post(text, None)
             ok = (r.status_code == 200)
         if not ok:
-            print(f'[_tg] send failed: HTTP {r.status_code} {r.text[:200]} '
-                  f'(source={source})', file=sys.stderr)
+            print(_redact(f'[_tg] send failed: HTTP {r.status_code} {r.text[:200]} '
+                          f'(source={source})'), file=sys.stderr)
     except Exception as e:
-        print(f'[_tg] send failed: {e} (source={source})', file=sys.stderr)
+        print(_redact(f'[_tg] send failed: {e} (source={source})'), file=sys.stderr)
     _append_scratchpad(text, source, ok)
     return ok
 

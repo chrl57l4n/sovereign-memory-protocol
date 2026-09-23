@@ -5,6 +5,44 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## Unreleased — v0.4.1 (security + correctness, no new claims)
+
+### Security — Telegram token could leak into logs (`engine/_tg.py`)
+- **What was wrong.** When a send failed, the exception text was printed to stderr. `requests`
+  exceptions echo the full request URL, and the Telegram Bot API puts the token *in* the URL
+  (`/bot<TOKEN>/sendMessage`). Any install whose report channel ever failed may have the token in its
+  logs — and, where an AI session reads those logs, in the session transcript.
+- **Fix.** Every stderr line of the report channel now passes through `_redact()`, which removes the
+  configured token and anything shaped like a bot token. Found and fixed on the reference installation
+  on 2026-09-17; ported unchanged in substance.
+- **If you run the engine:** rotate your bot token. Redaction stops future leaks; it cannot un-leak a
+  token that is already in a log.
+
+### Fixed — the Guard missed triggers that differ only by umlaut spelling (`engine/memory_sentry.py`)
+- **What was wrong.** Patterns and prompts were lower-cased but not folded, so a trigger written
+  `Gedächtnis` never matched a prompt that arrived as `Gedaechtnis` (and the reverse). Speech-to-text and
+  keyboards without umlauts produce the second form all the time. On the reference installation this
+  left **11.4 % of all trigger phrases silently mute** until it was fixed there (2026-08-15).
+- **Fix.** `fold_umlaut()` (ä→ae, ö→oe, ü→ue, ß→ss) on **all three** sides — pattern, prompt, and the
+  excerpt search inside the target file. The persisted automaton now carries a format number, so an
+  automaton built before this update is rebuilt instead of being served as fresh.
+- **Trade-off, stated honestly.** Folding merges spellings: ß→ss lets a prompt `Maße` wake a trigger
+  `masse`. We accept it — a trigger that wakes once too often costs little; a trigger that stays silent
+  costs recall. No such false wake-up has been *reported* on the reference installation, where the
+  pattern/prompt folding has run unchanged for 39 days; that is an observation, not a proof.
+- **A regression we caught before shipping — and that the reference installation carried.** Folding only
+  pattern and prompt made the excerpt search compare a folded pattern against unfolded file lines: a hit
+  with no excerpt. It had been live on the reference installation since 2026-08-15 unnoticed; an
+  independent review of this release found it (2026-09-23). Fixed in both places.
+- **Verified, not assumed.** Self-test equivalence 11/11 (automaton == naive oracle) plus a symmetry check
+  (`Gedächtnis` ≡ `gedaechtnis`); a prompt containing `Gedaechtnis` against a trigger `gedächtnis`: no hit
+  before, hit after — now with its excerpt.
+
+### Fixed — installation vocabulary in the Guard's self-test
+- The self-test probes contained phrases from the reference installation's own memory. The engine ships
+  mechanisms, never an installation's vocabulary; the probes are now neutral and still exercise the same
+  paths (umlauts, capitals, a no-trigger control, a long-text benchmark).
+
 ## 2026-09-05
 
 ### Fixed — v0.4 was missing from all three translated READMEs

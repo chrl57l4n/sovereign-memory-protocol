@@ -44,9 +44,22 @@ CTX_AFTER = 5    # grep -A 5
 EXCERPT_MAX_LINES = 25  # head -25
 
 
+# Umlaut folding on BOTH sides (pattern and prompt). Without it, a trigger written
+# "Gedächtnis" never matches a prompt typed or transcribed as "Gedaechtnis" and vice
+# versa — on the reference installation 11.4 % of all phrases were silently mute until
+# this was fixed (2026-08-15). Trade-off, stated honestly: folding merges spellings, so
+# ß→ss makes a prompt "Maße" match a trigger "masse". Accepted: a false wake-up of a
+# trigger costs little, a silent one costs recall.
+_UMLAUT = str.maketrans({"ä": "ae", "ö": "oe", "ü": "ue", "ß": "ss"})
+
+
+def fold_umlaut(s: str) -> str:
+    return s.translate(_UMLAUT)
+
+
 def norm_pattern(p: str) -> str:
-    """lowercase + Whitespace-Collapse — repliziert awk '{$1=$1;print}' | tr upper lower."""
-    return " ".join(p.split()).lower()
+    """lowercase + whitespace collapse + umlaut fold (ä→ae, ö→oe, ü→ue, ß→ss)."""
+    return fold_umlaut(" ".join(p.split()).lower())
 
 
 # ---------------------------------------------------------------------------
@@ -202,7 +215,13 @@ def naive_present(lines, text_lc):
 # ---------------------------------------------------------------------------
 # Persistenz
 # ---------------------------------------------------------------------------
+# Bump whenever pattern normalisation changes: a persisted automaton built with the
+# old normalisation must never be served as fresh (v2 = umlaut folding, v0.4.1).
+AUTOMATON_FORMAT = 2
+
+
 def save_automaton(automaton, path: Path):
+    automaton = dict(automaton, format=AUTOMATON_FORMAT)
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(automaton, ensure_ascii=False), encoding="utf-8")
@@ -228,7 +247,9 @@ def get_automaton():
     )
     if fresh:
         try:
-            return load_automaton(AUTOMATON_FILE)
+            a = load_automaton(AUTOMATON_FILE)
+            if a.get("format") == AUTOMATON_FORMAT:
+                return a
         except Exception:
             pass
     lines = load_all_lines()
@@ -250,8 +271,10 @@ def grep_excerpt(target_file: Path, pattern: str):
         lines = target_file.read_text(encoding="utf-8", errors="replace").splitlines()
     except Exception:
         return ""
-    pl = pattern.lower()
-    hit_idx = [i for i, ln in enumerate(lines) if pl in ln.lower()]
+    # Fold both sides exactly like the automaton: the pattern arrives folded from
+    # norm_pattern, the file lines do not — without this, a hit yields no excerpt.
+    pl = fold_umlaut(pattern.lower())
+    hit_idx = [i for i, ln in enumerate(lines) if pl in fold_umlaut(ln.lower())]
     if not hit_idx:
         return ""
     # Kontext-Bereiche bilden + ueberlappende mergen
@@ -307,7 +330,7 @@ def run_hook():
         prompt = ""
     if not prompt:
         return 0
-    prompt_lc = stt_enrich(prompt.lower())
+    prompt_lc = stt_enrich(fold_umlaut(prompt.lower()))
 
     automaton = get_automaton()
     lines = automaton["lines"]
@@ -412,23 +435,27 @@ def run_selftest():
     lines = load_all_lines()
     automaton = build_automaton(lines)
     probes = [
-        "wann hatten wir ueber perkolation gesprochen",
-        "lass uns den sentry umbau und esv neukalibrierung machen",
-        "sohee stimme und die tts config mit fixed seed",
-        "llama qwen gemma nobara lokales llm modell",
-        "auto-memory migration claude-memory recall coverage blindspot",
-        "notebooklm deep dive externe ki perspektive",
+        "when did we last talk about the garden project",
+        "lass uns den guard umbau und die neukalibrierung machen",
+        "die stimme und die tts config mit fixed seed",
+        "lokales llm modell auf dem zweiten rechner",
+        "memory migration recall coverage blindspot",
+        "externe ki perspektive und zweitmeinung",
         "don't trust verify",
         "voellig zusammenhangsloser text ohne jeden trigger 12345",
-        "PERKOLATION in GROSSBUCHSTABEN und Sohee gemischt",
-        "pairing remote-control fernsteuer anthropic-app",
+        "GROSSBUCHSTABEN und Gedächtnis gemischt",
+        "pairing und fernsteuerung der app",
     ]
     all_text = " ".join(probes) + " " + "x" * 5000
     probes.append(all_text)
 
     failures = 0
+    # Folding must be symmetric: typed/transcribed "ae" and a real umlaut are the same pattern.
+    if norm_pattern("Gedächtnis") != fold_umlaut("gedaechtnis"):
+        print("FAIL: umlaut folding is not symmetric")
+        failures += 1
     for pr in probes:
-        plc = pr.lower()
+        plc = fold_umlaut(pr.lower())
         ac = match_present(automaton, plc)
         nv = naive_present(lines, plc)
         if ac != nv:
@@ -443,7 +470,7 @@ def run_selftest():
     for _ in range(50):
         build_automaton(lines)
     build_ms = (time.perf_counter() - t) / 50 * 1000
-    bench_prompt = probes[1].lower()
+    bench_prompt = fold_umlaut(probes[1].lower())
     t = time.perf_counter()
     for _ in range(1000):
         match_present(automaton, bench_prompt)
