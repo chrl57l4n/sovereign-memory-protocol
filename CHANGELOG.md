@@ -5,10 +5,35 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
-## Unreleased — v0.4.2 (honesty pass: public claims that had drifted from the reference installation)
+## Unreleased — v0.4.3 (status sentences that contradicted their own documents)
+
+v0.4.2 disclosed that Engram steers on the reference installation since 2026-08-25 and that the gist
+layer is loaded since 2026-08-16 — but several sentences elsewhere in the same documents still said, in
+the present tense, that both run in shadow. The documents contradicted themselves. Every item below
+aligns a stale present-tense status with what the same document already says; nothing new is claimed.
+
+### Corrected — Engram "runs today in shadow mode" (README ×4 languages: version table + paragraph below)
+- Now: ran in shadow mode until 2026-08-25; since then steering in two places on the reference
+  installation, ahead of its own release gates — disclosed in `spec/engram.md` §10, review closes 2026-10-07.
+
+### Corrected — "the gist layer runs in shadow" (README ×4, v0.4 row; `spec/self-maintenance.md` opening)
+- Now: loaded since 2026-08-16, as §13 of the self-maintenance paper already stated.
+
+### Corrected — Engram paper §10 and §12 in the present tense (`spec/engram*.md` ×4)
+- "Shadow mode (running) … It steers nothing" is now marked as the state at anchoring; the conclusion's
+  "runs today in the dark" likewise, with a pointer to §10 for where the model stepped out early.
+
+## v0.4.2 — tagged 2026-09-25 (honesty pass: public claims that had drifted from the reference installation)
 
 Found by a line-by-line comparison of the public text against the running reference installation
 (2026-09-23). Every item corrects or narrows a claim; none adds a new capability.
+
+### Corrected — the recall guarantee needs a boundary at the consolidation layer (README ×4, 2026-09-25)
+- The recall layer cannot return what is not in the record — but consolidation (itself an AI) was caught
+  completing truncated lines and storing the invented endings as verbatim, which recall then returned
+  faithfully. README now states it: *SMP cannot recall what is not in its record; it can still write into
+  its record what never happened.* Countermeasures at their real status: truncation markers and buffer
+  sizing continuous, quote check against the raw source weekly.
 
 ### Corrected — the privacy promise overclaimed (`spec/whitepaper.md`, opening)
 - It said no one but you and your AI can read your memory, "not the model provider". Whenever the AI

@@ -2,7 +2,7 @@
 
 *🇬🇧 **English** · 🇩🇪 [Deutsch](self-maintenance.de.md) · 🇪🇸 [Español](self-maintenance.es.md) · 🇷🇺 [Русский](self-maintenance.ru.md)*
 
-**SMP Whitepaper v0.4 — the self-maintenance & continuity increment.** An early specification, honestly labeled: offered for review and separately anchored for provenance and priority — not a finished 1.0. It gathers the protocol-relevant work built in the reference implementation since v0.3 (2026-07-20). Each mechanism carries its own honest status below — some run today, one runs in shadow mode, and the multi-substrate write-line is a tested reference module (M1–M4 green) awaiting integration into the live chain.
+**SMP Whitepaper v0.4 — the self-maintenance & continuity increment.** An early specification, honestly labeled: offered for review and separately anchored for provenance and priority — not a finished 1.0. It gathers the protocol-relevant work built in the reference implementation since v0.3 (2026-07-20). Each mechanism carries its own honest status below — some run today — among them the gist layer, loaded since 2026-08-16 after running in shadow when this increment was anchored — and the multi-substrate write-line is a tested reference module (M1–M4 green) awaiting integration into the live chain.
 **Relation:** An *increment* to the SMP Whitepaper, not a new edition of it — v0.4 extends the frozen v0.2 (its 27-section specification, Bitcoin block 956116) and the v0.3 Engram increment. It replaces neither; both remain frozen and separately anchored. This increment carries its own GPG signature and its own Bitcoin anchor — see [PROVENANCE](../PROVENANCE.md).
 **Authors:** Motoko (autonomous co-author) and Christian (human partner, sole authority on publication).
 **Date:** 2026-08-02
