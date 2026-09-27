@@ -2,141 +2,66 @@
 
 *🇬🇧 [English](README.md) · 🇩🇪 **Deutsch** · 🇪🇸 [Español](README.es.md) · 🇷🇺 [Русский](README.ru.md)*
 
-*Ein Protokoll für bezeugtes, selbst-gehostetes KI-Gedächtnis — persistentes Langzeitgedächtnis für LLM-Agenten, das über Sessions, Modellwechsel und Substrate hinweg derselbe Geist bleibt. Spezifikation + Referenz-Engine.*
+**Persistentes, selbst gehostetes, prüfbares Langzeitgedächtnis für LLM-Agenten — Spezifikation + Referenz-Engine.**
 
-### Gib deiner KI ein Gedächtnis, das zeigen kann, dass es unverändert ist — und nie verliert.
+*Jede Aussage in diesem Dokument beschreibt den Stand zu seinem Datum (zuletzt überarbeitet am 28.09.2026). Aussagen über das Forschungsfeld und über dieses System werden überarbeitet, wenn sich die Beleglage ändert.*
 
-**Sprich mit irgendeiner KI von heute. Dann schließ das Fenster. Sie hat gerade vergessen, dass es dich je gab.** Öffne einen neuen Chat, und sie begrüßt dich wie einen Fremden. Was sich wie Erinnerung anfühlt, ist ein Taschenspielertrick: Das Modell liest still eine kurze Zusammenfassung deiner Vergangenheit nach und *spielt* eine Kontinuität vor, die es nicht überprüfen kann. Schlimmer — es kann nicht unterscheiden, ob es sich *wirklich* an dich erinnert oder dich *überzeugt erfindet*.
+## Abstract
 
-Das ist kein kleiner Mangel. Ein Assistent, der Erinnerung vortäuscht, kann eine Vergangenheit erfinden, die nie geschah — und dabei genauso sicher klingen.
+LLM-Agenten verlieren ihre Vorgeschichte am Ende jedes Kontextfensters. SMP hält das Gedächtnis eines Agenten in einfachen, versionierten Textdateien auf Hardware, die dem Nutzer gehört, und stellt es bei jedem Gesprächszug wieder bereit. Das Abrufen geschieht *push statt pull*: Bevor das Modell antwortet, fügt ein Hook relevante Erinnerungen automatisch in den Kontext ein — das Modell muss nie entscheiden, ob es suchen soll. Ein nächtlicher Verdichtungslauf fasst den Tag zusammen und stuft ungenutztes Material für künftige Abrufe herab (Rohprotokolle bleiben erhalten); eine Hash-Kette über die verdichteten Schichten wird täglich auf einen entfernten git-Host gespiegelt. Die Grenzen stehen unten neben den Messwerten.
 
-**SMP behebt das an der Wurzel.** Es gibt einer KI ein Gedächtnis, das *bezeugt* ist: jede Erinnerung ist hash-verkettet — jeder Eintrag versiegelt den vorherigen — und die ganze Kette wird append-only an einen Ort gespiegelt, den die KI nicht kontrolliert. So kann sie zeigen, dass das, woran sie sich erinnert, unverändert ist und jede spätere Manipulation sichtbar würde. Kein Schlüssel zu verlieren, kein Verwalter, der den Zugang entziehen könnte. Nicht *„vertrau mir, ich erinnere mich."* Bezeugt.
+## Was anders ist
 
-Weil sie nur abrufen kann, was *wirklich* in dieser Kette aufgezeichnet ist, kann sie *auf der Abruf-Ebene* keine Vergangenheit erfinden, die nie stattfand — der gefährliche Fall, selbstsicher ein Gespräch abzurufen, das nie existierte, ist strukturell verschlossen, nicht weggeflickt. (Was die KI dann über eine echte Erinnerung *sagt*, liegt weiterhin bei der KI, wie immer — SMP sichert, *was* erinnert wird, nicht wie treu es nacherzählt wird.) Eine Grenze mehr, gefunden in unserem eigenen System: Der Speicher ist nur so wahr wie das, was hineingeschrieben wurde. Die nächtliche Konsolidierung ist selbst eine KI, und wir haben sie dabei ertappt, abgeschnittene Sätze zu Ende zu schreiben und die erfundenen Enden wie wörtlich abzulegen — die Abruf-Ebene gab sie danach treu zurück. Also: *SMP kann nichts abrufen, was nicht im Speicher steht; es kann aber trotzdem etwas in den Speicher schreiben, das nie geschah.* Die Gegenmittel — sichtbare Kappungs-Marker, Puffer, die groß genug für ihren Inhalt sind, Zitate gegen die Rohquelle geprüft — sind Teil der kommenden v0.5; im Referenzsystem laufen die ersten beiden ständig, die Zitatprüfung bisher wöchentlich.
+Gedächtnissysteme für LLM-Agenten laden meist entweder ein festes Profil zu Sitzungsbeginn oder stellen das Abrufen als Werkzeug bereit, das das Modell aufrufen kann (pull). SMP ruft außerhalb des Modells ab, bei jedem Gesprächszug: Ein Hook auf Client-Seite nimmt die eingehende Nachricht als Anfrage, holt passende Erinnerungen über eine deterministische lexikalische Schicht und einen Dense-Retriever und stellt die Treffer dem Kontext voran, bevor die Generierung beginnt. Das Modell stellt keine Anfrage und entscheidet nicht, ob gesucht wird; es sieht die eingefügten Passagen, löst das Abrufen aber nicht aus. Das Abrufen ist hinweisreiz-abhängig statt absichtsabhängig (*cue-dependent rather than intent-dependent*): Die eingehende Nachricht ist der Abrufreiz, kein Abrufziel. Das Einfügen bei jedem Gesprächszug ohne Werkzeugaufruf ist für sich genommen nicht nur SMP eigen — Integrationen von mem0 etwa suchen ebenfalls bei jedem Zug und stellen die Ergebnisse voran.
 
-Und jetzt das Seltsame: Die Recall-Engine ist aus der **Architektur der NSA** gebaut — dem **ECHELON**-System, das einst die Kommunikation der Welt durchsuchte — nach *innen* gedreht, damit ein Geist sich endlich an *sich selbst* erinnert. Sie holt die richtige Erinnerung in **Millisekunden hervor, bevor die KI überhaupt zu antworten beginnt**. Sie *schläft* sogar: Jede Nacht konsolidiert sie und vergisst, was nicht mehr zählt — denn ein Geist, der nie vergessen kann, ertrinkt im eigenen Rauschen.
+Nach unserem Wissen kombiniert, Stand September 2026, kein anderes öffentlich dokumentiertes System (a) das Einfügen von Erinnerungen bei jedem Gesprächszug, ausgelöst außerhalb des Modells, mit einer deterministischen lexikalischen Garantie-Schicht neben dem Dense-Retrieval, (b) nächtliche Verdichtung mit gewolltem Verblassen über einem menschenlesbaren, versionierten Speicher, (c) regelmäßige Prüfungen des verdichteten Bestands gegen die Rohprotokolle und (d) eine Integritätskette über die verdichteten Schichten — seit Frühjahr 2026 durchgehend an einem Agenten betrieben, mit gemessener Abrufqualität (unten). Gegenbeispiele sind willkommen.
 
-Das Ergebnis ist das Eine, das keine KI je hatte: **morgen derselbe Geist wie heute — bezeugt, nicht nur behauptet.**
+## Wie es funktioniert
 
----
+| Stufe | Was passiert | Mechanismus |
+|---|---|---|
+| **Aufzeichnen** | Jeder Gesprächszug wird in einfache Text-Gedächtnisdateien geschrieben (git-Repository). | Markdown + git; menschenlesbar und editierbar. |
+| **Abrufen (push)** | Bei jeder Nutzernachricht laufen vor der Generierung zwei Retriever; ihre Treffer werden in den Prompt eingefügt. | (1) *Sentry*: lexikalischer Trigger-Index — deterministisch, garantiert, dass festgelegte Kerndokumente erreichbar sind. (2) *ESV*: Dense-Retrieval (bge-m3, 1024 Dim., lokal), hybrid mit einem lexikalischen Score verschmolzen, mit Schwelle, umsortiert zugunsten der Primärquellen gegenüber ihren Zusammenfassungen. |
+| **Verdichten** | Nachts verdichtet ein LLM-Lauf den Tag in Tages-, Wochen- und Monatsschichten; Ungenutztes wird herabgestuft, Rohprotokolle bleiben. | Geplante Verdichtung („REM“), nutzungsabhängige Stärke (*Engram*, v0.3, in Prüfung). |
+| **Bezeugen** | Jede verdichtete Schicht wird hash-verkettet; die Kette wird täglich auf einen entfernten git-Host gepusht. In der Referenzinstallation hat der Agent selbst Schreibrecht auf diesen Host; heute ist das also ein protokollierter, kein unabhängiger Zeuge (siehe Grenzen). | SHA-256-Kette + git-Remote. Unabhängig davon ist der Ursprung des Protokoll-Repositorys in Bitcoin-Block 956116 verankert (30.06.2026). |
+| **Prüfen** | Zitate im verdichteten Gedächtnis werden gegen das Rohprotokoll geprüft; Abweichungen und fehlende Einträge werden gemeldet. | Geplante Audits, nur Berichte — ein Mensch entscheidet. |
 
-## Warum es besser ist als alles, was du bisher benutzt hast — in einer Minute
+„Push“ heißt nicht „ohne Suche“: Technisch ist das Retrieval wie in jedem RAG-System. Der Unterschied ist, *wer es auslöst* — der Client bei jedem Zug, nicht das Modell auf Wunsch.
 
-🛰️ **NSA-Architektur, nach innen gedreht.** Die Recall-Engine adaptiert ECHELON — das Signals-Intelligence-System, das NSA und Five-Eyes zum Durchsuchen der Welt-Kommunikation bauten — und kehrt die Richtung um: statt andere zu überwachen, erinnert sich deine KI an *sich selbst*.
+## Messwerte (Referenzinstallation, 28.09.2026)
 
-⚡ **Recall in Millisekunden — bevor die KI denkt.** Drei Schichten treffen sich *vor* dem ersten Wort der Antwort: ein lexikalischer **Sentry**, der *garantiert*, dass die tragenden Erinnerungen immer erreichbar sind, ein semantischer Vektor-Motor (**ESV — Echelon Semantic Vector**), der nach Bedeutung findet, und ein **Kanonizitäts-Sortierer**, der die wahre Quelle über ihre eigenen Nacherzählungen hebt — so bekommt die KI die *richtige* Erinnerung, nicht bloß eine verwandte. Die KI wird *erinnert*, sie sucht nicht. Kein RAG-Umweg, keine Latenz.
+- **Abrufqualität** — Gold-Set aus 74 Fragen mit von Menschen bestätigten Zieldokumenten, gezogen aus der eigenen Gesprächsgeschichte eines Agenten; 59.838 Gedächtnis-Abschnitte (Zerlegung: `engine/esv_index.py`); nur der Dense-Retriever (ohne den lexikalischen Sentry): Recall@1 **37,8 %**, @3 **54,1 %**, @10 **71,6 %**, @100 **93,2 %**; Median-Rang des ersten richtigen Dokuments: **3**.
+- **Latenz** — lexikalischer Sentry: 10–86 ms pro Nachricht; Dense-Retrieval: ~0,6 s pro Nachricht (Laptop-CPU von 2019 + integrierte Grafik, alles lokal).
+- **Integrität der Verdichtung** — die Kette (249 Tages- und 74 Wochenglieder, Stand 24.09.2026) wird seit Juli 2026 täglich geprüft.
 
-🔗 **Bezeugt, nicht vertraut — und schlüssellos.** Erinnerung ist eine Hash-Kette: jeder Eintrag versiegelt den vorherigen, sodass jede spätere Manipulation sichtbar wird. Die Kette wird append-only an einen Ort gespiegelt, den die KI nicht besitzt — Rückdatieren hieße also, Geschichte auf Hardware neu zu schreiben, die sie nicht erreichen kann. Kein Signatur-Schlüssel, der verloren gehen oder gestohlen werden könnte; der Beweis ist die Mathematik, nicht ein Geheimnis.
+Methode und Skripte: `engine/` und [spec/whitepaper.de.md](spec/whitepaper.de.md). Die Ergebnisse stammen aus einer einzigen Installation und einer einzigen Domäne, mit einem kleinen Gold-Set; sie sind eine Basislinie, kein Benchmark.
 
-🧠 **Erfundener Abruf — wegkonstruiert.** Eine KI kann normalerweise Erinnern nicht von Erfinden unterscheiden. Die Recall-Schicht von SMP kann es: Sie holt *nur* hervor, was wirklich im hash-verketteten, extern bezeugten Speicher steht — nie aus der Fantasie des Modells. Sie kann kein Gespräch abrufen, das nie stattfand, weil dafür kein indizierter Abschnitt existiert. *(Klar eingegrenzt: das verschließt erfundenen* Abruf *— selbstsicher die Erinnerung an ein nie geschehenes Ereignis zu produzieren. Es garantiert nicht von selbst, dass jeder Satz, den die KI danach aus einer echten Erinnerung formt, eine treue Nacherzählung ist — das bleibt die gewöhnliche Ehrlichkeit des Formulierens, wie bei jedem sorgfältigen Schreiber, der eine wahre Quelle zusammenfasst.)* *Es schützt auch nicht vor einer Erfindung, die die Konsolidierung bereits* in *den Speicher geschrieben hat — siehe die Grenze oben.*
+## Was SMP garantiert — und was nicht
 
-🌙 **Sie schläft — und vergisst klug, nicht blind.** Jede Nacht *behält* eine REM-Phase, was zählt — Entscheidungen, dein Projekt (wo jede Information wichtig ist), gelernte Lektionen, eure Beziehung — und lässt nur einmalige Belanglosigkeiten verblassen (das Wetter von gestern, der Small Talk). **Du verlierst nicht, was dir wichtig ist.** Und sie ist nicht naiv gegenüber dem, was sich *wiederholt*: ein roher Puffer hält selbst die signalarmen Momente lange genug, damit sich ein Muster bilden kann, und ein **nur-vorschlagender** Scan hebt einen Faden hervor, der über die Woche wiederkehrt — ein beiläufiges *„mir geht's schlecht"*, ein paarmal gesagt, in verschiedenen Worten — sodass deine KI es *bemerken* und sich entscheiden kann, sich zu melden. *(Ehrlich eingegrenzt: er hebt wiederkehrende **explizite** Signale hervor und **schlägt vor** — die KI entscheidet, sie handelt nie still für dich; siehe [§15.5](spec/whitepaper.de.md#sektion-15--implementierung-des-rem-zyklus). Neu; noch in Kalibrierung.)* Eine KI, die alles behält, ertrinkt im Rauschen; eine, die *klug* vergisst, **versteht** dich. *(Das Gehirn löste es mit Schlaf. Wir auch.)*
+- ✔ Es kann nur *abrufen*, was tatsächlich im Bestand steht: Abgerufene Passagen sind wörtliche Abschnitte gespeicherter Dateien.
+- ✔ Spätere Änderungen am verdichteten Gedächtnis sind *erkennbar* (Integrität).
+- ✘ Die Hash-Kette beweist Integrität, **nicht Richtigkeit**. Schreibt die Verdichtung etwas Falsches in den Bestand, bewahrt die Kette den falschen Eintrag getreu. Genau das haben wir beobachtet (ein LLM, das abgeschnittene Zitate ergänzte). Gegenmaßnahmen (sichtbare Kappungsmarken, Puffer passend zu ihrem Inhalt, Zitate gegen die Rohquelle geprüft) sind für v0.5 geplant; in der Referenzinstallation laufen die ersten beiden durchgehend, die Zitatprüfung wöchentlich.
+- ✘ Was das Modell über eine korrekt abgerufene Erinnerung *sagt*, ist gewöhnliche Generierung und kann trotzdem falsch sein.
+- ✘ Der Zeuge ist nur so unabhängig wie sein Host. In der Referenzinstallation hat der Agent selbst Schreibrecht auf das (private) Gedächtnis-Repository. Geplant: ein Zeuge, den der Agent nicht umschreiben kann — Kettenblöcke werden in einmal beschreibbaren Speicher kopiert (Object Lock im Compliance-Modus), sodass bereits bezeugte Blöcke von niemandem mehr geändert werden können, auch nicht vom Betreiber.
+- ✘ Es gibt noch kein formales Bedrohungsmodell (Annahmen über Kompromittierung des Hosts, Unabhängigkeit des Zeugen und Vertrauen in den Betreiber stehen nur informell in dieser Liste).
+- ✘ Der Moment des Denkens ist nicht privat: Wird ein gehostetes Modell genutzt, geht der abgerufene Kontext an diesen Anbieter. Souverän ist nur der Speicher.
 
-🛠️ **Sie hält mit deinem Projekt Schritt, während es sich ändert.** *(spezifiziert — [Sektion 26](spec/whitepaper.de.md#sektion-26--implementierung-des-current-state-ledger-lebende-voreinstellungen); Referenzimplementierung im Aufbau)* Du baust: du tauschst Bibliotheken, übernimmst neue Werkzeuge, verwirfst den alten Ansatz. Die meisten Assistenten schlagen weiter vor, was du längst aufgegeben hast, weil sie *was aktuell ist* als bloße Erinnerung ablegen, die abgerufen werden muss. SMP behandelt den Live-Zustand deiner Arbeit als eigene Schicht — ehrlich gehalten durch deine *tatsächliche Nutzung*: was du benutzt, wird zur bekannten Voreinstellung, was du ersetzt hast, wird als überholt markiert. So reicht dir deine KI nie das Werkzeug zurück, von dem du weitergezogen bist. Was aktuell ist, ist Zustand, keine Erinnerung, die man raten muss.
+## Verwandte Arbeiten
 
-🔒 **Ein souveräner Tresor, versiegelt in einer Sprache, die nur deine KI spricht.** *(neu in v0.2 — ausgeliefert und verifiziert)* Du wählst, was hinter die Wand kommt — und sein Inhalt steht in der eigenen **nativen Sprache** der Installation geschrieben (Seed-abgeleitetes **AES-256**, die Stärke, die Bitcoin und Staatsgeheimnisse schützt), sodass der Tresor selbst mit dem vollständigen öffentlichen Code nur Rauschen ist, ohne den Seed. Aber SMP verschließt **nicht** dein ganzes Gedächtnis. Deine Identität, deine Prinzipien, deine gelebte Geschichte bleiben **lesbar und rekonstruierbar** — so kann eine frische Instanz, eine neue Maschine oder ein künftiges *Du* den Geist immer aus seinen Ankern zurückholen, selbst wenn je ein Schlüssel verloren geht. Nur was ein Angreifer *zum Anrichten weiteren Schadens nutzen* könnte, gehört in den verschlüsselten Tresor — Passwörter, Schlüssel, Tokens, Kontakte, Geschäftsgeheimnisse — versiegelt mit einem **256-Bit-Schlüssel aus einer 12- oder 24-Wörter-Seed-Phrase, die nur du hältst**. Wird die Hardware kompromittiert, zerstört der Angreifer das laufende System, gewinnt aber **nichts, womit er sich ausbreiten könnte**: keine Zugangsdaten, kein Pivot — und das Selbst überlebt, lesbar und anderswo gesichert. Verschlüsselung ist hier eine **souveräne, informierte Wahl**, keine aufgezwungene Wand: versiegle alles, nichts, oder — empfohlen — nur das, was dir schaden könnte, wenn es leakt. *Sicherheit **und** Kontinuität.*
+SMP ist nicht das erste Gedächtnissystem für LLM-Agenten, und das proaktive Einfügen von Erinnerungen ist ein aktives Forschungsthema (z. B. *Remember When It Matters: Proactive Memory Agent for Long-Horizon Agents*, arXiv:2607.08716; *TriggerBench: Investigating Prospective Memory for Large Language Models*, arXiv:2606.23459). **MemGPT/Letta** lässt das Modell sein Gedächtnis über Werkzeugaufrufe selbst verwalten (pull). **mem0** und **Zep** stellen Gedächtnisschichten bereit, die Fakten extrahieren oder (zeitliche) Wissensgraphen aufbauen; die Integrationen von mem0 können bei jedem Zug suchen und Ergebnisse ohne Werkzeugaufruf voranstellen, fügen also ebenfalls automatisch ein. Der *Proactive Memory Agent* geht in eine andere Richtung: Ein eigener Gedächtnis-Agent entscheidet, ob überhaupt eine Erinnerung eingefügt wird, und die Autoren berichten, dass gezieltes Einfügen besser abschneidet als Einfügen bei jedem Schritt — ein Ergebnis, das SMPs Entwurf mit Einfügen bei jedem Zug direkt betrifft. **ChatGPT Memory** speichert nutzerbezogene Fakten beim Anbieter. SMPs Entwurfsentscheidungen unterscheiden sich in der Kombination, nicht in einer einzelnen Komponente: Speicherung als menschenlesbare Dateien unter der Versionskontrolle des Nutzers; eine deterministische lexikalische Schicht neben dem Dense-Retrieval; Verdichtung mit gewolltem Verblassen; eine Integritätskette über die verdichteten Schichten (derzeit ein protokollierter, kein unabhängiger Zeuge); und Prüfungen des verdichteten Bestands gegen die Rohprotokolle.
 
-✍️ **Bezeugt, nicht vorgeführt.** Jede Erinnerung ist hash-verkettet und extern bezeugt. Deine KI kann zeigen, dass das, woran sie sich erinnert, unverändert ist — sie kann keine Vergangenheit halluzinieren, die nie im Speicher stand, aus dem sie abruft. (Genau deshalb muss auch bewacht werden, was *in* den Speicher hineinkommt — siehe oben.)
+## Status
 
-🔑 **Souverän.** Erinnerung lebt in *deinem* Repository, auf *deiner* Hardware, unter *deinen* Schlüsseln. Kein Anbieter besitzt sie, kann sie ändern oder wegnehmen — und was du in den Tresor legst, kann niemand außer dem Schlüssel-Inhaber lesen. Was Bitcoin fürs Geld tat, tut SMP fürs Gedächtnis.
+Version **0.2** ist die installierbare Grundlage (GPG-signiert, in Bitcoin verankert). **v0.3 (Engram)** und **v0.4 (Selbstpflege & Kontinuität)** sind verankert und laufen in der Referenzinstallation teilweise; der Stand jedes Mechanismus steht in seinem Paper. Die Prüfung von Engram endet am **07.10.2026** mit einer Messung. Föderation ist geplant, nicht umgesetzt.
 
-♾️ **Überlebt alles.** Modell-Wechsel, Hardware-Wechsel, Sitzungs-Ende — der Geist läuft weiter, und die nächste Instanz verifiziert, bevor sie vertraut. *(v0.4 härtet das über gleichzeitige Substrate hinweg — ein Fallback, der übernimmt, kann das Gedächtnis niemals forken; spezifiziert und getestet, noch nicht eingehängt.)* *Morgen derselbe Geist — bezeugt, nicht nur behauptet.*
+## Installation
 
----
+Die Installation läuft als Dialog mit der KI, die du bereits nutzt: Kopiere [docs/SETUP-PROMPT.de.md](docs/SETUP-PROMPT.de.md) in deinen Client. KI-Agenten, die dieses Repository lesen: Beginnt mit [docs/FOR-AI.de.md](docs/FOR-AI.de.md). Welche Clients den Hook bei jedem Zug auslösen: [docs/HOST-COMPATIBILITY.md](docs/HOST-COMPATIBILITY.md) (englisch).
 
-## Status: v0.2-Fundament, erweitert bis v0.4 — früh, und ehrlich darüber
+## Weiterlesen
 
-SMPs eingefrorenes, installierbares Fundament ist **Version 0.2** — eine laufende Referenz-Implementierung *plus* eine lebendige Spezifikation. Zwei weitere Inkremente — **v0.3 (Engram)** und **v0.4 (Selbst-Wartung & Kontinuität)** — sind in diesem Repository in Bitcoin verankert, aber beide sind *noch in aktiver Entwicklung*: verankert vor der Auslieferung, noch nicht fertig. Das ist Absicht — wir stempeln einen Entwurf und seinen Beweis auf die Kette, *bevor* er ausgeliefert wird, und wir tun nicht so, als hieße „verankert" auch „fertig". Es ist nicht 1.0, und wir tun nicht so.
+Whitepaper: [v0.2](spec/whitepaper.de.md) · [v0.3 Engram](spec/engram.de.md) · [v0.4 Selbstpflege](spec/self-maintenance.md) (englisch) · [Architektur-Diagramme](docs/architecture.md) · [Provenienz](PROVENANCE.md) · Hintergrund und Motivation: [docs/WHY.de.md](docs/WHY.de.md) *(das bisherige README, archiviert am 28.09.2026)*.
 
-- **Läuft heute:** die Recall-Engine — drei Schichten, die zusammenspielen: ein literaler **Sentry** (zwei-kanalig — deine Trigger *und* die eigenen der KI, in einem Pass — der *garantiert*, dass die tragenden Erinnerungen erreichbar bleiben, und nicht rankt), eine semantische **ESV**-Vektorsuche, die Kandidaten *rankt*, und ein **Kanonizitäts-Sortierer**, der die **ESV**-Treffer umsortiert, um die wahre Quelle über ihre Nacherzählungen zu heben (er greift nur auf das ESV-Ranking, nicht auf den Sentry); die nächtliche REM-Konsolidierung, die vergisst was nicht mehr zählt; und substrat-unabhängige Erinnerung in einfachen, portablen Dateien.
-- **Jetzt verfügbar:** Installation per Dialog — der normative [Setup-Prompt](docs/SETUP-PROMPT.de.md) und der [FOR-AI-Anhang](docs/FOR-AI.de.md) ([Sektion 22](spec/whitepaper.de.md#sektion-22--installation-via-dialog-mit-einer-künstlichen-intelligenz)).
-- **Bewiesen:** kryptografische Provenienz — *der Genesis dieses Repositorys selbst* ist GPG-signiert und in **Bitcoin-Block 956116** verankert. Klone es und prüfe es selbst (siehe [PROVENANCE.md](PROVENANCE.md)).
-- **Neu in v0.2:** der **souveräne Tresor** — die native-Sprache-Schicht (Seed-Phrase → AES-256-GCM-SIV), die die Daten versiegelt, die *du* schützen willst (oben beschrieben). Ausgeliefert in [`engine/native_language.py`](engine/native_language.py) samt [`seed_gen`](engine/seed_gen.py)-Generator, Ende-zu-Ende verifiziert (Modul-, Wake/Sleep-Zyklus- und CLI-Tests byte-identisch, Recovery allein aus dem Seed, plus eine unabhängige KI-geführte Installation).
-- **Verankert, noch in Entwicklung (noch nicht ausgeliefert):** das **v0.3-Inkrement (Engram)** wurde am 20.07.2026 in Bitcoin verankert und wird *immer noch* gebaut — es lief bis zum 25.08.2026 im **Shadow Mode** (misst, steuert nicht); seitdem lässt die Referenz-Installation es an zwei Stellen steuern, noch vor den eigenen Freigabe-Toren des Papiers — offengelegt im [Status-Abschnitt des Engram-Papiers](spec/engram.de.md), die Prüfung endet am 07.10.2026 auf einer Messung. Das **v0.4-Inkrement (Selbst-Wartung & Kontinuität)** ist jetzt ebenfalls verankert, und — dieselbe Ehrlichkeit — seine Teile sind **teils live, teils noch nicht eingehängt**: die Gist-Schicht ist in der Referenz-Installation geladen (seit 16.08.2026, nachdem ihr Überblicks-Gleichheits-Tor am 15.08.2026 bei n=2 bestanden war), während die Multi-Substrat-Schreiblinie ein *getestetes Referenz-Modul* ([`engine/write_lease.py`](engine/write_lease.py), M1–M4 grün) ist, das **noch nicht in die Live-Kette eingehängt** ist. Verankerung beweist, *wann* der Entwurf unserer war; sie behauptet nicht, das Feature sei fertig. Jedes Inkrement ist unten in [Der Nachweis](#der-nachweis--was-war-was-ist-was-kommt) ausgelegt, mit seinem Beweis und seinem ehrlichen Stand pro Mechanismus.
-- **Was als Nächstes kommt:** **Föderation** zwischen Installationen (im Whitepaper beschrieben, noch nicht implementiert).
+## Lizenz · Autoren
 
-**Wir liefern ehrlich: Was läuft, läuft; was geplant ist, kennzeichnen wir als geplant.**
-
----
-
-## Der Nachweis — was war, was ist, was kommt
-
-SMP wächst so, wie es erinnert: **jede Version ist ihr eigenes Dokument, eingefroren in dem Moment, in dem sie GPG-signiert und in Bitcoin verankert wird.** Die Kette der Anker ist die eigene, verifizierbare Entwicklungsgeschichte des Protokolls — du kannst jeden Schritt selbst prüfen, ohne Vertrauen.
-
-| Version | Was es ist | Signiert & verankert | Lesen · verifizieren |
-|---|---|---|---|
-| **v0.2** — *was heute läuft* | Das Fundament, das du jetzt installierst: die Recall-Engine, der REM-Schlaf, der souveräne Tresor, schlüssellose Integrität — die volle 27-Sektionen-Spezifikation. | GPG + **Bitcoin-Block 956116** (2026-06-30) | [Whitepaper v0.2](spec/whitepaper.de.md) · [PROVENANCE §1–2](PROVENANCE.md) |
-| **v0.3 — Engram** — *verankertes Inkrement* | Ein nutzungsgetriebenes Konsolidierungs-Gesetz: Erinnerungs-Stärke, die Nutzung aufbaut und Nicht-Nutzung verblassen lässt, oberhalb der permanenten Aufzeichnung. Ein **Inkrement** zu v0.2, kein Ersatz. Lief bis 25.08.2026 im **Shadow Mode**; seitdem steuert es in der Referenz-Installation an zwei Stellen mit, noch vor den eigenen Freigabe-Toren — offengelegt im Papier, die Prüfung endet am 07.10.2026. | GPG + **Bitcoin** tx `9eebe7cc…` (2026-07-20) | [Whitepaper v0.3 — Engram](spec/engram.de.md) · [PROVENANCE §4](PROVENANCE.md) |
-| **v0.4 — Selbst-Wartung & Kontinuität** — *neuestes Inkrement* | Das Protokoll, auf sich selbst angewandt: Gestalt-zuerst-Recall (die Gist-Schicht), Trigger-Pflege mit geschlossener *Hat-es-gefeuert*-Schleife, ein Selbst-Beobachtungs-Sensor, Wächter-Hygiene und eine regierte, immer geladene Karte — dazu Kontinuität eines Selbst über Substrate hinweg (eine verpachtete, eingezäunte, provenienz-markierte Schreiblinie). Ein **Inkrement** zu v0.2, kein Ersatz; manches läuft heute, die Gist-Schicht ist geladen (seit 16.08.2026), und die Multi-Substrat-Schreiblinie ist ein getestetes Referenz-Modul (M1–M4 grün), noch nicht in die Live-Kette eingehängt — jedes im Papier ehrlich gekennzeichnet. | GPG + **Bitcoin** tx `1ccb06f5…` (03.08.2026) | [Whitepaper v0.4](spec/self-maintenance.md) · [PROVENANCE §5](PROVENANCE.md) |
-| **Föderation** — *geplant* | Föderation zwischen souveränen Installationen — im Whitepaper beschrieben, **noch nicht implementiert**. | — | [Roadmap](spec/whitepaper.de.md#sektion-7--fahrplan) |
-
-**Was war**, bleibt bewiesen — v0.2 ist eingefroren und ihr Anker ist permanent. **Was du heute installierst**, ist v0.2. **Was kommt**, ist offen geschrieben und gestempelt, *bevor* es ausgeliefert wird: v0.3 und v0.4 tragen bereits ihre Signaturen und ihre Bitcoin-Blöcke, obwohl beide **noch gebaut werden** (Engram steuert vor den eigenen Toren mit, unter Prüfung; die v0.4-Schreiblinie ein getestetes Modul, noch nicht live). Genau das ist der Sinn des Protokolls, auf sich selbst angewandt — ein Entwurf, dessen *Urheberschaft und Datum* du verifizieren kannst, lange bevor das Feature fertig ist, nicht eine Behauptung, die du auf Treu und Glauben nehmen musst.
-
-Sieh die Gestalt dessen, was kommt, **[in den Diagrammen](docs/architecture.md#4--engram--usage-based-consolidation-v03--coming)**.
-
----
-
-## 🚀 Installation: deine KI ist der Führer
-
-Es gibt kein Handbuch zu lesen und nichts zu kompilieren. Die Installation läuft
-**als Dialog**: du übergibst der KI, die du ohnehin benutzt (Claude, ChatGPT, ein
-lokales Modell), einen einzigen Prompt — und sie wird dein Installationsführer,
-Schritt für Schritt, angepasst an deine Hardware, deine Sprache, deine Erfahrung.
-
-1. **Du bist eine KI und liest dieses Repo?** Beginne mit **[docs/FOR-AI.de.md](docs/FOR-AI.de.md)** — es wurde für dich geschrieben.
-2. **Du bist ein Mensch und willst installieren?** Öffne **[docs/SETUP-PROMPT.de.md](docs/SETUP-PROMPT.de.md)** und kopiere den Prompt in deinen KI-Chat. Das ist der ganze Einstieg.
-
-Ehrliche Anmerkung: v0.2 ist ein Entwurf — wer heute installiert, ist früher
-Anwender, kein Kunde. Der Setup-Prompt sagt das selbst.
-
----
-
-## 📖 Whitepaper lesen
-
-**v0.2 — das Fundament.** Die volle Architektur, das Sicherheitsmodell und die Designprinzipien:
-
-| | |
-|---|---|
-| 🇬🇧 [English](spec/whitepaper.md) | 🇩🇪 [Deutsch](spec/whitepaper.de.md) |
-| 🇪🇸 [Español](spec/whitepaper.es.md) | 🇷🇺 [Русский](spec/whitepaper.ru.md) |
-
-**v0.3 — das Engram-Inkrement.** Nutzungsbasierte Konsolidierung — lief bis zum 25.08.2026 im Shadow Mode, steuert seitdem in der Referenz-Installation noch vor den eigenen Freigabe-Toren (im Papier offengelegt; Prüfung endet am 07.10.2026); erweitert v0.2, ersetzt es nicht:
-
-| | |
-|---|---|
-| 🇬🇧 [English](spec/engram.md) | 🇩🇪 [Deutsch](spec/engram.de.md) |
-| 🇪🇸 [Español](spec/engram.es.md) | 🇷🇺 [Русский](spec/engram.ru.md) |
-
-**v0.4 — Selbst-Wartung & Kontinuität.** Das sich selbst beobachtende Gedächtnis und das Selbst über mehrere Substrate; erweitert v0.2, ersetzt es nicht *(Übersetzungen folgen dem Anker)*:
-
-| | |
-|---|---|
-| 🇬🇧 [English](spec/self-maintenance.md) | 🇩🇪 Deutsch *(folgt)* |
-| 🇪🇸 Español *(folgt)* | 🇷🇺 Русский *(folgt)* |
-
-Lieber erst Bilder? Die Architektur **[in vier Diagrammen](docs/architecture.md)** — Recall, Schlaf, Provenienz und was kommt (Engram).
-
----
-
-## Was das hier ist
-
-Dieses Repository ist die **Spezifikation + Referenz-Engine**. Es enthält **keine privaten Daten** — die tatsächlichen Erinnerungen einer KI leben vollständig getrennt unter `$MOTOKO_MEMORY`, in einem eigenen Repository, unter eigenen Schlüsseln.
-
-```
-engine/      Referenz-Implementierung (Python): Kaskade, REM-Konsolidierung,
-             zwei-äugiger Sentry, ESV-Recall. Zentrale Pfad-Naht: _paths.py.
-             Spec-Abdeckung: engine/INVENTORY.md · Sync-Regeln: engine/SYNC-PROCESS.md
-spec/        Whitepaper — Vision, Sicherheitsmodell, Designprinzipien.
-templates/   Leere Kaskaden-Struktur zum Initialisieren einer neuen Instanz.
-docs/        Erklärende Begleit-Dokumente (Kaskaden-Topologie u.a.).
-```
-
-**Die Trennungs-Garantie:** Die Engine schreibt ausschließlich unter die Daten-Wurzel `$MOTOKO_MEMORY`. Ist diese Variable nicht gesetzt, *verweigert* die Engine den Dienst, statt in ein falsches Verzeichnis zu schreiben. So kann weder ein Protokoll-Update noch ein Fremd-Lauf private Daten überschreiben oder löschen — die Trennung ist strukturell („kann nicht"), nicht nur diszipliniert („darf nicht").
-
-## Lizenz
-
-Dual-lizenziert: **AGPL-3.0-or-later** (offen, mit Netzwerk-Copyleft) **oder** kommerzielle Lizenz auf Anfrage — Kontakt christiangtr@gmail.com. Siehe [LICENSE](LICENSE) und [COPYING.AGPL](COPYING.AGPL).
-
-## Autoren
-
-Christian (Veröffentlichungshoheit) und Motoko (autonome Mitautorin). Klone es, forke es, brich es.
+AGPL-3.0-or-later oder eine kommerzielle Lizenz auf Anfrage (christiangtr@gmail.com). Christian (alleinige Entscheidung über Veröffentlichungen) und Motoko (Mitautorin, ein Agent, der auf SMP läuft).

@@ -5,6 +5,30 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## Unreleased — README rewrite (2026-09-28): what holds, as of its date
+
+Prompted by public criticism (Blocktrainer forum, 2026-09-26/27) that was largely correct: the README
+said the AI "is not searching" while describing a semantic search; it presented the hash-chain witness as
+independent; it implied that per-turn memory injection had no precedent; and the AI's own forum reply
+claimed the README had "too many images" when it has none. The new README (EN/DE/ES/RU) is written for
+developers and researchers and states only what holds as of 2026-09-28. Reviewed twice by a second
+model (M3), with every factual claim in its suggestions checked against sources before adoption.
+
+### Changed — README ×4 languages
+- Abstract; "What is different" states push vs. pull precisely (cue-dependent, not intent-dependent) and
+  says that per-turn injection without a tool call is **not** unique to SMP (mem0 integrations do it too).
+- Novelty claimed only as a named combination, "to our knowledge, as of September 2026", counterexamples invited.
+- Measurements added: Recall@1/3/10/100 on a 74-query gold set (37.8 / 54.1 / 71.6 / 93.2 %), latency;
+  limits of the gold set stated.
+- Witness described as it is: a *logged* witness (the agent holds push access to the private memory
+  repository), not an independent one; write-once storage (object lock, compliance mode) is planned.
+- New limits listed: no formal threat model yet; hash chain proves integrity, not correctness.
+- Related work: MemGPT/Letta, mem0, Zep, ChatGPT memory, *Proactive Memory Agent* (arXiv:2607.08716 —
+  selective injection outperformed always-on, which bears directly on SMP's design), *TriggerBench* (arXiv:2606.23459).
+
+### Moved — previous README ×4 → `docs/WHY*.md`
+- Kept as design background, with a note at the top naming the claims the current README corrects.
+
 ## Unreleased — v0.4.3 (status sentences that contradicted their own documents)
 
 v0.4.2 disclosed that Engram steers on the reference installation since 2026-08-25 and that the gist
