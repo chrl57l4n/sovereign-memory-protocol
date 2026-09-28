@@ -62,7 +62,9 @@ Installation runs as a dialogue with the AI you already use: copy [docs/SETUP-PR
 
 ## Further reading
 
-Whitepapers: [v0.2](spec/whitepaper.md) · [v0.3 Engram](spec/engram.md) · [v0.4 Self-Maintenance](spec/self-maintenance.md) · [architecture diagrams](docs/architecture.md) · [provenance](PROVENANCE.md) · design background and motivation: [docs/WHY.md](docs/WHY.md) *(the previous README, archived 2026-09-28)*.
+Whitepapers: [v0.2](spec/whitepaper.md) · [v0.3 Engram](spec/engram.md) · [v0.4 Self-Maintenance](spec/self-maintenance.md) · [architecture diagrams](docs/architecture.md) · [provenance](PROVENANCE.md)
+
+Previous README, for comparison: [docs/WHY.md](docs/WHY.md) *(written 2026-06-30, last revised 2026-09-26)*.
 
 ## License · Authors
 

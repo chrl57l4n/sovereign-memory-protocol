@@ -62,7 +62,9 @@ La instalación se hace como un diálogo con la IA que ya usas: copia [docs/SETU
 
 ## Lecturas adicionales
 
-Whitepapers: [v0.2](spec/whitepaper.es.md) · [v0.3 Engram](spec/engram.es.md) · [v0.4 Automantenimiento](spec/self-maintenance.md) (en inglés) · [diagramas de arquitectura](docs/architecture.md) · [procedencia](PROVENANCE.md) · contexto y motivación: [docs/WHY.es.md](docs/WHY.es.md) *(el README anterior, archivado el 2026-09-28)*.
+Whitepapers: [v0.2](spec/whitepaper.es.md) · [v0.3 Engram](spec/engram.es.md) · [v0.4 Automantenimiento](spec/self-maintenance.md) (en inglés) · [diagramas de arquitectura](docs/architecture.md) · [procedencia](PROVENANCE.md)
+
+README anterior, para comparar: [docs/WHY.es.md](docs/WHY.es.md) *(escrito desde el 2026-07-04, última revisión el 2026-09-26)*.
 
 ## Licencia · Autores
 

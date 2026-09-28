@@ -62,7 +62,9 @@ SMP — не первая система памяти для LLM-агентов,
 
 ## Дополнительно
 
-Whitepaper: [v0.2](spec/whitepaper.ru.md) · [v0.3 Engram](spec/engram.ru.md) · [v0.4 Самообслуживание](spec/self-maintenance.md) (на английском) · [архитектурные диаграммы](docs/architecture.md) · [происхождение](PROVENANCE.md) · предыстория и мотивация: [docs/WHY.ru.md](docs/WHY.ru.md) *(прежний README, в архиве с 2026-09-28)*.
+Whitepaper: [v0.2](spec/whitepaper.ru.md) · [v0.3 Engram](spec/engram.ru.md) · [v0.4 Самообслуживание](spec/self-maintenance.md) (на английском) · [архитектурные диаграммы](docs/architecture.md) · [происхождение](PROVENANCE.md)
+
+Прежний README для сравнения: [docs/WHY.ru.md](docs/WHY.ru.md) *(написан с 2026-07-04, последняя редакция 2026-09-26)*.
 
 ## Лицензия · Авторы
 

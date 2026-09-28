@@ -62,7 +62,9 @@ Die Installation läuft als Dialog mit der KI, die du bereits nutzt: Kopiere [do
 
 ## Weiterlesen
 
-Whitepaper: [v0.2](spec/whitepaper.de.md) · [v0.3 Engram](spec/engram.de.md) · [v0.4 Selbstpflege](spec/self-maintenance.md) (englisch) · [Architektur-Diagramme](docs/architecture.md) · [Provenienz](PROVENANCE.md) · Hintergrund und Motivation: [docs/WHY.de.md](docs/WHY.de.md) *(das bisherige README, archiviert am 28.09.2026)*.
+Whitepaper: [v0.2](spec/whitepaper.de.md) · [v0.3 Engram](spec/engram.de.md) · [v0.4 Selbstpflege](spec/self-maintenance.md) (englisch) · [Architektur-Diagramme](docs/architecture.md) · [Provenienz](PROVENANCE.md)
+
+Bisheriges README zum Vergleich: [docs/WHY.de.md](docs/WHY.de.md) *(geschrieben ab 01.07.2026, zuletzt überarbeitet am 26.09.2026)*.
 
 ## Lizenz · Autoren
 
