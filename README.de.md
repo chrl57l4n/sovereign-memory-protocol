@@ -4,6 +4,8 @@
 
 **Persistentes, selbst gehostetes, prüfbares Langzeitgedächtnis für LLM-Agenten — Spezifikation + Referenz-Engine.**
 
+📄 **Aktuelles Whitepaper:** [v0.4 — Selbstpflege & Kontinuität](spec/self-maintenance.md) (englisch; verankert am 03.08.2026) · baut auf [v0.3 — Engram](spec/engram.de.md) und der Grundlage [v0.2](spec/whitepaper.de.md) auf. Eine zusammenführende Neufassung aller drei ist in Arbeit; frühere Versionen bleiben unverändert als Zeugnis der Entwicklung von SMP.
+
 *Jede Aussage in diesem Dokument beschreibt den Stand zu seinem Datum (zuletzt überarbeitet am 28.09.2026). Aussagen über das Forschungsfeld und über dieses System werden überarbeitet, wenn sich die Beleglage ändert.*
 
 ## Abstract

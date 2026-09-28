@@ -4,6 +4,8 @@
 
 **Memoria persistente a largo plazo, autoalojada y auditable para agentes LLM — especificación + motor de referencia.**
 
+📄 **Whitepaper actual:** [v0.4 — Automantenimiento y continuidad](spec/self-maintenance.md) (en inglés; anclado el 2026-08-03) · se basa en [v0.3 — Engram](spec/engram.es.md) y en la base [v0.2](spec/whitepaper.es.md). Se está preparando una reescritura que reúne las tres; las versiones anteriores se mantienen sin cambios como registro de la evolución de SMP.
+
 *Cada afirmación de este documento describe el estado a su fecha (última revisión: 2026-09-28). Las afirmaciones sobre el campo y sobre este sistema se revisan cuando cambia la evidencia.*
 
 ## Resumen

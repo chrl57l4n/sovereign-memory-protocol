@@ -4,6 +4,8 @@
 
 **Persistent, self-hosted, auditable long-term memory for LLM agents — specification + reference engine.**
 
+📄 **Current whitepaper:** [v0.4 — Self-Maintenance & Continuity](spec/self-maintenance.md) (anchored 2026-08-03) · builds on [v0.3 — Engram](spec/engram.md) and the foundation [v0.2](spec/whitepaper.md). A consolidated rewrite of all three is in preparation; earlier versions stay unchanged as the record of how SMP developed.
+
 *Every statement in this document describes the state as of its date (last revised 2026-09-28). Claims about the field and about this system are revised when the evidence changes.*
 
 ## Abstract
