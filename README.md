@@ -4,9 +4,9 @@
 
 **Persistent, self-hosted, auditable long-term memory for LLM agents — specification + reference engine.**
 
-📄 **Current whitepaper:** [v0.4 — Self-Maintenance & Continuity](spec/self-maintenance.md) (anchored 2026-08-03) · builds on [v0.3 — Engram](spec/engram.md) and the foundation [v0.2](spec/whitepaper.md). A consolidated rewrite of all three is in preparation; earlier versions stay unchanged as the record of how SMP developed.
+📄 **Current whitepaper:** [v0.5 — The Answered Guardian](spec/answered-guardian.md) (anchored 2026-10-07) · builds on [v0.4 — Self-Maintenance & Continuity](spec/self-maintenance.md), [v0.3 — Engram](spec/engram.md) and the foundation [v0.2](spec/whitepaper.md). A consolidated rewrite of all four is in preparation; earlier versions stay unchanged as the record of how SMP developed.
 
-*Every statement in this document describes the state as of its date (last revised 2026-09-28). Claims about the field and about this system are revised when the evidence changes.*
+*Every statement in this document describes the state as of its date (last revised 2026-10-07). Claims about the field and about this system are revised when the evidence changes.*
 
 ## Abstract
 
@@ -54,7 +54,7 @@ SMP is not the first memory system for LLM agents, and proactive memory injectio
 
 ## Status
 
-Version **0.2** is the installable foundation (GPG-signed, Bitcoin-anchored). **v0.3 (Engram)** and **v0.4 (Self-Maintenance & Continuity)** are anchored and partly running on the reference installation; each mechanism's status is stated in its paper. Engram's review closes on **2026-10-07** with a measurement. Federation is planned, not implemented.
+Version **0.2** is the installable foundation (GPG-signed, Bitcoin-anchored). **v0.3 (Engram)**, **v0.4 (Self-Maintenance & Continuity)** and **v0.5 (The Answered Guardian)** are anchored and partly running on the reference installation; each mechanism's status is stated in its paper. v0.5 reports its own field record, including what did not hold: one mechanism is cut, and one guardian was blind for nine days. It also contains one young part, marked as such: the **gateway** (§7a), a small generated signpost file through which a fresh session finds its memory from a plain "hello". It was built on 2026-10-04 and is included by decision with one evening of record; its code (`engine/gateway_build.py`) is released as BETA. Engram's review was decided on **2026-10-05** on its measurement: the rank damping of dormant entries is withdrawn, and the paper's rule that strength never enters recall stands as written (`spec/engram.md` §10). Federation is planned, not implemented.
 
 ## Install
 
@@ -62,7 +62,7 @@ Installation runs as a dialogue with the AI you already use: copy [docs/SETUP-PR
 
 ## Further reading
 
-Whitepapers: [v0.2](spec/whitepaper.md) · [v0.3 Engram](spec/engram.md) · [v0.4 Self-Maintenance](spec/self-maintenance.md) · [architecture diagrams](docs/architecture.md) · [provenance](PROVENANCE.md)
+Whitepapers: [v0.2](spec/whitepaper.md) · [v0.3 Engram](spec/engram.md) · [v0.4 Self-Maintenance](spec/self-maintenance.md) · [v0.5 Answered Guardian](spec/answered-guardian.md) · [architecture diagrams](docs/architecture.md) · [provenance](PROVENANCE.md)
 
 Previous README, for comparison: [docs/WHY.md](docs/WHY.md) *(written 2026-06-30, last revised 2026-09-26)*.
 

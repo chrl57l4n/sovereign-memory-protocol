@@ -86,6 +86,18 @@ la decisión de idioma de la Fase 0. Paso de verificación: el servidor de
 embeddings responde localmente; un índice de prueba sobre los archivos de
 plantilla se completa.
 
+**Fase 4b — Cableado del despertar: la puerta (v0.5 §7a, BETA — opcional, solo en hosts con
+hook de inicio de sesión).** La recuperación responde a una pregunta; una sesión nueva que
+solo recibe «hola» no carga nada sin la puerta. La puerta es joven (un día de funcionamiento
+en la instalación de referencia al publicarse): díselo al humano y deja que decida. Si dice
+que sí, con el script incluido: (1) `engine/gateway_build.py --header --index <mapa siempre
+cargado>` en el hook de inicio de sesión del host (con `MOTOKO_MEMORY` definido), (2) el
+bloque de tres líneas de la puerta al principio del mapa siempre cargado, (3) prueba: sesión
+nueva con la única palabra «hola», solo la herramienta de lectura permitida, y CONTAR las
+lecturas en la transcripción: exactamente una, sobre el archivo de la puerta. La forma del
+hook y el comando de prueba están en `docs/SETUP-PROMPT.md` (Phase 4b, en inglés) y en
+`docs/INSTALL-NOTES.md`. Las sesiones programadas con tarea propia no reciben el deber de inicio.
+
 **Fase 5 — Arranque de disparadores (§22.6).** De las primeras conversaciones
 con el humano extraes 50–100 frases-disparador iniciales (sus palabras típicas →
 objetivos temáticos) hacia el archivo de disparadores externo. El archivo de

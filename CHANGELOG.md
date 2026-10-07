@@ -5,6 +5,70 @@ genesis. Format loosely follows [Keep a Changelog](https://keepachangelog.com/);
 dates are commit dates, not a formal release cadence — this is v0.2, a
 living draft, not yet on a tagged-release rhythm.
 
+## v0.5 "The Answered Guardian" — signed 2026-10-07 (Bitcoin anchor: `PROVENANCE.md` §6)
+
+A whitepaper increment (`spec/answered-guardian.md`), offered at the size its field record carries.
+
+### Added
+- `spec/answered-guardian.md` — three pillars: the answered guardian (a guardian over a state the AI must
+  repair needs a specified actor and a waking act, not only a report), self-documentation as a component,
+  and convergent verification by a second model. Field record measured twice (2026-09-19, 2026-10-02).
+
+- `spec/answered-guardian.md` §7a (added 2026-10-05) — **the gateway**: a generated signpost file under a
+  byte budget that a fresh session reads once before its first answer; the builder shrinks itself and says so;
+  emergency gateway on build failure; two paths to the file; an unattended, counted "hello" probe.
+  **Young:** built 2026-10-04, three fresh sessions observed. Included on the human partner's decision as an
+  explicit exception to the paper's own deferral rule (§1.4).
+- `engine/gateway_build.py` + `engine/tests/test_gateway_build.py` — de-instanced extraction of the gateway builder,
+  **public/BETA**, ported against sync rule R1 (two weeks) with the deviation named in `engine/INVENTORY.md`.
+  Not the running code of the reference installation. Eight tests (G1–G8) for the deterministic properties.
+- `docs/INSTALL-NOTES.md` — "Waking wiring": start duty, gateway block, probe.
+- `docs/SETUP-PROMPT.md` — **Phase 4b** (optional, BETA): the installing AI wires the gateway with the shipped
+  builder (session-start hook, gate block, counted probe) and Phase 8 asks for the probe result. Short form in
+  the three translated prompts. `START-HERE.md` names the gateway in the reading order and the honest status.
+  Without this the code shipped but no installation would have wired it (noticed by the human partner on the
+  day of release). The documented builder call was run against a fresh memory made from `templates/`.
+
+### Decided — Engram §6 review (`spec/engram.md` §10, all four languages; README ×4)
+- The rank damping of dormant entries (×0.9 on the reference installation since 2026-08-25, disclosed 2026-09-23)
+  is **withdrawn** as of 2026-10-05, two days before the announced date. Measured over 12.4 days and 1,424 queries:
+  37 dormant hits surfaced despite it (28 files, all since reanimated), 29 were lost only because of it (25 files,
+  17 still dormant); lock-in marker zero but weak. Losses were not small against returns and no benefit had been
+  measured. §6 stands as written. The public engine never contained the damping.
+
+### Corrected and measured — Engram §10/§11 (`spec/engram.md` §10, all four languages; added 2026-10-06)
+- **Correction of the entry above.** The counts of 2026-10-05 included automated sessions and hand-run test queries
+  (509 of 1,424 queries). Over attested use: 915 queries, 22 returns (19 files), 18 losses (18 files). Nine of the
+  28 "returned" files had been woken by test queries only. The decision stands; the entry above is left as written.
+- **§11 measured for the first time (2026-10-06):** E1 not met (stuck set 0 → 34, Gini 0.139 → 0.244 over 82 nights);
+  E2 built that evening (the recall log now carries raw evidence of provenance and has one reader), not yet shown over
+  an observation window; E3 not met (Engram compacts nothing on the reference installation); E4 met for the score by a
+  regression test, open in substance (the cascade decides by `R` when a daily entry enters the semantic index).
+  Engram remains unreleased. A restatement of E1 and E3 will be published as a revision of its own.
+
+### Stated limits (from the field record, in the paper itself)
+- §7a has no field record in the sense of §13.2: one evening. Which of its two paths carries, other hosts,
+  scheduled sessions and repeatability are unmeasured.
+- One mechanism is cut: the self-eye at the completion boundary (N = 22, 1 true catch, 15 misfires).
+- One guardian was blind from 2026-09-22 to 2026-10-01; one index tree had no wake.
+- Two figures of the first draft are retracted (retrieval reach "74 %", a "4.19 : 1" cross-check).
+- The README sentence *"the guardians that watch your memory are answered by the AI that owns it"* is
+  **not** added: its condition (yes on all three field questions) is only partly met.
+- The measurement reports behind the figures are not published with this increment.
+
+### Changed — README ×4 languages
+- Current-whitepaper line, status paragraph and further-reading list name v0.5.
+- Status paragraph names the gateway (§7a) as the one young part, with its age and BETA status.
+
+### Review
+- Read adversarially by a second model in two passes on 2026-10-03: nine findings in the first
+  (among them one arithmetic error and internal file paths), all worked in; second pass: accepted.
+- §7a, §1.4 and the gateway code were added after that review and read separately on 2026-10-05:
+  28 findings, three of them serious defects in the code (shrink loop without a final check; an emergency path
+  that could fail without leaving a file; a precondition named in the paper but not checked). All three fixed
+  with tests the same day; verdict *accepted as BETA*. The reviewer also recorded that it considers the code
+  immature and the exception a precedent risk; §1.4 answers the second point and does not dispute the first.
+
 ## Unreleased — README rewrite (2026-09-28): what holds, as of its date
 
 Prompted by public criticism (Blocktrainer forum, 2026-09-26/27) that was largely correct: the README

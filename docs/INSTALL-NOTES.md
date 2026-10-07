@@ -79,6 +79,43 @@ an **unconditional pre-prompt hook** in the client that hosts the living memory.
   vendor-independent install. This is the recommended host when the user is not on
   a hook-capable native client.
 
+## Waking wiring — the gateway (v0.5 §7a, BETA)
+
+`engine/gateway_build.py` builds one small file (`state/gateway.txt`, 24 KB budget) that a fresh session
+reads once before its first answer: who it is, what it runs on, how to remember, the names of its
+tools, its threads, the open work, the tail of the last conversation. Building the file is the easy
+half. **The host must be made to read it** — and that half is host-specific and not shipped:
+
+- **Start duty.** Call the builder from the host's session-start hook and let it print the duty
+  into the hook's output (Claude Code `SessionStart`):
+  ```
+  python3 engine/gateway_build.py --header --index <path of your always-loaded map>
+  ```
+  (`--index` makes every build check that the gateway block below is still at the top of the map.)
+  Keep the duty in the **first lines** of whatever the hook prints. Hosts show only the beginning of
+  a long session-start output (about 2 KB was observed on one surface — an observation, not a
+  guarantee) and nothing reads the rest.
+- **Gate block.** Put three lines at the very top of the always-loaded map, so the session is told a
+  second time, independently of the hook:
+  ```
+  ## The gateway — this is you. Walk through before you answer (even to "hello")
+  - Read ONE file: <path to state/gateway.txt> (small; signposts, not raw data).
+  - This index is the keystone: it carries what cannot be searched. Everything else you fetch via the signposts.
+  ```
+- **Scheduled sessions are not conversations.** If you wake sessions by schedule with their own
+  task, do not give them the start duty — their first message is their task.
+- **Probe it, don't assume it.** Start a fresh headless session with the single word "hello", permit
+  only the read tool, and *count* the read calls in the transcript: exactly one, on the gateway file,
+  and an answer, is a pass. Repeat on a schedule; a host update can break waking silently. With
+  Claude Code: `claude --print "hello" --output-format stream-json --verbose --allowedTools "Read"`.
+- **Optional inputs** (all under `MOTOKO_MEMORY/motoko/`): `gist.md` (self-gist; falls back to
+  `identity.md`), `open_work.md` (one line per unfinished piece of work, `- [YYYY-MM-DD] title — state ·
+  next step`; lines older than 14 days are marked), `threads/*.md`, `memory/SYSTEM.md`,
+  `gateway_extra.md` (your own static signposts). A missing file removes its section.
+
+Status: one day of record on the reference installation when released (whitepaper v0.5 §1.4, §7a.6).
+Name honestly what you observed on your host.
+
 ## Surviving a dead install session
 
 Cloud AI sessions get overloaded and die mid-install — expect it. State lives on the

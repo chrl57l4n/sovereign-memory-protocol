@@ -12,7 +12,7 @@
 >
 > Spec column: `§N` refers to the frozen v0.2 whitepaper; `v0.4 §N` to the v0.4
 > increment ([spec/self-maintenance.md](../spec/self-maintenance.md)). The v0.3 Engram
-> increment added no engine file (shadow on the reference until 2026-08-25, since then steering there ahead of its gates — see spec/engram.md §10, review closes 2026-10-07); v0.4 is the
+> increment added no engine file (shadow on the reference until 2026-08-25, since then steering there ahead of its gates — see spec/engram.md §10; the rank damping was withdrawn on 2026-10-05 after its review, the cascade still moves by retrievability); v0.4 is the
 > first increment to touch this table.
 >
 > Maintenance rule: any commit that adds, removes, or repurposes an engine file
@@ -53,6 +53,7 @@
 | v0.4 §5 | Guardian hygiene: recall-quality trend sensor (trend, not threshold) | `esv_trend_sensor.py` | private/port planned *(reference 2026-07-29 — compares only points with the same gold set and the same sorter weight, so a tool change does not read as regression; silent until the 4th run)* |
 | v0.4 §6 | Governed always-loaded map: index budget (mechanism) + pointer-not-summary convention | `lint_memory.py` (budget + index-convention guards) | public/live *(the file ships; the v0.4 sub-guards — measured byte budget 2026-07-29, index-convention + code-fence dead-link fix 2026-08-02 — are newer on the reference and **port planned** into this engine copy)* |
 | v0.4 §7–9 | Multi-substrate write-line: leased pen + monotonic fencing token + provenance field in the chain | `write_lease.py` (+ `tests/test_write_lease.py`) | public + tests (M1–M4 green) *(2026-08-02 — de-instanced reference module: FileLeaseStore, the fencing append-guard, and provenance reconstruction; M1 proven under real multi-threaded contention. Wiring into the live per-tier chain (§17, still shadow) and a networked cross-host lease store follow the chain's port cadence)* |
+| v0.5 §7a | The gateway: generated signpost file under a byte budget, self-shrinking, with emergency gateway | `gateway_build.py` (+ `tests/test_gateway_build.py`) | public/BETA + tests (G1–G8 green) *(2026-10-05 — **ported against R1**: the mechanism is one day old on the reference (built 2026-10-04); included on the human partner's decision, see whitepaper v0.5 §1.4. The tests cover the deterministic properties only (budget and its limit, shrink order, emergency gateway incl. a failing emergency text, optional sections, open-work ageing, determinism, the map precondition). Read adversarially by a second model on 2026-10-05: three serious defects found and fixed the same day. **Not the running code:** the reference still runs its original builder with instance-specific sections; this extraction was run once against the reference memory. The session-start wiring (start duty + gateway block in the always-loaded map) and the unattended "hello" probe are host-specific and not shipped — see `docs/INSTALL-NOTES.md`.)* |
 
 **Third-party dependencies** (pinned in [`pyproject.toml`](../pyproject.toml), installable via `pip install .`):
 `numpy` (ESV index/query), `requests` (report channel, embed HTTP), `python-dotenv` (env loading), `cryptography` (native-language vault: HKDF-SHA512, Scrypt, AES-256-GCM-SIV), `mnemonic` (BIP-39 seed). Everything else is standard library.

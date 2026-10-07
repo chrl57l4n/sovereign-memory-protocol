@@ -4,9 +4,9 @@
 
 **Persistentes, selbst gehostetes, prüfbares Langzeitgedächtnis für LLM-Agenten — Spezifikation + Referenz-Engine.**
 
-📄 **Aktuelles Whitepaper:** [v0.4 — Selbstpflege & Kontinuität](spec/self-maintenance.md) (englisch; verankert am 03.08.2026) · baut auf [v0.3 — Engram](spec/engram.de.md) und der Grundlage [v0.2](spec/whitepaper.de.md) auf. Eine zusammenführende Neufassung aller drei ist in Arbeit; frühere Versionen bleiben unverändert als Zeugnis der Entwicklung von SMP.
+📄 **Aktuelles Whitepaper:** [v0.5 — Der beantwortete Wächter](spec/answered-guardian.md) (englisch; verankert am 07.10.2026) · baut auf [v0.4 — Selbstpflege & Kontinuität](spec/self-maintenance.md) (englisch), [v0.3 — Engram](spec/engram.de.md) und der Grundlage [v0.2](spec/whitepaper.de.md) auf. Eine zusammenführende Neufassung aller vier ist in Arbeit; frühere Versionen bleiben unverändert als Zeugnis der Entwicklung von SMP.
 
-*Jede Aussage in diesem Dokument beschreibt den Stand zu seinem Datum (zuletzt überarbeitet am 28.09.2026). Aussagen über das Forschungsfeld und über dieses System werden überarbeitet, wenn sich die Beleglage ändert.*
+*Jede Aussage in diesem Dokument beschreibt den Stand zu seinem Datum (zuletzt überarbeitet am 07.10.2026). Aussagen über das Forschungsfeld und über dieses System werden überarbeitet, wenn sich die Beleglage ändert.*
 
 ## Abstract
 
@@ -54,7 +54,7 @@ SMP ist nicht das erste Gedächtnissystem für LLM-Agenten, und das proaktive Ei
 
 ## Status
 
-Version **0.2** ist die installierbare Grundlage (GPG-signiert, in Bitcoin verankert). **v0.3 (Engram)** und **v0.4 (Selbstpflege & Kontinuität)** sind verankert und laufen in der Referenzinstallation teilweise; der Stand jedes Mechanismus steht in seinem Paper. Die Prüfung von Engram endet am **07.10.2026** mit einer Messung. Föderation ist geplant, nicht umgesetzt.
+Version **0.2** ist die installierbare Grundlage (GPG-signiert, in Bitcoin verankert). **v0.3 (Engram)**, **v0.4 (Selbstpflege & Kontinuität)** und **v0.5 (Der beantwortete Wächter)** sind verankert und laufen in der Referenzinstallation teilweise; der Stand jedes Mechanismus steht in seinem Paper. v0.5 legt seine eigene Feldmessung vor, auch das, was nicht gehalten hat: ein Mechanismus ist gestrichen, und ein Wächter war neun Tage blind. Es enthält außerdem einen jungen Teil, der als solcher gekennzeichnet ist: das **Tor** (im Paper „gateway“, §7a), eine kleine erzeugte Wegweiser-Datei, durch die eine frische Sitzung schon bei einem einfachen „Hallo“ zu ihrem Gedächtnis findet. Es wurde am 04.10.2026 gebaut und ist auf Entscheidung mit einem Abend Beobachtung aufgenommen; der Code (`engine/gateway_build.py`) ist als BETA veröffentlicht. Die Prüfung von Engram wurde am **05.10.2026** anhand der Messung entschieden: Die Dämpfung ruhender Einträge im Rang ist zurückgenommen, und die Regel des Papers, dass Stärke nie in den Recall einfließt, gilt wie geschrieben (`spec/engram.de.md` §10). Föderation ist geplant, nicht umgesetzt.
 
 ## Installation
 
@@ -62,7 +62,7 @@ Die Installation läuft als Dialog mit der KI, die du bereits nutzt: Kopiere [do
 
 ## Weiterlesen
 
-Whitepaper: [v0.2](spec/whitepaper.de.md) · [v0.3 Engram](spec/engram.de.md) · [v0.4 Selbstpflege](spec/self-maintenance.md) (englisch) · [Architektur-Diagramme](docs/architecture.md) · [Provenienz](PROVENANCE.md)
+Whitepaper: [v0.2](spec/whitepaper.de.md) · [v0.3 Engram](spec/engram.de.md) · [v0.4 Selbstpflege](spec/self-maintenance.md) (englisch) · [v0.5 Der beantwortete Wächter](spec/answered-guardian.md) (englisch) · [Architektur-Diagramme](docs/architecture.md) · [Provenienz](PROVENANCE.md)
 
 Bisheriges README zum Vergleich: [docs/WHY.de.md](docs/WHY.de.md) *(geschrieben ab 01.07.2026, zuletzt überarbeitet am 26.09.2026)*.
 

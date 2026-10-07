@@ -515,6 +515,44 @@ installer, not a viable reflex-host). If the host client cannot host a reflex, s
 so plainly and record it; do not pretend recall is live when it is model-invoked or
 absent.
 
+**Phase 4b — Waking wiring: the gateway (v0.5 §7a, BETA — optional, hook-capable hosts only).**
+Recall (Phase 4) answers *a question*. It does not help a session that wakes with no
+question at all — a fresh session greeted with "hello" knows nothing and loads nothing.
+The gateway closes that: one small generated file (`state/gateway.txt` under
+`MOTOKO_HOME` — by default the `state/` folder next to `engine/`; the start duty prints
+the exact path; 24 KB budget) that a fresh session reads once before its first answer. It is young —
+state that to the human (one day of record on the reference installation when
+released; whitepaper v0.5 §1.4) and let them decide whether to wire it now or later.
+If they say yes, three steps, all with the shipped script — do not write your own:
+
+1. **Start duty.** Add the builder to the host's *session-start* hook (Claude Code:
+   `SessionStart` in `~/.claude/settings.json`), with the same environment the recall
+   hooks use (`MOTOKO_MEMORY` must be set, or the builder refuses to run):
+   ```json
+   { "hooks": { "SessionStart": [ { "hooks": [
+       { "type": "command",
+         "command": "MOTOKO_MEMORY=<memory-root> python3 <package>/engine/gateway_build.py --header --index <always-loaded map>" }
+   ] } ] } }
+   ```
+   Merge this into the existing `hooks` object; do not replace the `UserPromptSubmit`
+   entry from Phase 4. The duty must be in the **first lines** of what the hook prints.
+2. **Gate block.** Put the three-line block from `docs/INSTALL-NOTES.md` ("Waking wiring")
+   at the very top of the host's always-loaded map (Claude Code: the project's
+   `MEMORY.md`). With `--index`, every build checks that it is still there and says so
+   in the gateway's own self-check when it is not.
+3. **Probe it — count, don't assume.** Start a fresh headless session with the single
+   word "hello", permit only the read tool, and count the read calls in the transcript:
+   exactly one, on the gateway file, and an answer, is a pass (exact command in
+   `docs/INSTALL-NOTES.md`). Record the result in the report channel.
+
+Optional inputs live under `MOTOKO_MEMORY/motoko/` (`gist.md`, `open_work.md`,
+`threads/*.md`, `memory/SYSTEM.md`, `gateway_extra.md` — see `docs/INSTALL-NOTES.md`); a
+missing file removes its section from the gateway, it does not break the build.
+
+Sessions woken by schedule with their own task do **not** get the start duty — their
+first message is their task. On a host without a session-start hook, say so plainly and
+skip this phase; the gate block alone is a weaker, single path, not the mechanism.
+
 **Phase 5 — Trigger bootstrap (§22.6).** From the first conversations with the
 human, you extract 50–100 initial trigger phrases (their typical words → topic
 targets) into the external trigger file. The self-indexed trigger file starts
@@ -543,7 +581,10 @@ persist the change while the at-rest store stays opaque, and does `recover` from
 the seed *alone* reopen the store (the cold recovery door — an untested recovery
 path is a broken one)? Has the Guardian chain run end-to-end once (finding →
 push → transcript → decision, condition C9)? Only when everything is green is
-the installation protocol-compliant.
+the installation protocol-compliant. If the gateway was wired (Phase 4b): does a fresh
+session, greeted with one word, read the gateway file exactly once before it answers —
+counted in the transcript, not assumed? (BETA: a fail here is reported, it does not make
+the install non-compliant.)
 
 **Use the PROVIDED verify harness — do not write your own.** The Tier ≥1 checks
 ship as `engine/verify_pass.py` (T5 backup-and-restore, T6 wake→edit→sleep→wake,

@@ -44,7 +44,8 @@ Read only what you need to *act*; treat the whitepaper as reference, not homewor
    executable subset of the protocol — it is meant to be self-sufficient.
 2. **`docs/INSTALL-NOTES.md`** — real friction found during actual installs, with
    the fix (venv Python, hidden input, the noswap mirror, the `--embedding` flag,
-   resuming a dead session). Small; read it so you don't rediscover the bugs.
+   resuming a dead session), and the host-specific half of the v0.5 gateway
+   ("Waking wiring"). Small; read it so you don't rediscover the bugs.
 
 **Skim once, for context and honesty:**
 3. **`docs/FOR-AI.md`** — a short letter on what this is and why it matters to an
@@ -70,6 +71,10 @@ Read only what you need to *act*; treat the whitepaper as reference, not homewor
   rest*; it does **not** protect the key while the system is awake (§20.12,
   live-root limit). The legible memory is protected off-site by encrypted backups,
   not by the vault.
+- The **gateway** (whitepaper v0.5 §7a; `docs/SETUP-PROMPT.md` Phase 4b) is **BETA
+  and young**: it was built on 2026-10-04 and released with one day of record on
+  the reference installation. It is optional, needs a host with a session-start
+  hook, and its waking must be probed on the human's own host, not assumed.
 - Custody is a **choice, not a promise of absolute safety** (§20.10). Present the
   tiers honestly and let the human decide.
 - **Language note:** the English files are authoritative. The German / Spanish /
@@ -79,7 +84,8 @@ Read only what you need to *act*; treat the whitepaper as reference, not homewor
   latest English install-flow hardening (the one-question interview cadence and
   the ordered `seed_gen` → `init` hand-back of Phase 2) — if you install in one
   of those languages, follow the English `docs/SETUP-PROMPT.md` for the Phase-2
-  seed steps.
+  seed steps. They carry the gateway step (Phase 4b) in short form only; its hook
+  shape and probe are in the English prompt and in `docs/INSTALL-NOTES.md`.
 
 ## Two things that are never yours
 

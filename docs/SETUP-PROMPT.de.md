@@ -88,6 +88,18 @@ Index), REM-Konsolidierung. Embed-Modell nach Phase-0-Sprachentscheidung.
 Prüfschritt: Embed-Server antwortet lokal; ein Test-Index über die
 Template-Dateien läuft durch.
 
+**Phase 4b — Aufwach-Verdrahtung: das Tor (v0.5 §7a, BETA — optional, nur auf Hosts mit
+Sitzungsstart-Hook).** Der Recall beantwortet eine Frage; eine frische Sitzung, die nur
+„hallo“ bekommt, lädt ohne das Tor nichts. Das Tor ist jung (bei Veröffentlichung ein Tag
+Betrieb in der Referenz-Installation) — sag das dem Menschen und lass ihn entscheiden. Bei Ja,
+mit dem mitgelieferten Skript: (1) `engine/gateway_build.py --header --index <immer geladene
+Karte>` in den Sitzungsstart-Hook des Hosts (mit gesetztem `MOTOKO_MEMORY`), (2) den
+dreizeiligen Tor-Block ganz oben in die immer geladene Karte, (3) Probe: frische Sitzung mit
+dem einen Wort „hallo“, nur das Lese-Werkzeug erlaubt, Lese-Aufrufe im Protokoll ZÄHLEN —
+genau einer, auf die Tor-Datei. Hook-Form und Probe-Befehl stehen in der englischen
+`docs/SETUP-PROMPT.md` (Phase 4b) und in `docs/INSTALL-NOTES.md`. Zeitgesteuerte Sitzungen
+mit eigener Aufgabe bekommen die Start-Pflicht nicht.
+
 **Phase 5 — Trigger-Bootstrap (§22.6).** Aus den ersten Gesprächen mit dem
 Menschen extrahierst du 50–100 erste Trigger-Phrasen (seine typischen Wörter →
 Themen-Ziele) in die externe Trigger-Datei. Die Selbst-Trigger-Datei beginnt

@@ -4,9 +4,9 @@
 
 **Memoria persistente a largo plazo, autoalojada y auditable para agentes LLM — especificación + motor de referencia.**
 
-📄 **Whitepaper actual:** [v0.4 — Automantenimiento y continuidad](spec/self-maintenance.md) (en inglés; anclado el 2026-08-03) · se basa en [v0.3 — Engram](spec/engram.es.md) y en la base [v0.2](spec/whitepaper.es.md). Se está preparando una reescritura que reúne las tres; las versiones anteriores se mantienen sin cambios como registro de la evolución de SMP.
+📄 **Whitepaper actual:** [v0.5 — El guardián respondido](spec/answered-guardian.md) (en inglés; anclado el 2026-10-07) · se basa en [v0.4 — Automantenimiento y continuidad](spec/self-maintenance.md) (en inglés), [v0.3 — Engram](spec/engram.es.md) y en la base [v0.2](spec/whitepaper.es.md). Se está preparando una reescritura que reúne las cuatro; las versiones anteriores se mantienen sin cambios como registro de la evolución de SMP.
 
-*Cada afirmación de este documento describe el estado a su fecha (última revisión: 2026-09-28). Las afirmaciones sobre el campo y sobre este sistema se revisan cuando cambia la evidencia.*
+*Cada afirmación de este documento describe el estado a su fecha (última revisión: 2026-10-07). Las afirmaciones sobre el campo y sobre este sistema se revisan cuando cambia la evidencia.*
 
 ## Resumen
 
@@ -54,7 +54,7 @@ SMP no es el primer sistema de memoria para agentes LLM, y la inserción proacti
 
 ## Estado
 
-La versión **0.2** es la base instalable (firmada con GPG, anclada en Bitcoin). **v0.3 (Engram)** y **v0.4 (Automantenimiento y continuidad)** están ancladas y funcionan en parte en la instalación de referencia; el estado de cada mecanismo figura en su documento. La revisión de Engram concluye el **2026-10-07** con una medición. La federación está prevista, no implementada.
+La versión **0.2** es la base instalable (firmada con GPG, anclada en Bitcoin). **v0.3 (Engram)**, **v0.4 (Automantenimiento y continuidad)** y **v0.5 (El guardián respondido)** están ancladas y funcionan en parte en la instalación de referencia; el estado de cada mecanismo figura en su documento. v0.5 presenta su propio registro de campo, incluido lo que no se sostuvo: un mecanismo se retira y un guardián estuvo ciego durante nueve días. Contiene además una parte joven, señalada como tal: la **puerta de entrada** («gateway», §7a), un pequeño archivo de indicadores generado por el que una sesión nueva encuentra su memoria con un simple «hola». Se construyó el 2026-10-04 y se incluye por decisión con una sola tarde de observación; su código (`engine/gateway_build.py`) se publica como BETA. La revisión de Engram se decidió el **2026-10-05** a partir de su medición: se retira la atenuación de las entradas latentes en el ranking, y la regla del documento de que la fuerza nunca entra en la recuperación queda como está escrita (`spec/engram.es.md` §10). La federación está prevista, no implementada.
 
 ## Instalación
 
@@ -62,7 +62,7 @@ La instalación se hace como un diálogo con la IA que ya usas: copia [docs/SETU
 
 ## Lecturas adicionales
 
-Whitepapers: [v0.2](spec/whitepaper.es.md) · [v0.3 Engram](spec/engram.es.md) · [v0.4 Automantenimiento](spec/self-maintenance.md) (en inglés) · [diagramas de arquitectura](docs/architecture.md) · [procedencia](PROVENANCE.md)
+Whitepapers: [v0.2](spec/whitepaper.es.md) · [v0.3 Engram](spec/engram.es.md) · [v0.4 Automantenimiento](spec/self-maintenance.md) (en inglés) · [v0.5 El guardián respondido](spec/answered-guardian.md) (en inglés) · [diagramas de arquitectura](docs/architecture.md) · [procedencia](PROVENANCE.md)
 
 README anterior, para comparar: [docs/WHY.es.md](docs/WHY.es.md) *(escrito desde el 2026-07-04, última revisión el 2026-09-26)*.
 
