@@ -130,6 +130,37 @@ git cat-file commit dd50a5495c34efdbc886b2ed2e0b33a321b00891 | sha256sum
 
 The v0.2 genesis anchor (§1–§2, block 956116) and the v0.3 anchor (§4) are unchanged; this increment references both.
 
+## 6. Whitepaper v0.5 (The Answered Guardian) — separately anchored increment (2026-10-07)
+
+The v0.5 increment (`spec/answered-guardian.md`) gathers the protocol-relevant work built since
+v0.4 around one finding — a guardian that only reports is incomplete — and reports its own field
+record, including what did not hold. It ships one young component by decision, the gateway
+(§7a, `engine/gateway_build.py`, BETA), and the Engram status updates of 2026-10-05 and 2026-10-06
+(`spec/engram.md` §10). It extends the frozen v0.2 and the v0.3 and v0.4 increments without
+replacing any of them, and is anchored the same way.
+
+- **Signed commit (git SHA-1):** `19f9e2fd0db83c9fd0cc0d295ee2ed5e0cebb5b8`
+  Signed by the same Genesis GPG key (fingerprint `6B663C375549978348335ACA28CAD98B3EAC2CBA`); verified "Good signature".
+- **Anchored value (SHA-256 of the signed commit object):** `fcd652146b3a8565157906420715f6e786fddaff765c388d8c48937b8896d26b`
+- **OP_RETURN payload:** `SMP-v0.5 fcd652146b3a8565157906420715f6e786fddaff765c388d8c48937b8896d26b` (73 bytes)
+- **Bitcoin transaction (txid):** `eecb7fbd244be6f8b815c795322115de4499920c62aae8d77d53bf97ea0ddb89`
+  Broadcast 2026-10-07 ~22:04 CEST. OP_RETURN content verified byte-exact against the anchored
+  value the same night (independently, via mempool.space). Pending confirmation at time of
+  writing; block height recorded here once mined.
+
+Verify:
+```
+# 1. the on-chain message is byte-exact:
+bitcoin-cli getrawtransaction eecb7fbd244be6f8b815c795322115de4499920c62aae8d77d53bf97ea0ddb89 true
+# OP_RETURN output (scriptPubKey "nulldata") data → byte-exact:
+#   SMP-v0.5 fcd652146b3a8565157906420715f6e786fddaff765c388d8c48937b8896d26b
+# 2. the anchored value is the SHA-256 of the signed commit:
+git cat-file commit 19f9e2fd0db83c9fd0cc0d295ee2ed5e0cebb5b8 | sha256sum
+# → fcd652146b3a8565157906420715f6e786fddaff765c388d8c48937b8896d26b
+```
+
+The v0.2 genesis anchor (§1–§2, block 956116), the v0.3 anchor (§4) and the v0.4 anchor (§5) are unchanged; this increment references all three.
+
 ## Summary
 
 **Signature proves *who*. Block height proves *when*. Together they prove that this
