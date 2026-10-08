@@ -147,6 +147,9 @@ replacing any of them, and is anchored the same way.
   Broadcast 2026-10-07 ~22:04 CEST. OP_RETURN content verified byte-exact against the anchored
   value the same night (independently, via mempool.space). Pending confirmation at time of
   writing; block height recorded here once mined.
+- **Confirmed:** mined into block **970388**
+  (block hash `0000000000000000000114af0ee4e92d72e81d70f28b141d65adc792f0d2d0bd`,
+  block time 2026-10-07 20:35:57 UTC; read from mempool.space on 2026-10-08).
 
 Verify:
 ```

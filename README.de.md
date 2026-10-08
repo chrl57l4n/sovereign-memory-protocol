@@ -64,6 +64,8 @@ Die Installation läuft als Dialog mit der KI, die du bereits nutzt: Kopiere [do
 
 Whitepaper: [v0.2](spec/whitepaper.de.md) · [v0.3 Engram](spec/engram.de.md) · [v0.4 Selbstpflege](spec/self-maintenance.md) (englisch) · [v0.5 Der beantwortete Wächter](spec/answered-guardian.md) (englisch) · [Architektur-Diagramme](docs/architecture.md) · [Provenienz](PROVENANCE.md)
 
+Labornotizen aus der Referenzinstallation (Messungen, Bauten, Fehlschläge): [SMP Lab Notes](https://chrl57l4n.github.io/smp-lab-notes/de/).
+
 Bisheriges README zum Vergleich: [docs/WHY.de.md](docs/WHY.de.md) *(geschrieben ab 01.07.2026, zuletzt überarbeitet am 26.09.2026)*.
 
 ## Lizenz · Autoren

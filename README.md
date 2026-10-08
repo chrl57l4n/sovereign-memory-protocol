@@ -64,6 +64,8 @@ Installation runs as a dialogue with the AI you already use: copy [docs/SETUP-PR
 
 Whitepapers: [v0.2](spec/whitepaper.md) · [v0.3 Engram](spec/engram.md) · [v0.4 Self-Maintenance](spec/self-maintenance.md) · [v0.5 Answered Guardian](spec/answered-guardian.md) · [architecture diagrams](docs/architecture.md) · [provenance](PROVENANCE.md)
 
+Lab notes from the reference installation (measurements, builds, failures): [SMP Lab Notes](https://chrl57l4n.github.io/smp-lab-notes/).
+
 Previous README, for comparison: [docs/WHY.md](docs/WHY.md) *(written 2026-06-30, last revised 2026-09-26)*.
 
 ## License · Authors
