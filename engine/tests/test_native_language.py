@@ -190,6 +190,174 @@ def test_bad_mnemonic_rejected(tmp_path: Path) -> None:
 
 
 # ── plain-python runner (no pytest required) ─────────────────────────────────
+def test_sleep_writes_no_plaintext_to_disk(tmp_path: Path) -> None:
+    """sleep() must verify the new store in RAM. The old code decrypted the
+    staging store into `<store>.verify` beside the store, i.e. plaintext on the
+    (non-tmpfs) disk, removed only by rmtree (field incident 2026-11-14)."""
+    mnemonic = _fresh_seed()
+    lang, name, _ = nl.keys_from_seed(nl.seed_from_mnemonic(mnemonic))
+    src, store, mirror = tmp_path / "src", tmp_path / "store", tmp_path / "mirror"
+    truth = _plant_tree(src)
+    nl.NativeLanguageStore(lang, name).encrypt_tree(src, store)
+    nl.wake(store, mirror, lang, name)
+
+    # Probe on the filesystem itself, independent of HOW a file is written:
+    # inspect every tree right before rmtree deletes it, and the whole disk
+    # area (everything except the tmpfs mirror) after sleep returns.
+    seen: list[Path] = []
+
+    def scan(root: Path) -> None:
+        root = Path(root)
+        if root.is_file():
+            files = [root]
+        else:
+            files = [f for f in root.rglob("*") if f.is_file()]
+        for f in files:
+            if mirror in f.parents:
+                continue
+            seen.append(f)
+            data = f.read_bytes()
+            for content in truth.values():
+                assert content not in data, f"plaintext on disk during sleep: {f}"
+
+    orig_rmtree, orig_unlink, orig_remove = nl._shutil.rmtree, os.unlink, os.remove
+    orig_path_unlink = Path.unlink
+
+    def spy_rmtree(path, *a, **kw):
+        if Path(path).exists():
+            scan(Path(path))
+        return orig_rmtree(path, *a, **kw)
+
+    def spy_unlink(path, *a, **kw):
+        if Path(path).is_file():
+            scan(Path(path))
+        return orig_unlink(path, *a, **kw)
+
+    def spy_path_unlink(self, *a, **kw):
+        if self.is_file():
+            scan(self)
+        return orig_path_unlink(self, *a, **kw)
+
+    nl._shutil.rmtree = spy_rmtree
+    os.unlink = os.remove = spy_unlink
+    Path.unlink = spy_path_unlink  # type: ignore[method-assign]
+    try:
+        nl.sleep(mirror, store, lang, name)  # default path incl. mirror wipe
+    finally:
+        nl._shutil.rmtree, os.unlink, os.remove = orig_rmtree, orig_unlink, orig_remove
+        Path.unlink = orig_path_unlink  # type: ignore[method-assign]
+    assert not any(mirror.iterdir()), "mirror must be wiped after sleep"
+    scan(tmp_path / "store")
+    for extra in tmp_path.iterdir():
+        if extra not in (src, mirror, store):
+            scan(extra)
+    assert seen, "probe scanned no files — it cannot fire"
+    assert not (store.parent / (store.name + ".verify")).exists()
+
+
+def test_store_permissions_after_sleep(tmp_path: Path) -> None:
+    """The store holds ciphertext, but it must still be private (0700/0600)
+    regardless of the caller's umask."""
+    mnemonic = _fresh_seed()
+    lang, name, _ = nl.keys_from_seed(nl.seed_from_mnemonic(mnemonic))
+    src, store, mirror = tmp_path / "src", tmp_path / "store", tmp_path / "mirror"
+    _plant_tree(src)
+    old_umask = os.umask(0o002)
+    try:
+        nl.NativeLanguageStore(lang, name).encrypt_tree(src, store)
+        # simulate a store written by the old code: wide permissions
+        os.chmod(store, 0o775)
+        for b in store.iterdir():
+            os.chmod(b, 0o664)
+        nl.wake(store, mirror, lang, name)
+        nl.sleep(mirror, store, lang, name)
+    finally:
+        os.umask(old_umask)
+    for d in (store, store.parent / (store.name + ".bak")):
+        assert (d.stat().st_mode & 0o777) == 0o700, f"{d.name}: {oct(d.stat().st_mode & 0o777)}"
+        for blob in d.iterdir():
+            assert (blob.stat().st_mode & 0o777) == 0o600, f"{d.name}/{blob.name}: {oct(blob.stat().st_mode & 0o777)}"
+
+
+def test_sleep_verification_mismatch_leaves_store_untouched(tmp_path: Path) -> None:
+    """Cleanup branch: if the round-trip disagrees with the mirror, sleep must
+    raise and leave the live store byte-identical (no swap, no staging left
+    behind, mirror kept). The mismatch itself is injected."""
+    mnemonic = _fresh_seed()
+    lang, name, _ = nl.keys_from_seed(nl.seed_from_mnemonic(mnemonic))
+    src, store, mirror = tmp_path / "src", tmp_path / "store", tmp_path / "mirror"
+    _plant_tree(src)
+    nl.NativeLanguageStore(lang, name).encrypt_tree(src, store)
+    before = {b.name: b.read_bytes() for b in store.iterdir()}
+    nl.wake(store, mirror, lang, name)
+    (mirror / "motoko/identity.md").write_text("changed\n")
+
+    orig = nl.NativeLanguageStore.decrypt_to_memory
+    nl.NativeLanguageStore.decrypt_to_memory = lambda self, d: {"bogus": b"x"}
+    try:
+        try:
+            nl.sleep(mirror, store, lang, name)
+        except RuntimeError:
+            pass
+        else:
+            raise AssertionError("sleep must raise on verification mismatch")
+    finally:
+        nl.NativeLanguageStore.decrypt_to_memory = orig
+    assert {b.name: b.read_bytes() for b in store.iterdir()} == before
+    assert not (store.parent / (store.name + ".new")).exists()
+    assert any(mirror.iterdir()), "mirror must NOT be wiped when sleep fails"
+
+
+def test_sleep_decrypt_error_leaves_store_untouched(tmp_path: Path) -> None:
+    """An exception inside the verification (e.g. a GCM failure) must also leave
+    the store untouched and remove the staging dir."""
+    mnemonic = _fresh_seed()
+    lang, name, _ = nl.keys_from_seed(nl.seed_from_mnemonic(mnemonic))
+    src, store, mirror = tmp_path / "src", tmp_path / "store", tmp_path / "mirror"
+    _plant_tree(src)
+    nl.NativeLanguageStore(lang, name).encrypt_tree(src, store)
+    before = {b.name: b.read_bytes() for b in store.iterdir()}
+    nl.wake(store, mirror, lang, name)
+
+    def boom(*a, **kw):
+        raise InvalidTag()
+
+    orig = nl.gcm_decrypt
+    nl.gcm_decrypt = boom
+    try:
+        try:
+            nl.sleep(mirror, store, lang, name)
+        except InvalidTag:
+            pass
+        else:
+            raise AssertionError("sleep must propagate the decrypt error")
+    finally:
+        nl.gcm_decrypt = orig
+    assert {b.name: b.read_bytes() for b in store.iterdir()} == before
+    assert not (store.parent / (store.name + ".new")).exists()
+    assert not (store.parent / (store.name + ".bak")).exists()
+    assert any(mirror.iterdir()), "mirror must NOT be wiped when sleep fails"
+
+
+def test_decrypt_to_memory_matches_decrypt_tree(tmp_path: Path) -> None:
+    mnemonic = _fresh_seed()
+    lang, name, _ = nl.keys_from_seed(nl.seed_from_mnemonic(mnemonic))
+    src, store, out = tmp_path / "src", tmp_path / "store", tmp_path / "out"
+    truth = _plant_tree(src)
+    st = nl.NativeLanguageStore(lang, name)
+    st.encrypt_tree(src, store)
+    assert st.decrypt_to_memory(store) == truth
+    st.decrypt_tree(store, out)
+    assert _read_tree(out) == truth
+    (store / "stray-dir").mkdir()
+    try:
+        st.decrypt_to_memory(store)
+    except RuntimeError:
+        pass
+    else:
+        raise AssertionError("unexpected entries in the store must be refused")
+
+
 def _main() -> int:
     import tempfile
     import traceback

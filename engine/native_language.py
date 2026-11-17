@@ -187,6 +187,7 @@ class NativeLanguageStore:
         # angelegt). Für Memory-Inhalte irrelevant; nur .git-Interna haben leere Dirs.
         src, cipher = Path(src_dir), Path(cipher_dir)
         cipher.mkdir(parents=True, exist_ok=True)
+        os.chmod(cipher, 0o700)  # privat, unabhängig von der umask des Aufrufers
         count = 0
         for path in sorted(src.rglob("*")):
             if not path.is_file():
@@ -195,9 +196,27 @@ class NativeLanguageStore:
             name = opaque_name(self.name_key, relpath)
             blob = gcm_encrypt(self.language_key, _pack(relpath, path.read_bytes()),
                                aad=name.encode())
-            (cipher / name).write_bytes(blob)
+            fd = os.open(cipher / name,
+                         os.O_WRONLY | os.O_CREAT | os.O_TRUNC | os.O_NOFOLLOW, 0o600)
+            os.fchmod(fd, 0o600)  # VOR dem Schreiben, auch wenn die Datei schon existierte
+            with os.fdopen(fd, "wb") as fh:
+                fh.write(blob)
             count += 1
         return count
+
+    def decrypt_to_memory(self, cipher_dir: str | os.PathLike) -> dict:
+        """Store → {relpath: content} NUR im RAM. Für die Prüfung in sleep():
+        es entsteht kein zweiter Klartext-Baum auf der Platte."""
+        out = {}
+        for blob_path in Path(cipher_dir).iterdir():
+            if blob_path.is_symlink() or not blob_path.is_file():
+                raise RuntimeError(f"decrypt_to_memory: unerwarteter Eintrag im Store: {blob_path.name}")
+            name = blob_path.name
+            relpath, content = _unpack(
+                gcm_decrypt(self.language_key, blob_path.read_bytes(), aad=name.encode())
+            )
+            out[relpath] = content
+        return out
 
     def decrypt_tree(self, cipher_dir: str | os.PathLike, dst_dir: str | os.PathLike) -> int:
         cipher, dst = Path(cipher_dir), Path(dst_dir)
@@ -249,6 +268,15 @@ def _ensure_clean_tmpfs(d) -> None:
             child.unlink()
 
 
+def _make_private(d) -> None:
+    """Ordner 0700, Dateien darin 0600 (Ciphertext, trotzdem privat)."""
+    d = Path(d)
+    os.chmod(d, 0o700)
+    for f in d.iterdir():
+        if f.is_file() and not f.is_symlink():
+            os.chmod(f, 0o600)
+
+
 def wake(cipher_dir, tmpfs_dir, language_key: bytes, name_key: bytes) -> int:
     """Store → frischer Klartext-Spiegel in tmpfs. Gibt Datei-Anzahl zurück.
     tmpfs_dir ist typisch ein dedizierter noswap-tmpfs-Mountpoint (z.B. /run/smp-mirror)."""
@@ -270,25 +298,37 @@ def sleep(tmpfs_dir, cipher_dir, language_key: bytes, name_key: bytes,
     staging = cipher.parent / (cipher.name + ".new")
     if staging.exists():
         _shutil.rmtree(staging)
-    n = store.encrypt_tree(tmpfs_dir, staging)
+    try:
+        n = store.encrypt_tree(tmpfs_dir, staging)
+    except BaseException:
+        _shutil.rmtree(staging, ignore_errors=True)
+        raise
 
     # Verifikation VOR dem Swap: Round-Trip aus dem Staging muss den tmpfs-Stand
     # exakt reproduzieren — sonst kein Swap (Store bleibt unberührt).
-    verify_dir = cipher.parent / (cipher.name + ".verify")
-    if verify_dir.exists():
-        _shutil.rmtree(verify_dir)
-    store.decrypt_tree(staging, verify_dir)
+    # Die Prüfung läuft im Prozess-Speicher: KEIN Klartext-Baum neben dem Store auf
+    # der Platte. Ehrliche Grenze: Prozess-Speicher kann in den Swap ausgelagert
+    # werden (wie schon beim Lesen des Spiegels) — dagegen hilft nur verschlüsselter
+    # Swap oder kein Swap für diesen Prozess, das ist Sache der Installation.
+    # (Bis 2026-11-17 entschlüsselte sleep() nach `<store>.verify` — Klartext auf
+    # Platte, nur per rmtree entfernt. Reste davon werden hier mit weggeräumt.)
+    stale_verify = cipher.parent / (cipher.name + ".verify")
+    if stale_verify.exists():
+        _shutil.rmtree(stale_verify)
 
-    def _tree(root):
-        root = Path(root)
-        return {str(p.relative_to(root)): p.read_bytes()
-                for p in sorted(root.rglob("*")) if p.is_file()}
-
-    if _tree(verify_dir) != _tree(tmpfs_dir):
+    root = Path(tmpfs_dir)
+    try:
+        mirror_state = {str(p.relative_to(root)): p.read_bytes()
+                        for p in sorted(root.rglob("*")) if p.is_file()}
+        ok = store.decrypt_to_memory(staging) == mirror_state
+    except BaseException:
+        _shutil.rmtree(staging, ignore_errors=True)  # jeder Fehler vor dem Swap: Staging weg
+        raise
+    finally:
+        mirror_state = None  # Referenz früh lösen (kein echtes Zeroize, s. CLI-Hinweis)
+    if not ok:
         _shutil.rmtree(staging, ignore_errors=True)
-        _shutil.rmtree(verify_dir, ignore_errors=True)
         raise RuntimeError("sleep: Round-Trip-Verifikation gescheitert — Store NICHT angetastet")
-    _shutil.rmtree(verify_dir, ignore_errors=True)
 
     # Atomarer Swap: alten Store nach .bak, staging → live.
     backup = cipher.parent / (cipher.name + ".bak")
@@ -296,6 +336,7 @@ def sleep(tmpfs_dir, cipher_dir, language_key: bytes, name_key: bytes,
         if backup.exists():
             _shutil.rmtree(backup)
         cipher.rename(backup)
+        _make_private(backup)  # ältere Stores können noch 775/664 tragen
     staging.rename(cipher)
 
     if wipe:
